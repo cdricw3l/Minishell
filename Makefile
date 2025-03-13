@@ -41,7 +41,7 @@ fclean: clean
 
 all: fclean $(NAME)
 
-git:
+git: fclean
 	git add . && git commit -m $(COM)/$(DATE) && git push origin $(BRANCH)
 
 .PHONY:
