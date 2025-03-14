@@ -27,9 +27,6 @@ else
 	.valgrind --filename=$(MEMORY_CHECK_PATH)/$(DATE) --checkleak=full ./$(NAME)
 endif
 
-git:
-	git add . && git commit -m $(COM)
-
 clean:
 	rm -f srcs/*.o
 
