@@ -11,21 +11,20 @@
 /* ************************************************************************** */
 
 #ifndef MAIN_H
-#define MAIN_H
+# define MAIN_H
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/time.h>
-#include <sys/resource.h>
-#include <sys/wait.h>
-#include <unistd.h>
-#include <dirent.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <dirent.h>
-
-
-
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <sys/types.h>//pour 'pid_t'
+# include <sys/stat.h>
+# include <sys/time.h>
+# include <sys/resource.h>
+# include <sys/wait.h>//pour 'wait'
+# include <unistd.h>
+# include <dirent.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <dirent.h>
 
 #endif 
