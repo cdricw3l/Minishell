@@ -24,7 +24,7 @@ run: $(NAME)
 ifeq ($(OS),Darwin)
 	./$(NAME) > $(MEMORY_CHECK_PATH)/$(DATE)
 else
-	.valgrind --filename=$(MEMORY_CHECK_PATH)/$(DATE) --checkleak=full ./$(NAME)
+	valgrind --log-file=$(MEMORY_CHECK_PATH)/$(DATE) --leak-check=full ./$(NAME)
 endif
 
 git:
