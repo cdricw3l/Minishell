@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:17:01 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/17 21:28:18 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/17 23:31:01 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int main(void)
 {
     t_node **arbre;
-    char str[] = "man open | grep stdin > manopen.txt";
+    char str[] = "cat < file.txt | hello";
     
     arbre = ft_get_token_lst(str);
     if(!arbre)
         return(1);
     free(arbre);
 
-    
+
     return(0);
 }

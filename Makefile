@@ -55,7 +55,7 @@ EMPTY=
 ifeq ($(mode), $(PROD))
 OBJS= $(OBJS_MAIN) $(OBJS_PARSER)
 else ifeq ($(mode), $(TEST))
-OBJS= $(OBJS_PARSER) $(OBJS_EXECUTOR) $(OBJS_SUB)
+OBJS= $(OBJS_PARSER) 
 endif
 
 
@@ -75,8 +75,6 @@ ifeq ($(OS), Darwin)
 else ifeq ($(OS), Linux)
 	valgrind --leak-check=full --log-file=$(MEMORY_CHECK_PATH)/$(DATE) -s bin/$(NAME)
 endif
-
-
 
 # cleaning rules
 
