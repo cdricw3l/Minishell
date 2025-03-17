@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   tst_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 22:15:28 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/17 11:21:51 by cbouhadr         ###   ########.fr       */
+/*   Created: 2025/03/17 13:17:01 by cbouhadr          #+#    #+#             */
+/*   Updated: 2025/03/17 13:20:25 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-#define MAIN_H
+#include "test_unit.h"
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/time.h>
-#include <sys/resource.h>
-#include <sys/wait.h>
-#include <unistd.h>
-#include <dirent.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <dirent.h>
-#include <stdio.h>
+int ft_read_line(char *str)
+{
+    char *line;
 
-
-
-#include "../srcs/parser/parser.h"
+    while (1)
+    {
+        line = readline(str);
+        if(!line)
+            return(1);
+        printf("voici line %s\n", line);
+    }
+    return(0);
+}
 
 
-#endif 
+
+int main(void)
+{
+    ft_read_line("minishell $ ");
+    return(1);
+}

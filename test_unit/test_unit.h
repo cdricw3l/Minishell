@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   test_unit.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 22:15:28 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/17 11:21:51 by cbouhadr         ###   ########.fr       */
+/*   Created: 2025/03/17 13:17:20 by cbouhadr          #+#    #+#             */
+/*   Updated: 2025/03/17 13:18:38 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-#define MAIN_H
-
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/time.h>
-#include <sys/resource.h>
-#include <sys/wait.h>
-#include <unistd.h>
-#include <dirent.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <dirent.h>
-#include <stdio.h>
-
-
+#ifndef  TEST_UNIT_H
+#define TEST_UNIT_H
 
 #include "../srcs/parser/parser.h"
 
 
-#endif 
+
+#endif
