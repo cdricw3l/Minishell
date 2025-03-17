@@ -53,9 +53,9 @@ EMPTY=
 
 ifeq ($(mode), $(PROD))
 OBJS= $(OBJS_MAIN) $(OBJS_PARSER)
+else ifeq ($(mode), $(TEST))
+OBJS= $(OBJS_PARSER) $(OBJS_EXECUTOR) $(OBJS_SUB)
 endif
-
-
 
 
 .PHONY: clean fclean run git testenv
@@ -81,21 +81,22 @@ endif
 
 clean:
 	rm -f $(OBJS) $(OBJS_TEST)
+	rm -f test_unit/test_unit
 
 fclean: clean
-	rm -f $(NAME) test_unit 
+	rm -f $(NAME) test_unit/test_unit 
 
 mclean:
 	rm -f $(MEMORY_CHECK_PATH)/*
-	
+
 
 t: $(OBJS) $(OBJS_TEST)
 ifeq ($(OS), Darwin)
 	$(CC) $(GFLAGS) -fsanitize=address  $(OBJS) $(OBJS_TEST) -o test_unit 
 	./test_unit
 else ifeq ($(OS), Linux)
-	$(CC) $(OBJS) $(OBJS_TEST)  -o $(NAME)
-	valgrind --leak-check=full --log-file=filename  -s ./test_unit
+	$(CC) $(OBJS) $(OBJS_TEST)  -o test_unit/test_unit -lreadline
+	valgrind --leak-check=full --log-file=filename  -s ./test_unit/test_unit
 endif
 
 
