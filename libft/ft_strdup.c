@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_unit.h                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 13:17:20 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/17 21:23:52 by cw3l             ###   ########.fr       */
+/*   Created: 2024/10/01 16:00:33 by cbouhadr          #+#    #+#             */
+/*   Updated: 2024/10/12 16:45:10 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  TEST_UNIT_H
-#define TEST_UNIT_H
+#include "libft.h"
 
-#include "../srcs/parser/parser.h"
-#include "../srcs/parser/lexer/precedence_climbing.h"
-#include "../include/main.h"
+char	*ft_strdup(const char *s1)
+{
+	size_t	len;
+	char	*ptr;
 
-
-#endif
+	len = ft_strlen(s1);
+	ptr = malloc(sizeof(char) * (len + 1));
+	if (!ptr)
+		return (NULL);
+	ft_strlcpy(ptr, s1, len + 1);
+	return (ptr);
+}

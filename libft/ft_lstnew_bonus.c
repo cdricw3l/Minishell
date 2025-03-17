@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_unit.h                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 13:17:20 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/17 21:23:52 by cw3l             ###   ########.fr       */
+/*   Created: 2024/10/02 12:45:59 by cbouhadr          #+#    #+#             */
+/*   Updated: 2024/10/08 11:37:46 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  TEST_UNIT_H
-#define TEST_UNIT_H
+#include "libft.h"
 
-#include "../srcs/parser/parser.h"
-#include "../srcs/parser/lexer/precedence_climbing.h"
-#include "../include/main.h"
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*new;
 
-
-#endif
+	new = malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
+}

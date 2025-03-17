@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_unit.h                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 13:17:20 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/17 21:23:52 by cw3l             ###   ########.fr       */
+/*   Created: 2024/10/01 12:09:36 by cbouhadr          #+#    #+#             */
+/*   Updated: 2024/10/09 13:46:45 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  TEST_UNIT_H
-#define TEST_UNIT_H
+#include "libft.h"
 
-#include "../srcs/parser/parser.h"
-#include "../srcs/parser/lexer/precedence_climbing.h"
-#include "../include/main.h"
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
 
-
-#endif
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}

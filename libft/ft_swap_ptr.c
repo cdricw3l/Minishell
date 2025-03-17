@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_unit.h                                        :+:      :+:    :+:   */
+/*   ft_swap_ptr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 13:17:20 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/17 21:23:52 by cw3l             ###   ########.fr       */
+/*   Created: 2024/11/27 14:17:44 by cbouhadr          #+#    #+#             */
+/*   Updated: 2024/11/27 14:52:20 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  TEST_UNIT_H
-#define TEST_UNIT_H
+#include "libft.h"
 
-#include "../srcs/parser/parser.h"
-#include "../srcs/parser/lexer/precedence_climbing.h"
-#include "../include/main.h"
+void	ft_swap_ptr(void *p1, void *p2, int size)
+{
+	void	*tmp;
 
-
-#endif
+	if (p1 && p2)
+	{
+		tmp = malloc(size + 1);
+		if (!tmp)
+			return ;
+		ft_memcpy(tmp, p1, size);
+		ft_memcpy(p1, p2, size);
+		ft_memcpy(p2, tmp, size);
+	}
+}

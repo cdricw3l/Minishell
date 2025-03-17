@@ -5,7 +5,7 @@ NAME= minishell
 OS = $(shell uname)
 ifeq ($(OS), Darwin)
 CC=cc
-GFLAGS= -Werror -Wall -Wextra -I.
+GFLAGS= -Werror -Wall -Wextra
 else ifeq ($(OS), Linux)
 CC=gcc
 GFLAGS= -Werror -Wall -Wextra
@@ -25,8 +25,9 @@ SRCS_PARSER= $(wildcard srcs/parser/**/*.c) $(wildcard srcs/parser/*.c)
 
 SRCS_EXECUTOR= $(wildcard srcs/executor/**/*.c) $(wildcard srcs/executor/*.c)
 SRCS_SUB= $(wildcard srcs/subsystems/**/*.c) $(wildcard srcs/subsystems/*.c)
-SRCS_TEST= $(wildcard unit_test/*.c)
+SRCS_TEST= $(wildcard test_unit/*.c)
 
+LIBFT= libft
 
 ifeq ($(mode), $(NOFLAGS))
 %.o:%.c
@@ -62,7 +63,7 @@ endif
 
 $(NAME): $(OBJS)
 ifeq ($(mode), $(PROD))
-	$(CC) $(GFLAGS) $(OBJS) -o $(NAME) -lreadline
+	$(CC) $(GFLAGS) $(OBJS) -L$(LIBFT) -lft -o $(NAME) -lreadline
 else ifeq ($(mode), $(NOFLAGS))
 recall:  $(OBJS)
 	$(CC) $(OBJS) -o $(NAME)
@@ -70,9 +71,9 @@ endif
 
 run: $(NAME)
 ifeq ($(OS), Darwin)
-	./$(NAME)
+	bin/$(NAME)
 else ifeq ($(OS), Linux)
-	valgrind --leak-check=full --log-file=$(MEMORY_CHECK_PATH)/$(DATE) -s ./$(NAME)
+	valgrind --leak-check=full --log-file=$(MEMORY_CHECK_PATH)/$(DATE) -s bin/$(NAME)
 endif
 
 
@@ -84,7 +85,7 @@ clean:
 	rm -f test_unit/test_unit
 
 fclean: clean
-	rm -f $(NAME) test_unit/test_unit 
+	rm -f bin/$(NAME) bin/test.exe
 
 mclean:
 	rm -f $(MEMORY_CHECK_PATH)/*
@@ -92,13 +93,12 @@ mclean:
 
 t: $(OBJS) $(OBJS_TEST)
 ifeq ($(OS), Darwin)
-	$(CC) $(GFLAGS) -fsanitize=address  $(OBJS) $(OBJS_TEST) -o test_unit 
-	./test_unit
+	$(CC) $(GFLAGS) -fsanitize=address  $(OBJS) $(OBJS_TEST) -L$(LIBFT) -lft  -lreadline -o bin/test.exe
+	bin/test.exe
 else ifeq ($(OS), Linux)
 	$(CC) $(OBJS) $(OBJS_TEST)  -o test_unit/test_unit -lreadline
-	valgrind --leak-check=full --log-file=filename  -s ./test_unit/test_unit
+	valgrind --leak-check=full --log-file=filename  -s ./bin/test.exe
 endif
-
 
 
 git: fclean

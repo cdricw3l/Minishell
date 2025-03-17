@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 22:15:03 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/17 11:27:49 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/17 21:19:50 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/main.h"
 
 
-int main(void)
-{
-    ft_start_minishell("Mini-shell $ ");
-    return(0);
-}
+// int main(void)
+// {
+//     ft_start_minishell("Mini-shell $ ");
+//     return(0);
+// }

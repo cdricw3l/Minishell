@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_unit.h                                        :+:      :+:    :+:   */
+/*   ft_cmp_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 13:17:20 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/17 21:23:52 by cw3l             ###   ########.fr       */
+/*   Created: 2024/11/27 14:12:22 by cbouhadr          #+#    #+#             */
+/*   Updated: 2024/11/27 14:14:09 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  TEST_UNIT_H
-#define TEST_UNIT_H
+#include "libft.h"
 
-#include "../srcs/parser/parser.h"
-#include "../srcs/parser/lexer/precedence_climbing.h"
-#include "../include/main.h"
+int	ft_cmp_char(void *p1, void *p2)
+{
+	int	v1;
+	int	v2;
 
-
-#endif
+	v1 = *(char *)(p1);
+	v2 = *(char *)(p2);
+	return (v1 - v2);
+}

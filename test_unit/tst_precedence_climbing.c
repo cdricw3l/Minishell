@@ -3,16 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tst_precedence_climbing.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:16:38 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/17 13:21:55 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/17 21:16:23 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int tst_precedence_climbing(char *str)
-{
-    if(!str)
-        return(-1);
-    
-}

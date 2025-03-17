@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_unit.h                                        :+:      :+:    :+:   */
+/*   precedence_climbing.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 13:17:20 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/17 21:23:52 by cw3l             ###   ########.fr       */
+/*   Created: 2025/03/17 19:58:58 by cw3l              #+#    #+#             */
+/*   Updated: 2025/03/17 21:09:42 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  TEST_UNIT_H
-#define TEST_UNIT_H
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-#include "../srcs/parser/parser.h"
-#include "../srcs/parser/lexer/precedence_climbing.h"
-#include "../include/main.h"
+#ifndef AST_H
+#define AST_H
+
+
+typedef struct s_node
+{
+    char value;
+    
+    void *right;
+    void *left;
+
+} t_node;
+
+t_node      **ft_get_token_lst(char *str);
 
 
 #endif

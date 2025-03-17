@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:31:06 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/17 11:18:20 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/17 17:00:09 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@
 
 #include <readline/readline.h>
 #include <readline/history.h>
+
+typedef struct s_token_list
+{
+    int type;
+    
+    void *pred;
+    void *next;
+
+} t_token_lst;
+
 
 int ft_start_minishell(char *str);
 int ft_read_line(char *str);

@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_unit.h                                        :+:      :+:    :+:   */
+/*   ast.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 13:17:20 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/17 21:23:52 by cw3l             ###   ########.fr       */
+/*   Created: 2025/03/17 19:56:51 by cw3l              #+#    #+#             */
+/*   Updated: 2025/03/17 20:09:26 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  TEST_UNIT_H
-#define TEST_UNIT_H
+#include "precedence_climbing.h"
 
-#include "../srcs/parser/parser.h"
-#include "../srcs/parser/lexer/precedence_climbing.h"
-#include "../include/main.h"
+t_node *ft_new_node(char value)
+{
+    t_node *new_node;
+
+    new_node = malloc(sizeof(t_node));
+    if(!new_node)
+        return(NULL);
+    new_node->value = value;
+    new_node->left = NULL;
+    new_node->right = NULL;
+
+    return(new_node);
+}
 
 
-#endif
+
+

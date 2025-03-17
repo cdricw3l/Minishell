@@ -3,33 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   tst_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:17:01 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/17 13:20:25 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/17 21:28:18 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test_unit.h"
 
-int ft_read_line(char *str)
-{
-    char *line;
-
-    while (1)
-    {
-        line = readline(str);
-        if(!line)
-            return(1);
-        printf("voici line %s\n", line);
-    }
-    return(0);
-}
-
-
-
 int main(void)
 {
-    ft_read_line("minishell $ ");
-    return(1);
+    t_node **arbre;
+    char str[] = "man open | grep stdin > manopen.txt";
+    
+    arbre = ft_get_token_lst(str);
+    if(!arbre)
+        return(1);
+    free(arbre);
+
+    
+    return(0);
 }
