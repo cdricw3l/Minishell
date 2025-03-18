@@ -6,11 +6,12 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:34:14 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/17 23:45:42 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/18 23:33:52 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "precedence_climbing.h"
+#include <assert.h>
 
 int ft_get_precedence(char c)
 {
@@ -22,43 +23,110 @@ int ft_get_precedence(char c)
         return(1);
 }
 
-
-void ft_climb_token(t_node **token_lst , char *str, int precedence, int start, int end)
+char *ft_join(char *str, char c)
 {
-    (void)token_lst;
+    int len;
+    char *new_str;
+    int i;
+
+    if(!str)
+        len = 1;
+    else
+        len = ft_strlen(str);
+    i = 0;
+    new_str = malloc(sizeof(char) * (len + 2));
+    if(!new_str)
+        return(NULL);
+    if(str)
+    {
+        while (str[i])
+        {
+            new_str[i] = str[i];
+            i++;
+        }
+    }
+    new_str[i++] = c;
+    new_str[i] = '\0';
+    if(str)
+        free(str);
+    return(new_str);
+    
+}
+
+
+void ft_climb_token(char *str, int precedence, int start, int end)
+{
     (void)start;
     int i;
     int p;
-
-    i = 0;
-
-    if(start == end)
-        return ;
-        
+    char *s;
+    
+    i = start;
+    s = NULL;
     while (i < end)
     {
-        p = ft_get_precedence(str[i]);
-        if(p > precedence)
+        p = ft_get_precedence(str[i + 1]);
+        if(p >= precedence)
         {   
-            precedence = p;
-            ft_climb_token(token_lst, str, precedence, i, end);
-            
-            printf("we found value %c\n", str[i]);
+            s = ft_join(s, str[i]);
+        }
+        else
+        {
+            printf("ENtre dans la recusion\n");
+            if(s)
+                printf("%s\n", s);
+            s = NULL;
+            ft_climb_token(str, p, i + 1, end);
         }
         i++;
     }
       
 }
 
-t_node **ft_get_token_lst(char *str)
+void create_tree(t_ast_node *node,int start, int end, int idx)
 {
-    t_node **token_lst;
-
-    printf(" %s\n", str);
-    token_lst = malloc(sizeof(t_node *));
-    if(!*token_lst)
-        return(NULL);
-    ft_climb_token(token_lst,str,1, 0, ft_strlen(str));
+    t_ast_node *new_node;
     
-    return(token_lst);
+    if(start > end)
+    {
+        if(!node->left)
+        {
+            new_node = ft_new_ast_node(idx, 'L');
+            node->left = new_node;
+        }
+        if(!node->right)
+        {
+            new_node = ft_new_ast_node(idx, 'R');
+            node->right = new_node;
+        }
+        return ;
+    }
+    if(!node->left)
+    {
+        new_node = ft_new_ast_node(idx, 'L');
+        node->left = new_node;
+        create_tree(node->left, start + 1, end, idx + 1);
+    }
+    if(!node->right)
+    {
+        new_node = ft_new_ast_node(idx, 'R');
+        node->right = new_node;
+        create_tree(node->right, start + 1, end, idx + 1);
+    }
+    
+}
+
+
+
+t_ast_node **ft_get_token_lst(char *str)
+{
+
+    t_ast_node *a;
+    (void)str;
+    a = ft_new_ast_node(0, 'r');
+    create_tree(a,1,5,1);
+    printf("dasdq %d\n", (a->right->value));
+    ft_parcour_ast(a);
+    
+    return(0);
 }
