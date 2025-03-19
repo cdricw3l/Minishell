@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:58:58 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/19 14:17:02 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:59:55 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,8 @@
 #include "../../../include/main.h"
 #include "ast/ast.h"
 
+void ft_climb_token(char *str, int precedence, int start, int end);
+char *ft_join(char *str, char c);
+int ft_get_precedence(char c);
 
 #endif

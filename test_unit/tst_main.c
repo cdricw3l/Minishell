@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:17:01 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/19 14:21:06 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/19 16:54:01 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,33 @@ int get_precedence(char c)
     return(1);
 }
 
-char *ft_parse(char *str, int start, int end, int p)
+char *ft_parse(char *str, int start, int end, int actual_precedence, char **buff)
 {
     int i;
-
+    int next_precedence;
 
     i = start;
-
-    while( i < end)
+    while(i < end)
     {
-        int pre = get_precedence(str[i + 1]);
-        if(pre >= p)
+        next_precedence = get_precedence(str[i + 1]);
+        if(actual_precedence == next_precedence)
         {
-            printf("%c", str[i]);
-            p = pre;
+            *buff  = ft_join(*buff, str[i]);
+            if(!*buff)
+                printf("Error\n");
+            /* else
+                printf("%s\n", *buff); */
+            printf("%c\n", str[i]);
+            actual_precedence = next_precedence;
         }
         else
         {
-            printf("\n");
-            p = pre;
-            ft_parse(str,i + 1,end, pre);
+            printf("decente\n");
+            actual_precedence = 1;
+            ft_parse(str,i + 1, end, actual_precedence, buff);
         }  
         i++;
+        printf("\n");
     }
     return(NULL);
 }
@@ -49,20 +54,11 @@ char *ft_parse(char *str, int start, int end, int p)
 
 int main(void)
 {
-    int arr[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+    char str[] = "cat < file1.txt | grep m > file.txt";
+    char *buff = NULL;
     
-    t_ast_node *racine;
-    int i;
+    ft_parse(str,0,ft_strlen(str), 1, &buff);
 
-    i = 0;
-    racine = ft_new_ast_node(0,'r');
-    if(!racine)
-        return(1);
-    create_tree(racine,1,3,1);
 
-    ft_ast_iter(racine, ft_print_ast_node_data);
-    ft_count_node(racine,&i);
-    printf("len %d\n", i);
-    (void)arr;
     return(0);
 }

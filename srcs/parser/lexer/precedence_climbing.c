@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:34:14 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/19 14:23:17 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/19 16:03:54 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char *ft_join(char *str, char c)
 }
 
 
-void ft_climb_token(char *str, int precedence, int start, int end)
+void ft_climb_token(char *str, int precedence_min, int start, int end)
 {
     (void)start;
     int i;
@@ -66,7 +66,7 @@ void ft_climb_token(char *str, int precedence, int start, int end)
     while (i < end)
     {
         p = ft_get_precedence(str[i + 1]);
-        if(p >= precedence)
+        if(p >= precedence_min)
         {   
             s = ft_join(s, str[i]);
         }
