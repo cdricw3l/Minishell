@@ -20,7 +20,7 @@ NOFLAGS=3
 MEMORY_CHECK_PATH= error_managment/valgrind
 
 SRCS_MAIN= srcs/main.c
-SRCS_PARSER= $(wildcard srcs/parser/**/*.c) $(wildcard srcs/parser/*.c)
+SRCS_PARSER= $(wildcard srcs/parser/**/*.c) $(wildcard srcs/parser/lexer/**/*.c) $(wildcard srcs/parser/*.c)
 
 
 SRCS_EXECUTOR= $(wildcard srcs/executor/**/*.c) $(wildcard srcs/executor/*.c)
@@ -94,7 +94,7 @@ ifeq ($(OS), Darwin)
 	$(CC) $(GFLAGS) -fsanitize=address  $(OBJS) $(OBJS_TEST) -L$(LIBFT) -lft  -lreadline -o bin/test.exe
 	bin/test.exe
 else ifeq ($(OS), Linux)
-	$(CC) $(OBJS) $(OBJS_TEST)  -o test_unit/test_unit -lreadline
+	$(CC) $(GFLAGS) $(OBJS) $(OBJS_TEST) -L$(LIBFT) -lft -lreadline -o bin/test.exe
 	valgrind --leak-check=full --log-file=filename  -s ./bin/test.exe
 endif
 

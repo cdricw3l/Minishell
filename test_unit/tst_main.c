@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tst_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:17:01 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/19 07:11:10 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/19 14:21:06 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,17 @@ int main(void)
     int arr[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
     
     t_ast_node *racine;
+    int i;
 
+    i = 0;
     racine = ft_new_ast_node(0,'r');
     if(!racine)
         return(1);
-    ft_print_ast_node_data(racine);
-    create_tree(racine,1,2,1);
-    ft_parcour_ast(racine);
+    create_tree(racine,1,3,1);
+
+    ft_ast_iter(racine, ft_print_ast_node_data);
+    ft_count_node(racine,&i);
+    printf("len %d\n", i);
     (void)arr;
     return(0);
 }
