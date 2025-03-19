@@ -89,16 +89,6 @@ void execute_ast(t_ast *node)
         waitpid(pid1, NULL, 0);
         waitpid(pid2, NULL, 0);
     }
-    else if (node->type == NODE_AND)
-    {
-        execute_ast(node->left);
-        execute_ast(node->right);
-    }
-    else if (node->type == NODE_OR)
-    {
-        execute_ast(node->left);
-        execute_ast(node->right);
-    }
 }
 
 // Dummy Function to Parse Input into an AST (Replace with real parser)
