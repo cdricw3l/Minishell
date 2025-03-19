@@ -4,6 +4,8 @@ CC=cc
 GFLAGS= -Werror -Wall -Wextra
 SRCS= $(wildcard srcs/*.c)
 OBJS= $(SRCS: *.c=.o)
+LIBS=-lreadline
+#to use libray(readline)
 LINUX=Linux
 #get the name of the systeme
 OS= $(shell uname)
@@ -15,7 +17,7 @@ BRANCH=$(shell git branch --show-current)
 MEMORY_CHECK_PATH= error_managment/valgrind
 
 $(NAME): $(OBJS)
-	$(CC) $(GFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(GFLAGS) $(OBJS) -o $(NAME) $(LIBS)
 
 date :
 	$(DATE)
