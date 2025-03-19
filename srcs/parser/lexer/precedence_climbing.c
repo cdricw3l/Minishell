@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:34:14 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/18 23:33:52 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/19 07:12:24 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,28 +89,32 @@ void create_tree(t_ast_node *node,int start, int end, int idx)
     
     if(start > end)
     {
-        if(!node->left)
-        {
-            new_node = ft_new_ast_node(idx, 'L');
-            node->left = new_node;
-        }
-        if(!node->right)
-        {
-            new_node = ft_new_ast_node(idx, 'R');
-            node->right = new_node;
-        }
+        // if(!node->left)
+        // {
+        //     new_node = ft_new_ast_node(idx, 'L');
+        //     node->left = new_node;
+        //     node->left->parent = node;
+        // }
+        // if(!node->right)
+        // {
+        //     new_node = ft_new_ast_node(idx, 'R');
+        //     node->right = new_node;
+        //     node->right->parent = node;
+        // }
         return ;
     }
     if(!node->left)
     {
         new_node = ft_new_ast_node(idx, 'L');
         node->left = new_node;
+        node->left->parent = node;
         create_tree(node->left, start + 1, end, idx + 1);
     }
     if(!node->right)
     {
         new_node = ft_new_ast_node(idx, 'R');
         node->right = new_node;
+        node->right->parent = node;
         create_tree(node->right, start + 1, end, idx + 1);
     }
     

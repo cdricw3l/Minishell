@@ -6,17 +6,40 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:56:51 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/18 23:34:02 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/19 07:06:11 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "precedence_climbing.h"
 
+void ft_print_ast_node_data(t_ast_node *node)
+{
+    if(node)
+    {
+        printf("\n\n####################################\n\n");
+        printf("Display du node %p\n", node);
+        printf("\tValue : %d\n", node->value);
+        if(!node->parent)
+            printf("Le noeud na pas de parent\n");
+        else
+            printf("Papa %p\n", node->parent);
+        if(!node->left)
+            printf("Le noeud na pas de fils gauche\n");
+        else
+            printf("fils gauche %p\n", node->left);
+        if(!node->right)
+            printf("Le noeud na pas de fils droit\n");
+        else
+            printf("fils droit %p\n", node->right);
+        printf("\n\n####################################\n\n");
+    }
+}
+
 void ft_parcour_ast(t_ast_node *node)
 {
     if(!node)
         return ;
-    printf("value node : %d in position %c poiteur %p\n", node->value, node->c,node );
+    ft_print_ast_node_data(node);
     ft_parcour_ast(node->left);
     ft_parcour_ast(node->right);
 }
@@ -46,6 +69,7 @@ t_ast_node *ft_new_ast_node(int value, char position)
         return(NULL);
     new_node->value = value;
     new_node->c = position;
+    new_node->parent = NULL;
     new_node->left = NULL;
     new_node->right = NULL;
 

@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:31:06 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/17 17:00:09 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/19 06:35:49 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_token_list
 {
     int type;
     
+    void  *parent;
     void *pred;
     void *next;
 

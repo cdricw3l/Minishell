@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:58:58 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/18 23:57:40 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/19 07:04:45 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,8 @@ typedef struct s_ast_node
 t_ast_node      **ft_get_token_lst(char *str);
 t_ast_node      *ft_new_ast_node(int value, char c);
 void            ft_ast_add_node(t_ast_node *racine, t_ast_node *node_tree, int direction);
-void            ft_parcour_ast(t_ast_node *node);          
+void            ft_parcour_ast(t_ast_node *node); 
+void            create_tree(t_ast_node *node,int start, int end, int idx); 
+void            ft_print_ast_node_data(t_ast_node *node);
+        
 #endif
