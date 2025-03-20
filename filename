@@ -1,23 +1,25 @@
-==535051== Memcheck, a memory error detector
-==535051== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==535051== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==535051== Command: ./bin/test.exe
-==535051== Parent PID: 535041
-==535051== 
-==535051== 
-==535051== HEAP SUMMARY:
-==535051==     in use at exit: 39 bytes in 3 blocks
-==535051==   total heap usage: 15 allocs, 12 frees, 1,112 bytes allocated
-==535051== 
-==535051== 39 (24 direct, 15 indirect) bytes in 1 blocks are definitely lost in loss record 3 of 3
-==535051==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==535051==    by 0x1099B2: main (in /home/cbouhadr/Documents/minishell/bin/test.exe)
-==535051== 
-==535051== LEAK SUMMARY:
-==535051==    definitely lost: 24 bytes in 1 blocks
-==535051==    indirectly lost: 15 bytes in 2 blocks
-==535051==      possibly lost: 0 bytes in 0 blocks
-==535051==    still reachable: 0 bytes in 0 blocks
-==535051==         suppressed: 0 bytes in 0 blocks
-==535051== 
-==535051== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==579124== Memcheck, a memory error detector
+==579124== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==579124== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==579124== Command: ./bin/test.exe
+==579124== Parent PID: 579086
+==579124== 
+==579124== 
+==579124== HEAP SUMMARY:
+==579124==     in use at exit: 280 bytes in 7 blocks
+==579124==   total heap usage: 8 allocs, 1 frees, 1,304 bytes allocated
+==579124== 
+==579124== 280 (40 direct, 240 indirect) bytes in 1 blocks are definitely lost in loss record 7 of 7
+==579124==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==579124==    by 0x109672: ft_new_ast_node (ast_instance.c:43)
+==579124==    by 0x10994B: tst_ast (ast_test.c:28)
+==579124==    by 0x109C19: main (tst_main.c:72)
+==579124== 
+==579124== LEAK SUMMARY:
+==579124==    definitely lost: 40 bytes in 1 blocks
+==579124==    indirectly lost: 240 bytes in 6 blocks
+==579124==      possibly lost: 0 bytes in 0 blocks
+==579124==    still reachable: 0 bytes in 0 blocks
+==579124==         suppressed: 0 bytes in 0 blocks
+==579124== 
+==579124== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
