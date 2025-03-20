@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:17:01 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/19 16:54:01 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/20 09:16:56 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,46 +19,49 @@ int get_precedence(char c)
     return(1);
 }
 
-char *ft_parse(char *str, int start, int end, int actual_precedence, char **buff)
+
+// 33.333 , -33.33
+
+char **ft_parse(char *str, int start, int end, int actual_precedence, char **buff,int buff_idx)
 {
     int i;
-    int next_precedence;
+    char *b = NULL;
 
-    i = start;
-    while(i < end)
+
+    if( start > end)
     {
-        next_precedence = get_precedence(str[i + 1]);
-        if(actual_precedence == next_precedence)
-        {
-            *buff  = ft_join(*buff, str[i]);
-            if(!*buff)
-                printf("Error\n");
-            /* else
-                printf("%s\n", *buff); */
-            printf("%c\n", str[i]);
-            actual_precedence = next_precedence;
-        }
-        else
-        {
-            printf("decente\n");
-            actual_precedence = 1;
-            ft_parse(str,i + 1, end, actual_precedence, buff);
-        }  
-        i++;
-        printf("\n");
+        return(buff);
     }
-    return(NULL);
+    i = start;
+    while(i < end && actual_precedence >= get_precedence(str[i + 1]))
+    {
+        b  = ft_join(b, str[i]);
+        if(!b)
+            printf("Error\n");
+            
+        actual_precedence = get_precedence(str[i + 1]);
+        i++;
+    }
+
+    buff[buff_idx] = b;
+    printf("buffer : %d end %d\n",i, end);
+    ft_parse(str,i + 2, end, actual_precedence, buff, buff_idx + 1);
+    return(buff);
 }
 
 
 
 int main(void)
 {
-    char str[] = "cat < file1.txt | grep m > file.txt";
-    char *buff = NULL;
+    //char str[] = "cat < file1.txt | grep m > file.txt";
     
-    ft_parse(str,0,ft_strlen(str), 1, &buff);
+    char str[] = "33.333 , -33.33";
+    char **buff = malloc(sizeof(char *) * 3);
+    if(!buff)
+        return(1);
+    
+    buff = ft_parse(str,0,ft_strlen(str), 1, buff, 0);
 
-
+    printf("buffer [0], %s et buffer [1] %s\n",buff[0], buff[1]);
     return(0);
 }

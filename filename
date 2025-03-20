@@ -1,25 +1,23 @@
-==883422== Memcheck, a memory error detector
-==883422== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==883422== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==883422== Command: ./bin/test.exe
-==883422== Parent PID: 883409
-==883422== 
-==883422== 
-==883422== HEAP SUMMARY:
-==883422==     in use at exit: 36 bytes in 1 blocks
-==883422==   total heap usage: 36 allocs, 35 frees, 1,690 bytes allocated
-==883422== 
-==883422== 36 bytes in 1 blocks are definitely lost in loss record 1 of 1
-==883422==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==883422==    by 0x109287: ft_join (in /home/cbouhadr/Documents/minishell/bin/test.exe)
-==883422==    by 0x1098D0: ft_parse (in /home/cbouhadr/Documents/minishell/bin/test.exe)
-==883422==    by 0x109A08: main (in /home/cbouhadr/Documents/minishell/bin/test.exe)
-==883422== 
-==883422== LEAK SUMMARY:
-==883422==    definitely lost: 36 bytes in 1 blocks
-==883422==    indirectly lost: 0 bytes in 0 blocks
-==883422==      possibly lost: 0 bytes in 0 blocks
-==883422==    still reachable: 0 bytes in 0 blocks
-==883422==         suppressed: 0 bytes in 0 blocks
-==883422== 
-==883422== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==535051== Memcheck, a memory error detector
+==535051== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==535051== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==535051== Command: ./bin/test.exe
+==535051== Parent PID: 535041
+==535051== 
+==535051== 
+==535051== HEAP SUMMARY:
+==535051==     in use at exit: 39 bytes in 3 blocks
+==535051==   total heap usage: 15 allocs, 12 frees, 1,112 bytes allocated
+==535051== 
+==535051== 39 (24 direct, 15 indirect) bytes in 1 blocks are definitely lost in loss record 3 of 3
+==535051==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==535051==    by 0x1099B2: main (in /home/cbouhadr/Documents/minishell/bin/test.exe)
+==535051== 
+==535051== LEAK SUMMARY:
+==535051==    definitely lost: 24 bytes in 1 blocks
+==535051==    indirectly lost: 15 bytes in 2 blocks
+==535051==      possibly lost: 0 bytes in 0 blocks
+==535051==    still reachable: 0 bytes in 0 blocks
+==535051==         suppressed: 0 bytes in 0 blocks
+==535051== 
+==535051== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
