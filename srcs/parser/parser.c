@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:32:32 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/17 11:25:34 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/24 21:31:15 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 int ft_read_line(char *str)
 {
     char *line;
+    t_token **token_lst;
 
     while (1)
     {
         line = readline(str);
         if(!line)
             return(1);
-        printf("voici line %s\n", line);
+            
+        token_lst = ft_tokenize(line);
+        (void)token_lst;
+
     }
     return(0);
 }

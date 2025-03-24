@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tst_shutting.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:16:38 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/24 13:33:41 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/24 19:53:16 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int ft_get_len(char *str)
     int i;
     int count;
     i = 0;
+    count = 0;
     while (str[i])
     {
         if(str[i] != 32)
@@ -31,7 +32,7 @@ int ft_get_p(char c)
     if(c == '|')
         return(2);
     if(c == '<' || c == '>')
-        return(1);
+        return(3);
     else
         return(0);
 }
@@ -107,7 +108,7 @@ char *ft_parse_str(char *str, int len)
             ft_push(queu, &len_queu,len,str[i]);
         else if (ft_get_p(str[i])  != 0)
         {
-            while(ft_get_p(str[i]) != ft_get_p(stack[len_stack - 1]) && len_stack > 0)
+            while(ft_get_p(str[i]) > ft_get_p(stack[len_stack - 1]) && len_stack > 0)
             {
                 ft_push(queu, &len_queu, len,stack[len_stack - 1]);
                 ft_pop(stack, &len_stack);
