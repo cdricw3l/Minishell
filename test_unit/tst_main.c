@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:17:01 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/20 13:11:16 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/24 11:18:32 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int main(void)
     TEST_START;
 
     assert(tst_ast() == 1);
+    assert(tst_shutting() == 1);
 
     TEST_SUCCES;
     return(0);

@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:17:20 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/20 12:09:58 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/24 11:18:14 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 
 int tst_ast(void);
+int tst_shutting(void);
 
 
 #endif
