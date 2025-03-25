@@ -12,7 +12,7 @@
 
 #include "tokenize.h"
 
-void    ft_display_token_lst(t_token *token_lst)
+void    ft_display_token_node_lst(t_token *token_lst)
 {
 
     while (token_lst->right)
@@ -23,6 +23,46 @@ void    ft_display_token_lst(t_token *token_lst)
        token_lst = token_lst->right;
        printf("\n");
     }
+}
+void    ft_display_commande_lst(t_token *token_lst)
+{
+
+    while (token_lst->right)
+    {
+        if(token_lst->string)
+            printf("%s ",token_lst->string);
+        token_lst = token_lst->right;
+    }
+    printf("\n");
+}
+
+void    ft_display_token_sequence_lst(t_token *token_lst)
+{
+    while (token_lst->right)
+    {
+        if (token_lst->token == WORD)
+            printf("WORD ");
+        if (token_lst->token == CMD)
+            printf("COMMANDE ");
+        if (token_lst->token == ARG)
+            printf("ARG ");
+        if (token_lst->token == PIPE)
+            printf("PIPE ");
+        if (token_lst->token == REDIR_OPEN)
+            printf("REDIR_OPEN ");
+        if (token_lst->token == REDIR_WRITE)
+            printf("REDIR_WRITE ");
+        if (token_lst->token == REDIR_WRITE_A)
+            printf("REDIR_WRITE_A ");
+        if (token_lst->token == DOUBLE_REDIR)
+            printf("DOUBLE_REDIR ");
+        if (token_lst->token == HEREDOC)
+            printf("HEREDOC ");
+        if (token_lst->token == VAR)
+            printf("VAR");
+        token_lst = token_lst->right;
+    }
+    printf("\n");
 }
 
 char *ft_get_total_path(char *path, char *str)

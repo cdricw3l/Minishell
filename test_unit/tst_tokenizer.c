@@ -59,7 +59,9 @@ int tst_tokenizer(void)
     
     token_lst = ft_tokenize(line);
 
-    ft_display_token_lst(*token_lst);
+    ft_display_token_node_lst(*token_lst);
+    ft_display_commande_lst(*token_lst);
+    ft_display_token_sequence_lst(*token_lst);
     ft_delete_token_lst(token_lst);
     return(1);
 }

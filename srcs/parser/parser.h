@@ -29,9 +29,9 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "../../include/main.h"
-#include "parser/tokenize.h"
+#include "tokenizer/tokenize.h"
 
-#define WORD 1
+#define WORD 0
 #define CMD 1
 #define ARG 3
 #define PIPE 4

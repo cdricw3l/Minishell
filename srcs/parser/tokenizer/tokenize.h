@@ -45,4 +45,8 @@ void    ft_display_token_lst(t_token *token_lst);
 int     ft_is_commande(char *str);
 int     ft_get_token(char *str);
 int     ft_delete_token_lst(t_token **token_lst);
+void    ft_display_commande_lst(t_token *token_lst);
+void    ft_display_token_node_lst(t_token *token_lst);
+void    ft_display_token_sequence_lst(t_token *token_lst);
+
 #endif
