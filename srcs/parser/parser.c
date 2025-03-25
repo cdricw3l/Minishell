@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:32:32 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/24 21:31:15 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/25 11:59:24 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int ft_read_line(char *str)
         line = readline(str);
         if(!line)
             return(1);
-            
-        token_lst = ft_tokenize(line);
+        //token_lst = ft_tokenize(line);
         (void)token_lst;
 
     }

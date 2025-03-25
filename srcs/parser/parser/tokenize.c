@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenise.c                                         :+:      :+:    :+:   */
+/*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:36:54 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/24 22:27:03 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/25 12:26:30 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "tokenize.h"
 
 t_token *ft_new_token_node(char *str, int token)
 {
@@ -21,18 +21,20 @@ t_token *ft_new_token_node(char *str, int token)
         return(NULL);
     token_node->string = ft_strdup(str);
     token_node->token = token;
+    token_node->left = NULL;
+    token_node->right = NULL;
     return(token_node);
 }
 
 void    ft_display_token_lst(t_token *token_lst)
 {
 
-    while (token_lst->next)
+    while (token_lst->right)
     {
        printf("voici la valeur du noeud: \n");
        printf("string : %s\n", token_lst->string);
        printf("value : %d\n", token_lst->token);
-       token_lst = token_lst->next;
+       token_lst = token_lst->right;
        printf("\n");
     }
 }
@@ -48,25 +50,42 @@ void ft_add_back_node(t_token **lst, t_token *node)
     else
     {
         first_node = *lst;
-        while (first_node->next)
-            first_node = first_node->next;
-        first_node->next = node;
+        while (first_node->right)
+            first_node = first_node->right;
+        first_node->right = node;
     }
+}
+
+int ft_is_commande(char *str)
+{
+    char *env;
+    char **split;
+    char *path;
+    int acces;
+    
+    env = getenv("PATH");
+    split = ft_split(env, ':');
+    str = ft_strtrim(str," ");
+    if(!env || !split )
+         return(-1);
+    while (*split)
+    {
+        path = ft_strjoin(*split, "/");
+        path = ft_strjoin(path, str);
+        acces = access(path,X_OK);
+        if(acces == 0)
+            return(1);
+        free(*split);
+        split++;
+    }
+    return(0);
 }
 
 int ft_get_token(char *str)
 {
-    char *arg[3] = {"echo","hello", NULL};
     
-    int i = execv("/bin/edcho", arg);
-
-    printf("voici i %d\n", i);
-    printf("%zu", ft_strlen(str));
-    while (*str)
-    {
-        str++;
-    }
-    printf("\n");
+    if(ft_is_commande(str))
+        return(CMD);
     return(0);
 }
 

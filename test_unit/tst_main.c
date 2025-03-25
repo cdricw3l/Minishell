@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tst_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:17:01 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/24 11:18:32 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/25 12:08:13 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,9 @@ t_ast_node **ft_parse(char *str, int start, int end, int actual_precedence, t_as
 
 int main(void)
 {
-    //char str[] = "cat < file1.txt | grep m > file.txt";
+
+    assert(tst_tokenizer() == 1);
     
-    // char str[] = "33.333 , -33.33";
-    // char **buff = malloc(sizeof(char *) * 3);
-    // if(!buff)
-    //     return(1);
-    
-    // buff = ft_parse(str,0,ft_strlen(str), 1, buff, 0);
-
-    // printf("buffer [0], %s et buffer [1] %s\n",buff[0], buff[1]);
-
-    TEST_START;
-
-    assert(tst_ast() == 1);
-    assert(tst_shutting() == 1);
-
-    TEST_SUCCES;
+    //ft_start_minishell("Mini-shell $ ");
     return(0);
 }
