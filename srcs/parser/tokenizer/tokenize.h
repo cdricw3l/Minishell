@@ -49,5 +49,8 @@ int     ft_delete_token_lst(t_token **token_lst);
 void    ft_display_commande_lst(t_token *token_lst);
 void    ft_display_token_node_lst(t_token *token_lst);
 void    ft_display_token_sequence_lst(t_token *token_lst);
+int     ft_get_precedence(int token);
+int     ft_get_associativity(int token);
+char    *ft_get_str_token(int token);
 
 #endif

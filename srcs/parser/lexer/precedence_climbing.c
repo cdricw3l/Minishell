@@ -13,7 +13,7 @@
 #include "precedence_climbing.h"
 #include <assert.h>
 
-int ft_get_precedence(char c)
+int ft_get_prec(char c)
 {
     if(c == '|')
         return(3);
@@ -65,7 +65,7 @@ void ft_climb_token(char *str, int precedence_min, int start, int end)
     s = NULL;
     while (i < end)
     {
-        p = ft_get_precedence(str[i + 1]);
+        p = ft_get_prec(str[i + 1]);
         if(p >= precedence_min)
         {   
             s = ft_join(s, str[i]);

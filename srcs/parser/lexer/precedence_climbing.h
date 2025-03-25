@@ -25,6 +25,6 @@
 
 void ft_climb_token(char *str, int precedence, int start, int end);
 char *ft_join(char *str, char c);
-int ft_get_precedence(char c);
+int ft_get_prec(char c);
 
 #endif

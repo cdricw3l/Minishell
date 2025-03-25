@@ -19,19 +19,30 @@ void    ft_display_token_node_lst(t_token *token_lst)
     {
        printf("voici la valeur du noeud: \n");
        printf("string : %s\n", token_lst->string);
-       printf("value : %d\n", token_lst->token);
+       printf("Token : %s\n", ft_get_str_token(token_lst->token));
+       printf("Précedence : %d\n", token_lst->precedence);
+       printf("Associativité : %d\n", token_lst->asso);
        token_lst = token_lst->right;
        printf("\n");
     }
 }
-
+//  double check by nami
 int ft_get_precedence(int token)
 {
     if(token == PIPE)
         return (3);
     if(token == REDIR_OPEN
         || token == REDIR_WRITE
-        || token == REDIR_WRITE_A)
+        || token == REDIR_WRITE_A
+        || token == DOUBLE_REDIR)
+        return(2);
+    return (1);
+}
+
+int ft_get_associativity(int token)
+{
+    if(token == REDIR_OPEN
+        || token == HEREDOC)
         return(2);
     return (1);
 }
@@ -48,30 +59,36 @@ void    ft_display_commande_lst(t_token *token_lst)
     printf("\n");
 }
 
+char *ft_get_str_token(int token)
+{
+    if (token == WORD)
+        return ("WORD ");
+    if (token == CMD)
+        return ("COMMANDE ");
+    if (token == ARG)
+        return ("ARG ");
+    if (token == PIPE)
+        return ("PIPE ");
+    if (token == REDIR_OPEN)
+        return ("REDIR_OPEN ");
+    if (token == REDIR_WRITE)
+        return ("REDIR_WRITE ");
+    if (token == REDIR_WRITE_A)
+        return ("REDIR_WRITE_A ");
+    if (token == DOUBLE_REDIR)
+        return ("DOUBLE_REDIR ");
+    if (token == HEREDOC)
+        return ("HEREDOC ");
+    if (token == VAR)
+        return ("VAR");
+    return(NULL);
+}
+
 void    ft_display_token_sequence_lst(t_token *token_lst)
 {
     while (token_lst->right)
     {
-        if (token_lst->token == WORD)
-            printf("WORD ");
-        if (token_lst->token == CMD)
-            printf("COMMANDE ");
-        if (token_lst->token == ARG)
-            printf("ARG ");
-        if (token_lst->token == PIPE)
-            printf("PIPE ");
-        if (token_lst->token == REDIR_OPEN)
-            printf("REDIR_OPEN ");
-        if (token_lst->token == REDIR_WRITE)
-            printf("REDIR_WRITE ");
-        if (token_lst->token == REDIR_WRITE_A)
-            printf("REDIR_WRITE_A ");
-        if (token_lst->token == DOUBLE_REDIR)
-            printf("DOUBLE_REDIR ");
-        if (token_lst->token == HEREDOC)
-            printf("HEREDOC ");
-        if (token_lst->token == VAR)
-            printf("VAR");
+        printf("%s\n", ft_get_str_token(token_lst->token));
         token_lst = token_lst->right;
     }
     printf("\n");
