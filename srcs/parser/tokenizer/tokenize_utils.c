@@ -24,6 +24,18 @@ void    ft_display_token_node_lst(t_token *token_lst)
        printf("\n");
     }
 }
+
+int ft_get_precedence(int token)
+{
+    if(token == PIPE)
+        return (3);
+    if(token == REDIR_OPEN
+        || token == REDIR_WRITE
+        || token == REDIR_WRITE_A)
+        return(2);
+    return (1);
+}
+
 void    ft_display_commande_lst(t_token *token_lst)
 {
 

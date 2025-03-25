@@ -33,6 +33,7 @@ typedef struct s_token
     int             token;
     int             precedence;
     int             asso;
+    struct s_token  *dad;
     struct s_token  *right;
     struct s_token  *left;
 

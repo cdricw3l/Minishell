@@ -45,6 +45,8 @@ t_token *ft_new_token_node(char *str, int token)
         return(NULL);
     token_node->string = ft_strdup(str);
     token_node->token = token;
+    token_node->asso = 
+    token_node->precedence = 
     token_node->left = NULL;
     token_node->right = NULL;
     return(token_node);
