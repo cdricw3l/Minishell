@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:07:18 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/25 12:55:43 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/25 13:36:36 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,22 @@ int tst_commande_checker(void)
     return(1);
 }
 
+int tst_get_token(void)
+{
+    assert(ft_get_token("echo") == CMD);
+    assert(ft_get_token("cat") == CMD);
+    assert(ft_get_token("<<") == HEREDOC);
+    assert(ft_get_token(">>") == REDIR_WRITE_A);
+    assert(ft_get_token(">") == REDIR_WRITE);
+    assert(ft_get_token("<") == REDIR_OPEN);
+    assert(ft_get_token("&>") == DOUBLE_REDIR);
+    assert(ft_get_token("$hello") == VAR);
+    assert(ft_get_token("$hello") == VAR);
+    assert(ft_get_token("hello") == WORD);
+    
+    return(1);
+}
+
 
 int tst_tokenizer(void)
 {
@@ -39,6 +55,7 @@ int tst_tokenizer(void)
 
     
     tst_commande_checker();
+    tst_get_token();
     
     token_lst = ft_tokenize(line);
 

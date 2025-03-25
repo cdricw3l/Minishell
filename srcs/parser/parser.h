@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:31:06 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/25 12:56:25 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/25 13:29:52 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@
 #define REDIR_WRITE 6
 #define REDIR_WRITE_A 7
 #define DOUBLE_REDIR 8
-#define WORD 9
 #define HEREDOC 10
 #define VAR 11
 

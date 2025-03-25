@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:36:54 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/25 12:55:12 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/25 13:35:42 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,13 @@ int ft_get_token(char *str)
         return(REDIR_WRITE_A);
     if(ft_strlen(str) == 2 && str[0] == '<' && str[1] == '<')
         return(HEREDOC);
-    if(ft_strlen(str) == 2 && str[0] == '&' && str[2] == '>')
+    if(ft_strlen(str) == 2 && str[0] == '&' && str[1] == '>')
         return(DOUBLE_REDIR);
     if(str[0] == '$')
         return(VAR);
     
     
-    return(0);
+    return(WORD);
 }
 
 t_token **ft_tokenize(char *str)
