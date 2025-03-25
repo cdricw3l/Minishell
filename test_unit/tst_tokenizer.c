@@ -60,6 +60,6 @@ int tst_tokenizer(void)
     token_lst = ft_tokenize(line);
 
     ft_display_token_lst(*token_lst);
-    
+    ft_delete_token_lst(token_lst);
     return(1);
 }

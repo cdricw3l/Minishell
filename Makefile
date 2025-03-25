@@ -91,11 +91,11 @@ mclean:
 
 t: $(OBJS) $(OBJS_TEST)
 ifeq ($(OS), Darwin)
-	$(CC) $(GFLAGS) -fsanitize=address  $(OBJS) $(OBJS_TEST) -L$(LIBFT) -lft  -lreadline -o bin/test.exe
+	$(CC) $(GFLAGS) -fsanitize=address  $(OBJS) $(OBJS_TEST) -L$(LIBFT) -lft  -lreadline -o bin/test
 	bin/test.exe
 else ifeq ($(OS), Linux)
-	$(CC) $(GFLAGS) -g $(OBJS) $(OBJS_TEST) -L$(LIBFT) -lft -lreadline -o bin/test.exe
-	valgrind --leak-check=full --log-file=filename  -s ./bin/test.exe
+	$(CC) $(GFLAGS) -g $(OBJS) $(OBJS_TEST) -L$(LIBFT) -lft -lreadline -o bin/test
+	valgrind --leak-check=full --log-file=filename  -s ./bin/test
 endif
 
 

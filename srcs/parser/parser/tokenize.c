@@ -12,6 +12,30 @@
 
 #include "tokenize.h"
 
+int ft_delete_token_lst(t_token **token_lst)
+{
+    t_token *tmp;
+    t_token *node;
+
+
+    while (*token_lst)
+    {
+        tmp = (*token_lst)->right;
+        node = *token_lst;
+        if(node->string)
+        {
+            free(node->string);
+            node->string = NULL;
+        }
+        free(node);
+        *token_lst = tmp;
+    }
+    free(token_lst);
+    token_lst = NULL;
+    return(1);
+    
+}
+
 t_token *ft_new_token_node(char *str, int token)
 {
     t_token *token_node;
@@ -25,8 +49,6 @@ t_token *ft_new_token_node(char *str, int token)
     token_node->right = NULL;
     return(token_node);
 }
-
-
 
 void ft_add_back_node(t_token **lst, t_token *node)
 {
@@ -45,16 +67,11 @@ void ft_add_back_node(t_token **lst, t_token *node)
     }
 }
 
-
-
-
-
-
-
 t_token **ft_tokenize(char *str)
 {
     char    **split;
     int     token;
+    int i;
     t_token **token_lst;
 
     split = ft_split(str, 32);
@@ -64,13 +81,13 @@ t_token **ft_tokenize(char *str)
     if(!token_lst)
         return(ft_split_clean(&split));
     *token_lst = NULL;
-    while (*split)
+    i = 0;
+    while (split[i])
     {
-        token = ft_get_token(*split); //get_token(*split);
-        ft_add_back_node(token_lst,  ft_new_token_node(*split, token));
-        free(*split);
-        *split = NULL;
-        split++;
+        token = ft_get_token(split[i]); //get_token(*split);
+        ft_add_back_node(token_lst,  ft_new_token_node(split[i], token));
+        i++;
     }
+    ft_split_clean(&split);
     return(token_lst);
 }

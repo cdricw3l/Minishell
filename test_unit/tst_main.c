@@ -58,7 +58,11 @@ int main(void)
 {
 
     assert(tst_tokenizer() == 1);
-    
+    char s[] = "    hello  ";
+
+    char *t = ft_strtrim(s," ");
+    printf("voici t %s\n", t);
+    free(t);
     //ft_start_minishell("Mini-shell $ ");
     return(0);
 }

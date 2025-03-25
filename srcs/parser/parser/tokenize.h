@@ -44,5 +44,5 @@ void    ft_add_back_node(t_token **lst, t_token *node);
 void    ft_display_token_lst(t_token *token_lst);
 int     ft_is_commande(char *str);
 int     ft_get_token(char *str);
-
+int     ft_delete_token_lst(t_token **token_lst);
 #endif

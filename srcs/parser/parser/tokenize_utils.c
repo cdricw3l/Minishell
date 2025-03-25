@@ -32,6 +32,7 @@ char *ft_get_total_path(char *path, char *str)
 
     intermediaire_path = ft_strjoin(path, "/");
     total_path = ft_strjoin(intermediaire_path, str);
+    free(str);
     free(intermediaire_path);
     intermediaire_path = NULL;
     return(total_path);
@@ -44,25 +45,27 @@ int ft_is_commande(char *str)
     char *total_path;
     int acces;
     int i;
+    char *r;
     
     env = getenv("PATH");
     split = ft_split(env, ':');
-    str = ft_strtrim(str," ");
     if(!env || !split)
         return(-1);
     i = 0;
     while (split[i])
     {
-        total_path = ft_get_total_path(split[i], str);
+        r = ft_strtrim(str," ");
+        total_path = ft_get_total_path(split[i], r);
         acces = access(total_path,X_OK);
-        if(acces == 0)
-            return(1);
-        free(split[i]);
         free(total_path);
+        if(acces == 0)
+        {
+            ft_split_clean(&split);
+            return(1);
+        }
         i++;
     }
-    free(str);
-    free(split);
+    ft_split_clean(&split);
     return(0);
 }
 int ft_get_token(char *str)
