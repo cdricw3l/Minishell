@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:36:54 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/25 12:34:42 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/25 12:55:12 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,29 +56,44 @@ void ft_add_back_node(t_token **lst, t_token *node)
     }
 }
 
+char *ft_get_total_path(char *path, char *str)
+{
+    char *intermediaire_path;
+    char *total_path;
+
+    intermediaire_path = ft_strjoin(path, "/");
+    total_path = ft_strjoin(intermediaire_path, str);
+    free(intermediaire_path);
+    intermediaire_path = NULL;
+    return(total_path);
+}
+
 int ft_is_commande(char *str)
 {
     char *env;
     char **split;
-    char *path;
+    char *total_path;
     int acces;
+    int i;
     
     env = getenv("PATH");
     split = ft_split(env, ':');
-    free(env);
     str = ft_strtrim(str," ");
-    if(!env || !split )
-         return(-1);
-    while (*split)
+    if(!env || !split)
+        return(-1);
+    i = 0;
+    while (split[i])
     {
-        path = ft_strjoin(*split, "/");
-        path = ft_strjoin(path, str);
-        acces = access(path,X_OK);
+        total_path = ft_get_total_path(split[i], str);
+        acces = access(total_path,X_OK);
         if(acces == 0)
             return(1);
-        free(*split);
-        split++;
+        free(split[i]);
+        free(total_path);
+        i++;
     }
+    free(str);
+    free(split);
     return(0);
 }
 
@@ -87,6 +102,22 @@ int ft_get_token(char *str)
     
     if(ft_is_commande(str))
         return(CMD);
+    if(ft_strlen(str) == 1 && str[0] == '|')
+        return(PIPE);
+    if(ft_strlen(str) == 1 && str[0] == '<')
+        return(REDIR_OPEN);
+    if(ft_strlen(str) == 1 && str[0] == '>')
+        return(REDIR_WRITE);
+    if(ft_strlen(str) == 2 && str[0] == '>' && str[1] == '>')
+        return(REDIR_WRITE_A);
+    if(ft_strlen(str) == 2 && str[0] == '<' && str[1] == '<')
+        return(HEREDOC);
+    if(ft_strlen(str) == 2 && str[0] == '&' && str[2] == '>')
+        return(DOUBLE_REDIR);
+    if(str[0] == '$')
+        return(VAR);
+    
+    
     return(0);
 }
 

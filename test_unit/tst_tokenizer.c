@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:07:18 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/25 12:24:03 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/25 12:55:43 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int tst_tokenizer(void)
     tst_commande_checker();
     
     token_lst = ft_tokenize(line);
-    (void)token_lst;
 
+    ft_display_token_lst(*token_lst);
     
     return(1);
 }
