@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:36:54 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/25 12:26:30 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/25 12:34:42 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int ft_is_commande(char *str)
     
     env = getenv("PATH");
     split = ft_split(env, ':');
+    free(env);
     str = ft_strtrim(str," ");
     if(!env || !split )
          return(-1);
