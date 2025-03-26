@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_bit_16.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 22:15:03 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/25 12:08:57 by cw3l             ###   ########.fr       */
+/*   Created: 2024/12/12 18:49:46 by cw3l              #+#    #+#             */
+/*   Updated: 2024/12/13 10:05:18 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/main.h"
+#include "libft.h"
 
+void	ft_print_bit_16(int n)
+{
+	int		bit;
+	char	c;
 
-// int main(void)
-// {
-//     t_token **token_lst;
-//     char line[] = "Hello grep -m | cat > output.txt"; 
-//     token_lst = ft_tokenize(line);
-//     ft_display_token_lst(*token_lst);
-
-//     assert(ft_is_commande("cat") == 1);
-
-    
-//     //ft_start_minishell("Mini-shell $ ");
-//     return(0);
-// }
+	bit = 15;
+	while (bit >= 0)
+	{
+		c = ((n >> bit) & 1) + '0';
+		write(1, &c, 1);
+		bit--;
+	}
+	write(1, "\n", 1);
+}

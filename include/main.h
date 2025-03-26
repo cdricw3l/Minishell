@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 22:15:28 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/13 22:24:01 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/25 12:23:36 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,22 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <dirent.h>
+#include <stdio.h>
+#include <assert.h>
 
 
 
+#include "../srcs/parser/parser.h"
+#include "../libft/libft.h"
+
+#include <string.h>
+
+#define DEBUGG printf("DEBUGG\n");
+#define PRINT_INT(msg) printf("\x1b[31m" "DEBBUG  INT " "%d\n", msg);
+#define PSTR(msg) printf("\x1b[31m" "DEBBUG  str >>> " "%s\n", msg);
+#define PPTR(msg) printf("\x1b[31m" "DEBBUG  de pointeur: >>> "  "%p\n" "\x1b[0m", msg);
+#define DEBUGG printf("DEBUGG\n");
+#define TEST_START printf("\033[0;33m" "Initiating function test: %s\n" "\x1b[0m", __func__);
+#define TEST_SUCCES printf("\033[0;32m" "Function: %s executed successfully.\n" "\x1b[0m", __func__);
 
 #endif 

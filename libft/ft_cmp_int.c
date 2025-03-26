@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_cmp_int.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 22:15:03 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/25 12:08:57 by cw3l             ###   ########.fr       */
+/*   Created: 2024/11/27 14:09:51 by cbouhadr          #+#    #+#             */
+/*   Updated: 2024/12/09 16:50:41 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/main.h"
+#include "libft.h"
 
+int	ft_cmp_int(void *p1, void *p2)
+{
+	int	v1;
+	int	v2;
 
-// int main(void)
-// {
-//     t_token **token_lst;
-//     char line[] = "Hello grep -m | cat > output.txt"; 
-//     token_lst = ft_tokenize(line);
-//     ft_display_token_lst(*token_lst);
-
-//     assert(ft_is_commande("cat") == 1);
-
-    
-//     //ft_start_minishell("Mini-shell $ ");
-//     return(0);
-// }
+	v1 = *(int *)(p1);
+	v2 = *(int *)(p2);
+	return (v1 - v2);
+}

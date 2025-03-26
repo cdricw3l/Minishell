@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 22:15:03 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/25 12:08:57 by cw3l             ###   ########.fr       */
+/*   Created: 2024/10/01 12:20:08 by cbouhadr          #+#    #+#             */
+/*   Updated: 2024/12/16 22:07:07 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/main.h"
+#include "libft.h"
 
-
-// int main(void)
-// {
-//     t_token **token_lst;
-//     char line[] = "Hello grep -m | cat > output.txt"; 
-//     token_lst = ft_tokenize(line);
-//     ft_display_token_lst(*token_lst);
-
-//     assert(ft_is_commande("cat") == 1);
-
-    
-//     //ft_start_minishell("Mini-shell $ ");
-//     return(0);
-// }
+void	ft_bzero(void *s, size_t n)
+{
+	if (n > 0)
+		ft_memset(s, 0, n);
+}

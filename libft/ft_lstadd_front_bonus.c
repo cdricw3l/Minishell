@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 22:15:03 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/25 12:08:57 by cw3l             ###   ########.fr       */
+/*   Created: 2024/10/02 12:53:46 by cbouhadr          #+#    #+#             */
+/*   Updated: 2024/12/09 16:50:08 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/main.h"
+#include "libft.h"
 
-
-// int main(void)
-// {
-//     t_token **token_lst;
-//     char line[] = "Hello grep -m | cat > output.txt"; 
-//     token_lst = ft_tokenize(line);
-//     ft_display_token_lst(*token_lst);
-
-//     assert(ft_is_commande("cat") == 1);
-
-    
-//     //ft_start_minishell("Mini-shell $ ");
-//     return(0);
-// }
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	if (lst && new)
+	{
+		if (!*lst)
+			*lst = new;
+		else
+		{
+			new->next = *lst;
+			*lst = new;
+		}
+	}
+}
