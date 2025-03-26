@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/26 14:48:34 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:07:12 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,21 @@ int ft_start_minishell_test(char *str)
 int tst_builtin()
 {
 
-    ft_cd("~");
+    char *env;
+
+
     ft_cd("~/Documents/42-katas");
     ft_pwd();
     //ft_start_minishell_test("Mini: ");
-    
+    // MANPATH
+    // HOSTNAME
+    // PATH
+    // INFOPATH
+    // PKG_CONFIG_PATH
+    // USER
+    env = getenv("ENV");
+	if (!env)
+		return (0);
+    printf("%s\n", env);
     return(1);
 }
