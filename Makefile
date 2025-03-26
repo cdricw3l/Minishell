@@ -25,6 +25,7 @@ SRCS_PARSER= $(wildcard srcs/parser/**/*.c) $(wildcard srcs/parser/lexer/**/*.c)
 
 SRCS_EXECUTOR= $(wildcard srcs/executor/**/*.c) $(wildcard srcs/executor/*.c)
 SRCS_SUB= $(wildcard srcs/subsystems/**/*.c) $(wildcard srcs/subsystems/*.c)
+SRCS_BUILTIN= $(wildcard srcs/builtin/*.c)
 SRCS_TEST= $(wildcard test_unit/*.c)
 
 LIBFT= libft
@@ -41,6 +42,7 @@ OBJS_MAIN=$(SRCS_MAIN:%.c=%.o)
 OBJS_PARSER=$(SRCS_PARSER:%.c=%.o)
 OBJS_EXECUTOR=$(SRCS_EXECUTOR:%.c=%.o)
 OBJS_SUB=$(SRCS_SUB:%.c=%.o)
+OBJS_BUILTIN=$(SRCS_BUILTIN:%.c=%.o)
 
 # Test env:
 
@@ -53,9 +55,9 @@ EMPTY=
 
 
 ifeq ($(mode), $(PROD))
-OBJS= $(OBJS_MAIN) $(OBJS_PARSER)
+OBJS= $(OBJS_MAIN) $(OBJS_BUILTIN) $(OBJS_PARSER)
 else ifeq ($(mode), $(TEST))
-OBJS= $(OBJS_PARSER) 
+OBJS= $(OBJS_PARSER) $(OBJS_BUILTIN)
 endif
 
 
@@ -73,7 +75,7 @@ run: $(NAME)
 ifeq ($(OS), Darwin)
 	bin/$(NAME)
 else ifeq ($(OS), Linux)
-	valgrind --leak-check=full --log-file=$(MEMORY_CHECK_PATH)/$(DATE) -s bin/$(NAME)
+	valgrind --leak-check=full --log-file=$(MEMORY_CHECK_PATH)/$(DATE) -s ./$(NAME)
 endif
 
 # cleaning rules

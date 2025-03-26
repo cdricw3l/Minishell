@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 10:32:32 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/26 12:50:44 by cbouhadr         ###   ########.fr       */
+/*   Created: 2025/03/26 11:06:30 by cbouhadr          #+#    #+#             */
+/*   Updated: 2025/03/26 12:42:55 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "builtin.h"
 
-int ft_read_line(char *str)
+char *ft_pwd(void)
 {
-    char *line;
-    t_token **token_lst;
+    /* Check for change sizeof buffer*/
+    char path[1024];
 
-    while (1)
+    if(!getcwd(path,sizeof(path)))
     {
-        line = readline(str);
-        if(!line)
-            return(1);
-        token_lst = ft_tokenize(line);
-        ft_display_token_node_lst(*token_lst);
+        // maybe change this error output.
+        printf("error get path %p\n", path);
+        return(NULL);
     }
-    return(0);
+    return(ft_strdup(path));
 }
 
-int ft_start_minishell(char *str)
-{
-    int read;
-
-    read = ft_read_line(str);
-    if(read == 1)
-        return(1);
-    return(0);
-}

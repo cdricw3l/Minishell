@@ -1,0 +1,48 @@
+==1241636== Memcheck, a memory error detector
+==1241636== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==1241636== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==1241636== Command: ./minishell
+==1241636== Parent PID: 1241622
+==1241636== 
+==1241636== 
+==1241636== Process terminating with default action of signal 2 (SIGINT)
+==1241636==    at 0x490875B: kill (syscall-template.S:120)
+==1241636==    by 0x48A5F39: _rl_signal_handler (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1241636==    by 0x48A6BEC: rl_getc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1241636==    by 0x48A6460: rl_read_key (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1241636==    by 0x488AC86: readline_internal_char (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1241636==    by 0x4893D14: readline (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1241636==    by 0x109BB3: ft_read_line (parser.c:22)
+==1241636==    by 0x109C04: ft_start_minishell (parser.c:35)
+==1241636==    by 0x10929F: main (main.c:20)
+==1241636== 
+==1241636== HEAP SUMMARY:
+==1241636==     in use at exit: 210,541 bytes in 256 blocks
+==1241636==   total heap usage: 585 allocs, 329 frees, 226,996 bytes allocated
+==1241636== 
+==1241636== 6 bytes in 1 blocks are definitely lost in loss record 2 of 84
+==1241636==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1241636==    by 0x48ABBAC: xmalloc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1241636==    by 0x4889694: readline_internal_teardown (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1241636==    by 0x4893D2A: readline (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1241636==    by 0x109BB3: ft_read_line (parser.c:22)
+==1241636==    by 0x109C04: ft_start_minishell (parser.c:35)
+==1241636==    by 0x10929F: main (main.c:20)
+==1241636== 
+==1241636== 62 (8 direct, 54 indirect) bytes in 1 blocks are definitely lost in loss record 29 of 84
+==1241636==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1241636==    by 0x109574: ft_tokenize (tokenize.c:82)
+==1241636==    by 0x109BD1: ft_read_line (parser.c:25)
+==1241636==    by 0x109C04: ft_start_minishell (parser.c:35)
+==1241636==    by 0x10929F: main (main.c:20)
+==1241636== 
+==1241636== LEAK SUMMARY:
+==1241636==    definitely lost: 14 bytes in 2 blocks
+==1241636==    indirectly lost: 54 bytes in 2 blocks
+==1241636==      possibly lost: 0 bytes in 0 blocks
+==1241636==    still reachable: 210,473 bytes in 252 blocks
+==1241636==         suppressed: 0 bytes in 0 blocks
+==1241636== Reachable blocks (those to which a pointer was found) are not shown.
+==1241636== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==1241636== 
+==1241636== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)

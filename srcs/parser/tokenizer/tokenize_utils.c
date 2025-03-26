@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:48:49 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/25 15:52:15 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/26 12:51:50 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void    ft_display_token_node_lst(t_token *token_lst)
 {
 
-    while (token_lst->right)
+    while (token_lst)
     {
-       printf("voici la valeur du noeud: \n");
+       printf("\nvoici la valeur du noeud: \n");
        printf("string : %s\n", token_lst->string);
        printf("Token : %s\n", ft_get_str_token(token_lst->token));
        printf("Précedence : %d\n", token_lst->precedence);
@@ -50,7 +50,7 @@ int ft_get_associativity(int token)
 void    ft_display_commande_lst(t_token *token_lst)
 {
 
-    while (token_lst->right)
+    while (token_lst)
     {
         if(token_lst->string)
             printf("%s ",token_lst->string);
@@ -86,12 +86,11 @@ char *ft_get_str_token(int token)
 
 void    ft_display_token_sequence_lst(t_token *token_lst)
 {
-    while (token_lst->right)
+    while (token_lst)
     {
         printf("%s\n", ft_get_str_token(token_lst->token));
         token_lst = token_lst->right;
     }
-    printf("\n");
 }
 
 char *ft_get_total_path(char *path, char *str)

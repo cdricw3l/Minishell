@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:52:00 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/26 09:39:14 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/26 12:50:04 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct s_token
 t_token **ft_tokenize(char *str);
 t_token *ft_new_token_node(char *str, int token);
 void    ft_add_back_node(t_token **lst, t_token *node);
-void    ft_display_token_lst(t_token *token_lst);
 int     ft_is_commande(char *str);
 int     ft_get_token(char *str);
 int     ft_delete_token_lst(t_token **token_lst);

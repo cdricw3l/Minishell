@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:07:18 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/26 09:29:32 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/26 11:31:14 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,13 @@ int tst_tokenizer(void)
 {
     t_token **token_lst;
     
-    char line[] = "Hello grep -m | cat > output.txt"; 
+    char line[] = "cat < hello.txt | grep 'Hello world'"; 
 
     
     tst_commande_checker();
     tst_get_token();
     
     token_lst = ft_tokenize(line);
-
     ft_display_token_node_lst(*token_lst);
     ft_display_commande_lst(*token_lst);
     ft_display_token_sequence_lst(*token_lst);
