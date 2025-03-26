@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:52:00 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/25 11:57:30 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/26 09:39:14 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_token
     int             token;
     int             precedence;
     int             asso;
-    struct s_token  *dad;
+    struct s_token  *parent;
     struct s_token  *right;
     struct s_token  *left;
 

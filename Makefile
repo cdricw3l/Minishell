@@ -83,7 +83,8 @@ clean:
 	rm -f test_unit/test_unit
 
 fclean: clean
-	rm -f bin/$(NAME) bin/test.exe
+	rm -f bin/$(NAME) bin/test
+	rm -f valg_test 
 
 mclean:
 	rm -f $(MEMORY_CHECK_PATH)/*
@@ -95,7 +96,7 @@ ifeq ($(OS), Darwin)
 	bin/test.exe
 else ifeq ($(OS), Linux)
 	$(CC) $(GFLAGS) -g $(OBJS) $(OBJS_TEST) -L$(LIBFT) -lft -lreadline -o bin/test
-	valgrind --leak-check=full --log-file=filename  -s ./bin/test
+	valgrind --leak-check=full --log-file=valg_test  -s ./bin/test
 endif
 
 

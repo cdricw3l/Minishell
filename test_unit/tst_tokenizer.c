@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tst_tokenizer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:07:18 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/25 13:36:36 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/26 09:29:32 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ int tst_tokenizer(void)
     ft_display_commande_lst(*token_lst);
     ft_display_token_sequence_lst(*token_lst);
     ft_delete_token_lst(token_lst);
+    
     return(1);
 }
