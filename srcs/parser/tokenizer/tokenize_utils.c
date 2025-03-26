@@ -86,12 +86,11 @@ char *ft_get_str_token(int token)
 
 void    ft_display_token_sequence_lst(t_token *token_lst)
 {
-    while (token_lst->right)
+    while (token_lst)
     {
         printf("%s\n", ft_get_str_token(token_lst->token));
         token_lst = token_lst->right;
     }
-    printf("\n");
 }
 
 char *ft_get_total_path(char *path, char *str)

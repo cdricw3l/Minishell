@@ -20,9 +20,7 @@ NOFLAGS=3
 MEMORY_CHECK_PATH= error_managment/valgrind
 
 SRCS_MAIN= srcs/main.c
-SRCS_PARSER= $(wildcard srcs/parser/**/*.c) $(wildcard srcs/parser/lexer/**/*.c) $(wildcard srcs/parser/*.c)
-
-
+SRCS_PARSER=  $(wildcard srcs/parser/lexer/**/*.c) $(wildcard srcs/parser/tokenizer/*.c) $(wildcard srcs/parser/*.c)
 SRCS_EXECUTOR= $(wildcard srcs/executor/**/*.c) $(wildcard srcs/executor/*.c)
 SRCS_SUB= $(wildcard srcs/subsystems/**/*.c) $(wildcard srcs/subsystems/*.c)
 SRCS_TEST= $(wildcard test_unit/*.c)
@@ -73,7 +71,7 @@ run: $(NAME)
 ifeq ($(OS), Darwin)
 	bin/$(NAME)
 else ifeq ($(OS), Linux)
-	valgrind --leak-check=full --log-file=$(MEMORY_CHECK_PATH)/$(DATE) -s bin/$(NAME)
+	valgrind --leak-check=full --log-file=$(MEMORY_CHECK_PATH)/$(DATE) -s ./$(NAME)
 endif
 
 # cleaning rules

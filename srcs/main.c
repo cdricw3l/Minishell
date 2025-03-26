@@ -13,16 +13,8 @@
 #include "../include/main.h"
 
 
-// int main(void)
-// {
-//     t_token **token_lst;
-//     char line[] = "Hello grep -m | cat > output.txt"; 
-//     token_lst = ft_tokenize(line);
-//     ft_display_token_lst(*token_lst);
-
-//     assert(ft_is_commande("cat") == 1);
-
-    
-//     //ft_start_minishell("Mini-shell $ ");
-//     return(0);
-// }
+int main(void)
+{
+	ft_start_minishell("minishell: ");
+	return(0);
+}

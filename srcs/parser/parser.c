@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "parser.h"
+#include "tokenizer/tokenize.h"
 
 int ft_read_line(char *str)
 {
@@ -22,9 +23,10 @@ int ft_read_line(char *str)
         line = readline(str);
         if(!line)
             return(1);
-        //token_lst = ft_tokenize(line);
-        (void)token_lst;
-
+		assert(line);
+        token_lst = ft_tokenize(line);
+		ft_display_token_sequence_lst(*token_lst);
+		
     }
     return(0);
 }
@@ -32,7 +34,7 @@ int ft_read_line(char *str)
 int ft_start_minishell(char *str)
 {
     int read;
-
+	ft_display_token_lst()
     read = ft_read_line(str);
     if(read == 1)
         return(1);
