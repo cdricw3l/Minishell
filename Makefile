@@ -94,8 +94,8 @@ mclean:
 
 t: $(OBJS_BUILTIN) $(OBJS_PARSER) $(OBJS_TEST)
 ifeq ($(OS), Darwin)
-	$(CC) $(GFLAGS) -fsanitize=address  $(OBJS_BUILTIN) $(OBJS_PARSER) $(OBJS_TEST)-L$(LIBFT) -lft  -lreadline -o bin/test
-	bin/test.exe
+	$(CC) $(GFLAGS) -fsanitize=address  $(OBJS_BUILTIN) $(OBJS_PARSER) $(OBJS_TEST) -L $(LIBFT) -lft  -lreadline -o bin/test
+	bin/test
 else ifeq ($(OS), Linux)
 	$(CC) $(GFLAGS) -g $(OBJS_BUILTIN) $(OBJS_PARSER) $(OBJS_TEST) -L$(LIBFT) -lft -lreadline -o bin/test
 	valgrind --leak-check=full --log-file=valg_test  -s ./bin/test

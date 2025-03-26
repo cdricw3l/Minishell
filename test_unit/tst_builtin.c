@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tst_builtin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/26 15:07:12 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/26 16:48:07 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@ int ft_start_minishell_test(char *str)
 int tst_builtin()
 {
 
-    char *env;
 
 
-    ft_cd("~/Documents/42-katas");
+    ft_cd("/");
+    ft_pwd();
+    ft_cd("~/Movies");
     ft_pwd();
     //ft_start_minishell_test("Mini: ");
     // MANPATH
@@ -56,9 +57,5 @@ int tst_builtin()
     // INFOPATH
     // PKG_CONFIG_PATH
     // USER
-    env = getenv("ENV");
-	if (!env)
-		return (0);
-    printf("%s\n", env);
     return(1);
 }
