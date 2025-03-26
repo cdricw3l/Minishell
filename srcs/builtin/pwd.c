@@ -6,23 +6,30 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:06:30 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/26 12:42:55 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/26 14:51:34 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-char *ft_pwd(void)
+void	ft_pwd(void)
 {
-    /* Check for change sizeof buffer*/
-    char path[1024];
+	int		i;
+	char	path[1024];
 
-    if(!getcwd(path,sizeof(path)))
-    {
-        // maybe change this error output.
-        printf("error get path %p\n", path);
-        return(NULL);
-    }
-    return(ft_strdup(path));
+	if (!getcwd(path, sizeof(path)))
+	{
+		printf("error get path %p\n", path);
+		return ;
+	}
+	i = 0;
+	while (path[i])
+	{
+		write(1, &path[i], 1);
+		i++;
+	}
+	write(1, "\n", 1);
 }
 
+/* Check for change sizeof buffer*/
+// maybe change this error output.

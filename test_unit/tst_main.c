@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:17:01 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/26 12:41:59 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/26 12:57:43 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 int main(void)
 {
 
-    assert(tst_tokenizer() == 1);
-    //assert(tst_builtin() == 1);
+    //assert(tst_tokenizer() == 1);
+    assert(tst_builtin() == 1);
     
 
     return(0);

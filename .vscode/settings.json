@@ -2,6 +2,7 @@
     "files.associations": {
         "precedence_climbing.h": "c",
         "tokenize.h": "c",
-        "test_unit.h": "c"
+        "test_unit.h": "c",
+        "ranges": "c"
     }
 }
