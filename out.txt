@@ -1,0 +1,57 @@
+cc -Werror -Wall -Wextra -g -c test_unit/tst_builtin.c -o test_unit/tst_builtin.o
+cc -Werror -Wall -Wextra -fsanitize=address  srcs/builtin/cd.o srcs/builtin/echo.o srcs/builtin/pwd.o srcs/parser/lexer/precedence_climbing.o srcs/parser/tokenizer/tokenize.o srcs/parser/tokenizer/tokenize_utils.o srcs/parser/parser.o test_unit/tst_builtin.o test_unit/tst_main.o test_unit/tst_shutting.o test_unit/tst_tokenizer.o -L libft -lft  -lreadline -o bin/test
+bin/test
+VSCODE_GIT_ASKPASS_MAIN=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
+NVM_INC=/Users/cw3l/.nvm/versions/node/v22.7.0/include/node
+SHELL=/bin/zsh
+_=/usr/bin/make
+h=
+VSCODE_PROFILE_INITIALIZED=1
+VSCODE_INJECTION=1
+__CFBundleIdentifier=com.microsoft.VSCode
+INFOPATH=/opt/homebrew/share/info:/opt/homebrew/share/info:/opt/homebrew/share/info:
+PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/cw3l/.nvm/versions/node/v22.7.0/bin:/Users/cw3l/.venv/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/opt/X11/bin:/Library/Apple/usr/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/cw3l/.nvm/versions/node/v22.7.0/bin:/Users/cw3l/.venv/bin:/Users/cw3l/.cargo/bin:/Users/cw3l/Library/Python/3.13/bin:/Users/cw3l/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand:/Users/cw3l/Library/Python/3.13/bin
+LSCOLORS=Gxfxcxdxbxegedabagacad
+ZDOTDIR=/Users/cw3l
+NVM_BIN=/Users/cw3l/.nvm/versions/node/v22.7.0/bin
+LaunchInstanceID=7BA5D162-FF21-4B75-9E90-4ADC9FC44EC3
+LS_COLORS=di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.cidJb71khz/Listeners
+DISPLAY=/private/tmp/com.apple.launchd.ZsIVPWZvSQ/org.xquartz:0
+PWD=/Users/cw3l/42/Minishell
+HOMEBREW_CELLAR=/opt/homebrew/Cellar
+ORIGINAL_XDG_CURRENT_DESKTOP=undefined
+MANPATH=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/share/man:/Library/Developer/CommandLineTools/usr/share/man:/Library/Developer/CommandLineTools/Toolchains/XcodeDefault.xctoolchain/usr/share/man:
+HOME=/Users/cw3l
+LOGNAME=cw3l
+NVM_CD_FLAGS=-q
+ZSH=/Users/cw3l/.oh-my-zsh
+VSCODE_GIT_IPC_HANDLE=/var/folders/j3/1lk9ks8d7d365yp7h8qvm4_r0000gn/T/vscode-git-11f9f99ece.sock
+XPC_FLAGS=0x0
+COLORTERM=truecolor
+SHLVL=3
+USER=cw3l
+LESS=-R
+OLDPWD=/Users/cw3l/42/Minishell
+VSCODE_GIT_ASKPASS_EXTRA_ARGS=
+TERM_PROGRAM=vscode
+TMPDIR=/var/folders/j3/1lk9ks8d7d365yp7h8qvm4_r0000gn/T/
+VSCODE_GIT_ASKPASS_NODE=/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Plugin).app/Contents/MacOS/Code Helper (Plugin)
+MallocNanoZone=0
+MAKEFLAGS=
+MFLAGS=
+TERM_PROGRAM_VERSION=1.98.2
+NVM_DIR=/Users/cw3l/.nvm
+XPC_SERVICE_NAME=0
+HOMEBREW_PREFIX=/opt/homebrew
+HOMEBREW_REPOSITORY=/opt/homebrew
+__CF_USER_TEXT_ENCODING=0x1F5:0x0:0x1
+COMMAND_MODE=unix2003
+GIT_ASKPASS=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh
+USER_ZDOTDIR=/Users/cw3l
+PAGER=less
+SECURITYSESSIONID=186a3
+LANG=fr_FR.UTF-8
+TERM=xterm-256color
+MAKELEVEL=1
+
