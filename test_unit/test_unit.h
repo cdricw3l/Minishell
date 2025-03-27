@@ -23,7 +23,7 @@
 int tst_ast(void);
 int tst_shutting(void);
 int tst_tokenizer(void);
-int tst_builtin(void);
+int tst_builtin(int argc, char *envp[]);
 
 
 #endif

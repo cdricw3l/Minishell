@@ -13,11 +13,12 @@
 #include "test_unit.h"
 
 
-int main(void)
+int main(int argc, char **argv, char *envp[])
 {
 
+    (void)argv;
     //assert(tst_tokenizer() == 1);
-    assert(tst_builtin() == 1);
+    assert(tst_builtin(argc,envp) == 1);
     
 
     return(0);

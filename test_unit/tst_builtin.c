@@ -61,12 +61,18 @@ int ft_print_envirion(char **str)
     printf("\n");
     return(i);
 }
-int tst_builtin()
+
+void    ft_prin(void)
+{
+    printf("Exit\n");
+}
+int tst_builtin(int argc, char *envp[])
 {
 
 
 
-    
+    (void)envp;
+    (void)argc;
     //ft_start_minishell_test("Mini: ");
     // MANPATH
     // HOSTNAME
@@ -75,9 +81,16 @@ int tst_builtin()
     // PKG_CONFIG_PATH
     // USER
 
-    extern char **environ;
+    //extern char **environ;
     // char *env;
     // env = getenv("INFOPATH");
-    ft_print_envirion(environ);
+    //ft_print_envirion(environ);
+    // while (*envp)
+    // {
+    //     printf("%s\n", *envp);
+    //     envp++;
+    // }
+    ft_exit(2);
+    
     return(1);
 }

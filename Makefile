@@ -94,10 +94,10 @@ mclean:
 
 t: $(OBJS_BUILTIN) $(OBJS_PARSER) $(OBJS_TEST)
 ifeq ($(OS), Darwin)
-	$(CC) $(GFLAGS) -fsanitize=address  $(OBJS_BUILTIN) $(OBJS_PARSER) $(OBJS_TEST) -L $(LIBFT) -lft  -lreadline -o bin/test
-	bin/test
+	@$(CC) $(GFLAGS) -fsanitize=address  $(OBJS_BUILTIN) $(OBJS_PARSER) $(OBJS_TEST) -L $(LIBFT) -lft  -lreadline -o bin/test
+	@bin/test
 else ifeq ($(OS), Linux)
-	$(CC) $(GFLAGS) -g $(OBJS_BUILTIN) $(OBJS_PARSER) $(OBJS_TEST) -L$(LIBFT) -lft -lreadline -o bin/test
+	@$(CC) $(GFLAGS) -g $(OBJS_BUILTIN) $(OBJS_PARSER) $(OBJS_TEST) -L$(LIBFT) -lft -lreadline -o bin/test
 	valgrind --leak-check=full --log-file=valg_test  -s ./bin/test
 endif
 
@@ -110,7 +110,7 @@ else
 	git add .
 	git commit -m $(NAME)/$(gcom)/$(DATE)
 endif
-	git push origin $(BRANCH)
+	git push big $(BRANCH)
 
 
 all: $(NAME)

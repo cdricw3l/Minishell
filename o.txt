@@ -1,0 +1,5 @@
+file descriptor
+pid 164769
+voici le pid  164769
+pid 0
+voici le pid du new procxess 0
