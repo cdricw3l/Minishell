@@ -12,6 +12,24 @@
 
 #include "tokenize.h"
 
+
+void print_ast(t_token *node, int depth)
+{
+    if (!node)
+        return;
+
+    // Print current node with indentation based on depth
+    for (int i = 0; i < depth; i++)
+        printf("    ");  // Indentation for hierarchy
+    printf("|-- %s (Type: %d, Precedence: %d)\n", node->string, node->token, node->precedence);
+
+    // Print left subtree first
+    print_ast(node->left, depth + 1);
+    
+    // Print right subtree after
+    print_ast(node->right, depth + 1);
+}
+
 int ft_delete_token_lst(t_token **token_lst)
 {
     t_token *tmp;
@@ -69,6 +87,7 @@ void ft_add_back_node(t_token **lst, t_token *node)
     }
 }
 
+/* 1) original codes from Cedric
 t_token **ft_tokenize(char *str)
 {
     char    **split;
@@ -92,4 +111,159 @@ t_token **ft_tokenize(char *str)
     }
     ft_split_clean(&split);
     return(token_lst);
+}
+*/
+
+/* 2) It works but it didn't work on "hello hello"
+t_token *ft_tokenize(char *str)
+{
+    char    **split;
+    int     token;
+    int     i;
+    t_token *root = NULL;
+    t_token *current = NULL;
+    t_token *new_node = NULL;
+
+    split = ft_split(str, 32);
+    if (!split)
+        return NULL;
+
+    i = 0;
+    while (split[i])
+    {
+        token = ft_get_token(split[i]);  // Get token type
+        new_node = ft_new_token_node(split[i], token);
+
+        if (!root) 
+        {
+            root = new_node;  // First node becomes root
+        }
+        else 
+        {
+            // **Group arguments with previous command**
+            if (new_node->precedence == 1 && current && current->precedence == 1)
+            {
+                // Merge arguments into the previous command
+                char *new_str = malloc(strlen(current->string) + strlen(new_node->string) + 2);
+                sprintf(new_str, "%s %s", current->string, new_node->string);//Forbidden library
+				//this store "%s %s" in new_str
+                free(current->string);
+                current->string = new_str;
+                free(new_node);
+            }
+            else if (new_node->precedence > root->precedence)
+            {
+                new_node->left = root;  // Push previous tree to the left
+                root->parent = new_node;
+                root = new_node;  // New root for the AST
+            }
+            else 
+            {
+                // Attach new node to the rightmost operator
+                current = root;
+                while (current->right) 
+                    current = current->right;
+
+                current->right = new_node;
+                new_node->parent = current;
+            }
+        }
+        current = new_node;  // Keep track of last inserted node
+        i++;
+    }
+    ft_split_clean(&split);
+    return root;  // Return the root of the AST
+}
+*/
+
+t_token *ft_tokenize(char *str)
+{
+    char    **split;
+    int     token;
+    int     i;
+    t_token *root = NULL;
+    t_token *current = NULL;
+    t_token *new_node = NULL;
+
+    split = ft_split(str, 32);
+    if (!split)
+        return NULL;
+
+    i = 0;
+  	while (split[i])
+	{
+		token = ft_get_token(split[i]);  // Get token type
+
+		// Handle tokens that begin with a quote
+		if ((split[i][0] == '"' || split[i][0] == '\'') &&
+			split[i][strlen(split[i]) - 1] != split[i][0])
+		{
+			char quote = split[i][0];
+			char *joined = strdup(split[i]);
+			i++;
+
+			// Keep joining until the closing quote is found
+			while (split[i])
+			{
+				char *temp = joined;
+				joined = malloc(strlen(temp) + strlen(split[i]) + 2); // +1 for space, +1 for \0
+				sprintf(joined, "%s %s", temp, split[i]);  // yes, sprintf is technically forbidden
+
+				free(temp);
+				if (split[i][strlen(split[i]) - 1] == quote)
+					break;
+				i++;
+			}
+
+			// Remove surrounding quotes
+			size_t len = strlen(joined);
+			if (joined[0] == quote && joined[len - 1] == quote)
+			{
+				joined[len - 1] = '\0';
+				memmove(joined, joined + 1, len - 1); // shift left
+			}
+
+			new_node = ft_new_token_node(joined, 1);
+			free(joined);
+		}
+		else
+		{
+			new_node = ft_new_token_node(split[i], token);
+		}
+
+		if (!root)
+		{
+			root = new_node;
+		}
+		else
+		{
+			if (new_node->precedence == 1 && current && current->precedence == 1)
+			{
+				char *new_str = malloc(strlen(current->string) + strlen(new_node->string) + 2);
+				sprintf(new_str, "%s %s", current->string, new_node->string);
+				free(current->string);
+				current->string = new_str;
+				free(new_node);
+			}
+			else if (new_node->precedence > root->precedence)
+			{
+				new_node->left = root;
+				root->parent = new_node;
+				root = new_node;
+			}
+			else
+			{
+				current = root;
+				while (current->right)
+					current = current->right;
+				current->right = new_node;
+				new_node->parent = current;
+			}
+		}
+
+		current = new_node;
+		i++;
+	}
+    ft_split_clean(&split);
+    return root;  // Return the root of the AST
 }

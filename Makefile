@@ -21,7 +21,7 @@ MEMORY_CHECK_PATH= error_managment/valgrind
 
 SRCS_MAIN= srcs/main.c
 SRCS_PARSER=  $(wildcard srcs/parser/lexer/**/*.c) $(wildcard srcs/parser/tokenizer/*.c) $(wildcard srcs/parser/*.c)
-SRCS_EXECUTOR= $(wildcard srcs/executor/**/*.c) $(wildcard srcs/executor/*.c)
+SRCS_EXEC= $(wildcard srcs/exec/*.c) #Nami changed
 SRCS_SUB= $(wildcard srcs/subsystems/**/*.c) $(wildcard srcs/subsystems/*.c)
 SRCS_TEST= $(wildcard test_unit/*.c)
 
@@ -37,7 +37,7 @@ endif
 
 OBJS_MAIN=$(SRCS_MAIN:%.c=%.o)
 OBJS_PARSER=$(SRCS_PARSER:%.c=%.o)
-OBJS_EXECUTOR=$(SRCS_EXECUTOR:%.c=%.o)
+OBJS_EXEC=$(SRCS_EXEC:%.c=%.o)
 OBJS_SUB=$(SRCS_SUB:%.c=%.o)
 
 # Test env:
@@ -51,18 +51,17 @@ EMPTY=
 
 
 ifeq ($(mode), $(PROD))
-OBJS= $(OBJS_MAIN) $(OBJS_PARSER)
+OBJS= $(OBJS_MAIN) $(OBJS_PARSER) $(OBJS_EXEC) # Added OBJS_EXEC
 else ifeq ($(mode), $(TEST))
-OBJS= $(OBJS_PARSER) 
+OBJS= $(OBJS_PARSER) $(OBJS_EXEC) # Added OBJS_EXEC
 endif
 
 
 .PHONY: clean fclean run git testenv
 
 $(NAME): $(OBJS)
-ifeq ($(mode), $(PROD))
 	$(CC) $(GFLAGS) $(OBJS) -L$(LIBFT) -lft -o $(NAME) -lreadline
-else ifeq ($(mode), $(NOFLAGS))
+ifeq ($(mode), $(NOFLAGS))
 recall:  $(OBJS)
 	$(CC) $(OBJS) -o $(NAME)
 endif

@@ -30,6 +30,7 @@
 #include <readline/history.h>
 #include "../../include/main.h"
 #include "tokenizer/tokenize.h"
+#include "../exec/exec.h"
 
 #define WORD 0
 #define CMD 1

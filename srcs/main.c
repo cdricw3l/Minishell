@@ -10,11 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/main.h"
+ #include "../include/main.h"
 
 
-int main(void)
-{
-	ft_start_minishell("minishell: ");
-	return(0);
-}
+ int main(void)//int argc char **argv, char **env
+ {
+ 	ft_start_minishell("minishell: ");
+ 	return(0);
+ }
+

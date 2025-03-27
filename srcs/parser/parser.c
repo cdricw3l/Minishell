@@ -13,6 +13,7 @@
 #include "parser.h"
 #include "tokenizer/tokenize.h"
 
+/* Previous version of Cedric
 int ft_read_line(char *str)
 {
     char *line;
@@ -30,11 +31,43 @@ int ft_read_line(char *str)
     }
     return(0);
 }
+*/
 
-int ft_start_minishell(char *str)
+int ft_read_line(char *prompt)
+{
+    char *line;
+    t_token *ast_root;  // Now ft_tokenize returns a single AST root
+
+    while (1)
+    {
+        line = readline(prompt);
+        if (!line)
+            return 1;
+
+        assert(line);
+
+        ast_root = ft_tokenize(line);  // Returns AST root now
+
+        if (!ast_root)
+        {
+            printf("Error: Tokenization failed!\n");
+            free(line);
+            continue;
+        }
+
+        printf("Generated AST:\n");
+        print_ast(ast_root, 0);  // Print AST structure
+
+		execute_ast(ast_root); // Execute AST!
+
+        free(line);  // Free input line after processing
+    }
+    return 0;
+}
+
+int  ft_start_minishell(char *str)
 {
     int read;
-	ft_display_token_lst()
     read = ft_read_line(str);
     if(read == 1)
         return(1);

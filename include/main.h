@@ -28,8 +28,9 @@
 #include <assert.h>
 
 
-
+#include "../srcs/exec/exec.h"
 #include "../srcs/parser/parser.h"
+#include "../srcs/parser/tokenizer/tokenize.h"
 #include "../libft/libft.h"
 
 #include <string.h>
