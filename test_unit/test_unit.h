@@ -14,6 +14,7 @@
 #define TEST_UNIT_H
 
 #include "../srcs/parser/parser.h"
+#include "../srcs/execution/execution.h"
 #include "../srcs/builtin/builtin.h"
 #include "../srcs/parser/lexer/precedence_climbing.h"
 #include "../include/main.h"
@@ -24,6 +25,6 @@ int tst_ast(void);
 int tst_shutting(void);
 int tst_tokenizer(void);
 int tst_builtin(int argc, char *envp[]);
-
+int tst_exe(void);
 
 #endif

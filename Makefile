@@ -5,7 +5,8 @@ NAME= minishell
 OS = $(shell uname)
 ifeq ($(OS), Darwin)
 CC=cc
-GFLAGS= -Werror -Wall -Wextra
+GFLAGS= 
+#-Werror -Wall -Wextra
 else ifeq ($(OS), Linux)
 CC=gcc
 GFLAGS= -Werror -Wall -Wextra
@@ -23,7 +24,7 @@ SRCS_MAIN= srcs/main.c
 SRCS_PARSER= $(wildcard srcs/parser/**/*.c) $(wildcard srcs/parser/lexer/**/*.c) $(wildcard srcs/parser/*.c)
 
 
-SRCS_EXECUTOR= $(wildcard srcs/executor/**/*.c) $(wildcard srcs/executor/*.c)
+SRCS_EXECUTOR= $(wildcard srcs/execution/*.c)
 SRCS_SUB= $(wildcard srcs/subsystems/**/*.c) $(wildcard srcs/subsystems/*.c)
 SRCS_BUILTIN= $(wildcard srcs/builtin/*.c)
 SRCS_TEST= $(wildcard test_unit/*.c)
@@ -35,7 +36,7 @@ ifeq ($(mode), $(NOFLAGS))
 	$(CC) -c $< -o $@
 else
 %.o:%.c
-	$(CC) $(GFLAGS) -g -c $< -o $@
+	$(CC)  -g -c $< -o $@
 endif
 
 OBJS_MAIN=$(SRCS_MAIN:%.c=%.o)
@@ -92,12 +93,12 @@ mclean:
 	rm -f $(MEMORY_CHECK_PATH)/*
 
 
-t: $(OBJS_BUILTIN) $(OBJS_PARSER) $(OBJS_TEST)
+t: $(OBJS_BUILTIN) $(OBJS_PARSER) $(OBJS_TEST) $(OBJS_EXECUTOR)
 ifeq ($(OS), Darwin)
 	@$(CC) $(GFLAGS) -fsanitize=address  $(OBJS_BUILTIN) $(OBJS_PARSER) $(OBJS_TEST) -L $(LIBFT) -lft  -lreadline -o bin/test
 	@bin/test
 else ifeq ($(OS), Linux)
-	@$(CC) $(GFLAGS) -g $(OBJS_BUILTIN) $(OBJS_PARSER) $(OBJS_TEST) -L$(LIBFT) -lft -lreadline -o bin/test
+	@$(CC) $(GFLAGS) -g $(OBJS_BUILTIN) $(OBJS_PARSER) $(OBJS_TEST) $(OBJS_EXECUTOR) -L$(LIBFT) -lft -lreadline -o bin/test
 	valgrind --leak-check=full --log-file=valg_test  -s ./bin/test
 endif
 

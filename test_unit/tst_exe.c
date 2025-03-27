@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tst_main.c                                         :+:      :+:    :+:   */
+/*   tst_builtin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 13:17:01 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/26 12:57:43 by cbouhadr         ###   ########.fr       */
+/*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
+/*   Updated: 2025/03/27 17:55:02 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test_unit.h"
 
-
-int main(/* int argc, char **argv, char *envp[] */)
+int tst_exe(void)
 {
 
-    //assert(tst_tokenizer() == 1);
-    //assert(tst_builtin(argc,envp) == 1);
-    assert(tst_exe() == 1);
-    
-
-    return(0);
+    char *arg[] = {"echo", "salut la compagnie", NULL};
+    ft_cmd_launcher("/usr/bin/echo",arg);
+    return(1);
 }

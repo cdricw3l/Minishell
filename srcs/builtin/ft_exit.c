@@ -12,51 +12,24 @@
 
 #include "builtin.h"
 
+
 int ft_exit(int ret)
 {
-    // extern char **environ;
+    int pid;
+    int p;
 
-    // while (*environ)
-    // {
-    //     if(ft_strncmp(*environ, "SYSTEMD_EXEC_PID", ft_strlen("SYSTEMD_EXEC_PID")) == 0)
-    //         printf("%s\n", *environ);
-    //     environ++;
-    // }
-    
-    int fd;
-    pid_t pid;
-    
-    ft_pwd();
-    fd = open("o.txt", O_WRONLY | O_RDONLY | O_CREAT, 0644);
-    if(fd < 0)
+    pid = fork();
+    if(pid == 0)
     {
-        printf("error");
-        return(-1);
-    }
-    printf("file descriptor %d\n", fd);
-    dup2(fd, STDOUT_FILENO);
-    dup2(0,STDOUT_FILENO);
-    printf("file descriptor\n");
-    
-    
-    
-    int i = 0;
-    while (1)
-    {
-        pid = fork();
-        printf("pid %d\n", pid);
-        if (pid == 0)
-        {
-            printf("This is the child process. (pid: %d) value %d\\n", getpid(), i);
-            i+=1;    
-        }
-        else
-        {
-            printf("This is the parent process. (pid: %d), value %d\n", getpid(), i);
-            i+=10;    
 
-        }
-        sleep(1);
+        printf("voici i child %d\n", pid);
     }
+    else
+    {
+        
+        printf("voici i parent %d\n", pid);
+    }
+    waitpid(pid, &p,0);
+    printf("voici la vqleur de reotur %d et %d\n", p, pid);
     return(ret);
 }

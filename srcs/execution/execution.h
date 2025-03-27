@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tst_main.c                                         :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 13:17:01 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/26 12:57:43 by cbouhadr         ###   ########.fr       */
+/*   Created: 2025/03/26 12:30:49 by cbouhadr          #+#    #+#             */
+/*   Updated: 2025/03/26 16:48:28 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test_unit.h"
+#ifndef EXECUTION_H
+#define EXECUTION_H
 
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+#include <signal.h>
+#include <fcntl.h>
+#include <unistd.h>
+# include "../../include/main.h"
 
-int main(/* int argc, char **argv, char *envp[] */)
-{
+int ft_cmd_launcher(char *path, char **args1);
 
-    //assert(tst_tokenizer() == 1);
-    //assert(tst_builtin(argc,envp) == 1);
-    assert(tst_exe() == 1);
-    
-
-    return(0);
-}
+#endif
