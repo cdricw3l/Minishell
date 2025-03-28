@@ -1,0 +1,90 @@
+==971974== Memcheck, a memory error detector
+==971974== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==971974== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==971974== Command: ./minishell
+==971974== Parent PID: 971966
+==971974== 
+==972063== 
+==972063== HEAP SUMMARY:
+==972063==     in use at exit: 204,494 bytes in 234 blocks
+==972063==   total heap usage: 724 allocs, 490 frees, 229,155 bytes allocated
+==972063== 
+==972063== 161 (48 direct, 113 indirect) bytes in 1 blocks are definitely lost in loss record 26 of 68
+==972063==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==972063==    by 0x109681: ft_new_token_node (tokenize.c:61)
+==972063==    by 0x109A37: ft_tokenize (tokenize.c:231)
+==972063==    by 0x109492: ft_read_line (parser.c:48)
+==972063==    by 0x109515: ft_start_minishell (parser.c:70)
+==972063==    by 0x10941F: main (main.c:18)
+==972063== 
+==972063== LEAK SUMMARY:
+==972063==    definitely lost: 48 bytes in 1 blocks
+==972063==    indirectly lost: 113 bytes in 5 blocks
+==972063==      possibly lost: 0 bytes in 0 blocks
+==972063==    still reachable: 204,333 bytes in 228 blocks
+==972063==         suppressed: 0 bytes in 0 blocks
+==972063== Reachable blocks (those to which a pointer was found) are not shown.
+==972063== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==972063== 
+==972063== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==972062== 
+==972062== Process terminating with default action of signal 2 (SIGINT)
+==971974== 
+==971974== Process terminating with default action of signal 2 (SIGINT)
+==972062==    at 0x49B03EA: wait4 (wait4.c:30)
+==971974==    at 0x49B03EA: wait4 (wait4.c:30)
+==972062==    by 0x10A1D5: execute_ast (exec.c:22)
+==972062==    by 0x10A264: execute_ast (exec.c:47)
+==971974==    by 0x10A2F1: execute_ast (exec.c:66)
+==972062==    by 0x1094E6: ft_read_line (parser.c:60)
+==971974==    by 0x1094E6: ft_read_line (parser.c:60)
+==972062==    by 0x109515: ft_start_minishell (parser.c:70)
+==972062==    by 0x10941F: main (main.c:18)
+==971974==    by 0x109515: ft_start_minishell (parser.c:70)
+==971974==    by 0x10941F: main (main.c:18)
+==972062== 
+==971974== 
+==972062== HEAP SUMMARY:
+==972062==     in use at exit: 210,702 bytes in 259 blocks
+==972062==   total heap usage: 724 allocs, 465 frees, 229,155 bytes allocated
+==972062== 
+==971974== HEAP SUMMARY:
+==971974==     in use at exit: 210,702 bytes in 259 blocks
+==971974==   total heap usage: 724 allocs, 465 frees, 229,155 bytes allocated
+==971974== 
+==971974== 161 (48 direct, 113 indirect) bytes in 1 blocks are definitely lost in loss record 34 of 82
+==972062== 161 (48 direct, 113 indirect) bytes in 1 blocks are definitely lost in loss record 34 of 82
+==971974==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==972062==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==971974==    by 0x109681: ft_new_token_node (tokenize.c:61)
+==972062==    by 0x109681: ft_new_token_node (tokenize.c:61)
+==971974==    by 0x109A37: ft_tokenize (tokenize.c:231)
+==972062==    by 0x109A37: ft_tokenize (tokenize.c:231)
+==971974==    by 0x109492: ft_read_line (parser.c:48)
+==972062==    by 0x109492: ft_read_line (parser.c:48)
+==971974==    by 0x109515: ft_start_minishell (parser.c:70)
+==972062==    by 0x109515: ft_start_minishell (parser.c:70)
+==971974==    by 0x10941F: main (main.c:18)
+==972062==    by 0x10941F: main (main.c:18)
+==971974== 
+==972062== 
+==972062== LEAK SUMMARY:
+==972062==    definitely lost: 48 bytes in 1 blocks
+==972062==    indirectly lost: 113 bytes in 5 blocks
+==972062==      possibly lost: 0 bytes in 0 blocks
+==972062==    still reachable: 210,541 bytes in 253 blocks
+==972062==         suppressed: 0 bytes in 0 blocks
+==972062== Reachable blocks (those to which a pointer was found) are not shown.
+==972062== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==972062== 
+==972062== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==971974== LEAK SUMMARY:
+==971974==    definitely lost: 48 bytes in 1 blocks
+==971974==    indirectly lost: 113 bytes in 5 blocks
+==971974==      possibly lost: 0 bytes in 0 blocks
+==971974==    still reachable: 210,541 bytes in 253 blocks
+==971974==         suppressed: 0 bytes in 0 blocks
+==971974== Reachable blocks (those to which a pointer was found) are not shown.
+==971974== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==971974== 
+==971974== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

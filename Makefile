@@ -84,13 +84,15 @@ fclean: clean
 mclean:
 	rm -f $(MEMORY_CHECK_PATH)/*
 
+lib:
+	cd libft && make fclean  && make bonus
 
-t: $(OBJS) $(OBJS_TEST)
+t: $(OBJS_TEST) $(OBJS_PARSER) $(OBJS_EXEC)
 ifeq ($(OS), Darwin)
-	$(CC) $(GFLAGS) -fsanitize=address  $(OBJS) $(OBJS_TEST) -L$(LIBFT) -lft  -lreadline -o bin/test
+	$(CC) $(GFLAGS) -fsanitize=address $(OBJS_TEST) $(OBJS_PARSER) $(OBJS_EXEC) -L$(LIBFT) -lft  -lreadline -o bin/test
 	bin/test.exe
 else ifeq ($(OS), Linux)
-	$(CC) $(GFLAGS) -g $(OBJS) $(OBJS_TEST) -L$(LIBFT) -lft -lreadline -o bin/test
+	$(CC) $(GFLAGS) -g $(OBJS_TEST) $(OBJS_PARSER) $(OBJS_EXEC) -L$(LIBFT) -lft -lreadline -o bin/test
 	valgrind --leak-check=full --log-file=valg_test  -s ./bin/test
 endif
 
