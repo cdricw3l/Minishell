@@ -1,4 +1,4 @@
-#include "exec.h"
+#include "../../include/main.h"
 
 // Function to execute AST recursively
 void execute_ast(t_token *node)

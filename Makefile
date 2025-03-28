@@ -20,9 +20,8 @@ NOFLAGS=3
 MEMORY_CHECK_PATH= error_managment/valgrind
 
 SRCS_MAIN= srcs/main.c
-SRCS_PARSER=  $(wildcard srcs/parser/lexer/**/*.c) $(wildcard srcs/parser/tokenizer/*.c) $(wildcard srcs/parser/*.c)
+SRCS_PARSER=  $(wildcard srcs/parser/*.c) $(wildcard srcs/parser/tokenizer/*.c)
 SRCS_EXEC= $(wildcard srcs/exec/*.c) #Nami changed
-SRCS_SUB= $(wildcard srcs/subsystems/**/*.c) $(wildcard srcs/subsystems/*.c)
 SRCS_TEST= $(wildcard test_unit/*.c)
 
 LIBFT= libft
@@ -38,7 +37,6 @@ endif
 OBJS_MAIN=$(SRCS_MAIN:%.c=%.o)
 OBJS_PARSER=$(SRCS_PARSER:%.c=%.o)
 OBJS_EXEC=$(SRCS_EXEC:%.c=%.o)
-OBJS_SUB=$(SRCS_SUB:%.c=%.o)
 
 # Test env:
 

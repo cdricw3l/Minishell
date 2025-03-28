@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:36:54 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/25 15:49:51 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/28 12:48:32 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tokenize.h"
+#include "../../../include/main.h"
 
 
 void print_ast(t_token *node, int depth)

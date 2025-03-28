@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:48:49 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/25 15:52:15 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/28 12:48:17 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tokenize.h"
+#include "../../../include/main.h"
 
 void    ft_display_token_node_lst(t_token *token_lst)
 {
