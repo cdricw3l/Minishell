@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:32:32 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/25 11:59:24 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/28 12:51:58 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../include/main.h"
 
+/* Previous version of Cedric
 int ft_read_line(char *str)
 {
     char *line;
@@ -22,17 +23,50 @@ int ft_read_line(char *str)
         line = readline(str);
         if(!line)
             return(1);
-        //token_lst = ft_tokenize(line);
-        (void)token_lst;
-
+		assert(line);
+        token_lst = ft_tokenize(line);
+		ft_display_token_sequence_lst(*token_lst);
+		
     }
     return(0);
 }
+*/
 
-int ft_start_minishell(char *str)
+int ft_read_line(char *prompt)
+{
+    char *line;
+    t_token *ast_root;  // Now ft_tokenize returns a single AST root
+
+    while (1)
+    {
+        line = readline(prompt);
+        if (!line)
+            return 1;
+
+        assert(line);
+
+        ast_root = ft_tokenize(line);  // Returns AST root now
+
+        if (!ast_root)
+        {
+            printf("Error: Tokenization failed!\n");
+            free(line);
+            continue;
+        }
+
+        printf("Generated AST:\n");
+        print_ast(ast_root, 0);  // Print AST structure
+
+		execute_ast(ast_root); // Execute AST!
+
+        free(line);  // Free input line after processing
+    }
+    return 0;
+}
+
+int  ft_start_minishell(char *str)
 {
     int read;
-
     read = ft_read_line(str);
     if(read == 1)
         return(1);

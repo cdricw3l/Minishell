@@ -1,0 +1,75 @@
+==966391== Memcheck, a memory error detector
+==966391== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==966391== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==966391== Command: ./minishell
+==966391== Parent PID: 966383
+==966391== 
+==966470== 
+==966470== HEAP SUMMARY:
+==966470==     in use at exit: 204,391 bytes in 230 blocks
+==966470==   total heap usage: 628 allocs, 398 frees, 227,624 bytes allocated
+==966470== 
+==966470== 54 (48 direct, 6 indirect) bytes in 1 blocks are definitely lost in loss record 19 of 67
+==966470==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==966470==    by 0x109681: ft_new_token_node (tokenize.c:61)
+==966470==    by 0x109A37: ft_tokenize (tokenize.c:231)
+==966470==    by 0x109492: ft_read_line (parser.c:48)
+==966470==    by 0x109515: ft_start_minishell (parser.c:70)
+==966470==    by 0x10941F: main (main.c:18)
+==966470== 
+==966470== LEAK SUMMARY:
+==966470==    definitely lost: 48 bytes in 1 blocks
+==966470==    indirectly lost: 6 bytes in 1 blocks
+==966470==      possibly lost: 0 bytes in 0 blocks
+==966470==    still reachable: 204,337 bytes in 228 blocks
+==966470==         suppressed: 0 bytes in 0 blocks
+==966470== Reachable blocks (those to which a pointer was found) are not shown.
+==966470== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==966470== 
+==966470== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==966471== 
+==966471== HEAP SUMMARY:
+==966471==     in use at exit: 204,391 bytes in 230 blocks
+==966471==   total heap usage: 628 allocs, 398 frees, 227,624 bytes allocated
+==966471== 
+==966471== 54 (48 direct, 6 indirect) bytes in 1 blocks are definitely lost in loss record 19 of 67
+==966471==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==966471==    by 0x109681: ft_new_token_node (tokenize.c:61)
+==966471==    by 0x109A37: ft_tokenize (tokenize.c:231)
+==966471==    by 0x109492: ft_read_line (parser.c:48)
+==966471==    by 0x109515: ft_start_minishell (parser.c:70)
+==966471==    by 0x10941F: main (main.c:18)
+==966471== 
+==966471== LEAK SUMMARY:
+==966471==    definitely lost: 48 bytes in 1 blocks
+==966471==    indirectly lost: 6 bytes in 1 blocks
+==966471==      possibly lost: 0 bytes in 0 blocks
+==966471==    still reachable: 204,337 bytes in 228 blocks
+==966471==         suppressed: 0 bytes in 0 blocks
+==966471== Reachable blocks (those to which a pointer was found) are not shown.
+==966471== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==966471== 
+==966471== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==966391== 
+==966391== HEAP SUMMARY:
+==966391==     in use at exit: 204,536 bytes in 235 blocks
+==966391==   total heap usage: 781 allocs, 546 frees, 229,872 bytes allocated
+==966391== 
+==966391== 371 (240 direct, 131 indirect) bytes in 5 blocks are definitely lost in loss record 25 of 65
+==966391==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==966391==    by 0x109681: ft_new_token_node (tokenize.c:61)
+==966391==    by 0x109A37: ft_tokenize (tokenize.c:231)
+==966391==    by 0x109492: ft_read_line (parser.c:48)
+==966391==    by 0x109515: ft_start_minishell (parser.c:70)
+==966391==    by 0x10941F: main (main.c:18)
+==966391== 
+==966391== LEAK SUMMARY:
+==966391==    definitely lost: 240 bytes in 5 blocks
+==966391==    indirectly lost: 131 bytes in 9 blocks
+==966391==      possibly lost: 0 bytes in 0 blocks
+==966391==    still reachable: 204,165 bytes in 221 blocks
+==966391==         suppressed: 0 bytes in 0 blocks
+==966391== Reachable blocks (those to which a pointer was found) are not shown.
+==966391== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==966391== 
+==966391== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
