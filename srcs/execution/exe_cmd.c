@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 12:30:49 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/28 13:15:51 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/28 14:02:48 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int ft_cmd_launcher(char *path, char **args1)
         write(fd[1], "hello la compagnie", ft_strlen("hello la compagnie"));
         close(fd[1]);
         res = waitpid(pid,&status,0);
+        assert(res);
         return(0);
         //printf("voici le resultat %d\n",  waitpid(pid,&status,0));
     }
