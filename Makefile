@@ -59,7 +59,7 @@ ifeq ($(PROD), 0)
 endif
 
 
-.PHONY: clean fclean run git testenv
+.PHONY: clean fclean run git testenv var lib t
 
 $(NAME): $(OBJS)
 ifeq ($(NOFLAGS), 0)
@@ -90,7 +90,7 @@ mclean:
 	rm -f $(MEMORY_CHECK_PATH)/*
 
 
-t: $(OBJS)
+t: $(OBJS) 
 # check if the PROD variable env value. The PROD variable define the path file for compilation especialy for the main().
 ifeq ($(PROD), 0)
 	@echo "\033[44m *** Start $(NAME) in test env \033[0m"
@@ -107,11 +107,9 @@ ifeq ($(OS), Darwin)
 	@bin/test
 else ifeq ($(OS), Linux)
 	@$(CC) $(GFLAGS) -g $(OBJS) -L$(LIBFT) -lft -lreadline -o bin/test
-	valgrind --leak-check=full --log-file=valg_test  -s ./bin/test
+	@valgrind --leak-check=full --log-file=valg_test  -s ./bin/test
 endif
 
-lib:
-	cd libft  && make fclean && make bonus
 
 git: fclean
 ifeq ($(gcom), $(EMPTY))
@@ -127,3 +125,7 @@ endif
 all: $(NAME)
 
 re: clean fclean all
+
+lib:
+	cd libft   && make bonus
+

@@ -6,22 +6,34 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:48:49 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/26 12:51:50 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/28 16:20:36 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenize.h"
 
+void    ft_display_token_node(t_token *token_lst)
+{
+   if(token_lst)
+   {
+        printf("\nvoici la valeur du noeud: \n");
+        printf("string : %s\n", token_lst->string);
+        printf("Token : %s\n", ft_get_str_token(token_lst->token));
+        printf("Précedence : %d\n", token_lst->precedence);
+        printf("Associativité : %d\n", token_lst->asso);
+        token_lst = token_lst->right;
+        printf("\n");
+   } 
+}
+
+
 void    ft_display_token_node_lst(t_token *token_lst)
 {
-
+    if(!token_lst)
+        return ;
     while (token_lst)
     {
-       printf("\nvoici la valeur du noeud: \n");
-       printf("string : %s\n", token_lst->string);
-       printf("Token : %s\n", ft_get_str_token(token_lst->token));
-       printf("Précedence : %d\n", token_lst->precedence);
-       printf("Associativité : %d\n", token_lst->asso);
+       ft_display_token_node(token_lst);
        token_lst = token_lst->right;
        printf("\n");
     }
@@ -156,4 +168,30 @@ int ft_get_token(char *str)
         return (VAR);
     
     return (WORD);
+}
+
+void    ft_token_lst_iter(t_token *token, void (*f)(t_token *token_node, int token))
+{
+    if(!token || !f)
+        return ;
+    while(token)
+    {
+        f(token, token->token);
+        token = token->right;        
+    }
+}
+
+int ft_count_occurence_of_token(t_token *token_lst, int token)
+{
+    int i;
+
+    i = 0;
+    while (token_lst)
+    {
+        if (token_lst->token == token)
+            i++;
+        token_lst = token_lst->right;
+    }
+    return (i);
+    
 }

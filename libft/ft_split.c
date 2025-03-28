@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:53:35 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/10/12 17:15:22 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/28 16:52:42 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,9 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	word = count_word(s, c);
+	// if(word == 0)
+	// 	word = 1;
+	printf("voici str %s et count %ld\n", s, word);
 	ptr = malloc((sizeof(char *) * (word + 1)));
 	if (!ptr)
 	{
@@ -106,4 +109,13 @@ char	**ft_split(char const *s, char c)
 	}
 	process_data(ptr, s, c, word);
 	return (ptr);
+}
+int main(void)
+{
+	char *s="|";
+
+	char **sp =  ft_split(s,32);
+	ft_split_print(sp);
+	ft_split_clean(&sp);
+	return(0);
 }

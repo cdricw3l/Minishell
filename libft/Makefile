@@ -37,6 +37,7 @@ SRCS=	ft_putchar_fd.c \
 		ft_split.c \
 		ft_split_len.c \
 		ft_split_clean.c \
+		ft_split_print.c \
 		ft_strncmp.c \
 		ft_itoa.c \
 		ft_atoi.c \
@@ -76,7 +77,6 @@ ${NAME}: ${OBJS} ${HDRS}
 
 bonus: ${OBJS} ${BONUS_OBJS} ${HDRS}
 	${AR} ${NAME} ${OBJS} ${BONUS_OBJS}
-	make clean
 
 clean:
 	rm -rf *.o *.dSYM

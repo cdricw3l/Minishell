@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   ft_split_print.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 11:02:58 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/28 16:35:47 by cbouhadr         ###   ########.fr       */
+/*   Created: 2025/03/28 14:16:19 by cbouhadr          #+#    #+#             */
+/*   Updated: 2025/03/28 14:23:39 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-#include <signal.h>
-#include <fcntl.h>
-#include <unistd.h>
-# include "../../include/main.h"
-
-void	ft_pwd(void);
-void	ft_echo(char *str, int fd, int option);
-int		ft_cd(char *path);
-int     ft_exit(int ret);
-
-#endif
+void	ft_split_print(char **split)
+{
+	while (*split)
+	{
+		write(1, *split, ft_strlen(*split));
+		write(1, "\n", 1);
+		split++;
+	}
+}

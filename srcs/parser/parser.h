@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:31:06 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/25 13:29:52 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/03/28 15:55:25 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,7 @@
 #include "../../include/main.h"
 #include "tokenizer/tokenize.h"
 
-#define WORD 0
-#define CMD 1
-#define ARG 3
-#define PIPE 4
-#define REDIR_OPEN 5
-#define REDIR_WRITE 6
-#define REDIR_WRITE_A 7
-#define DOUBLE_REDIR 8
-#define HEREDOC 10
-#define VAR 11
+
 
 int     ft_start_minishell(char *str);
 int     ft_read_line(char *str);

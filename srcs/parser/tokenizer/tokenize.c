@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:36:54 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/26 12:50:08 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/28 16:36:21 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ t_token **ft_tokenize(char *str)
         ft_add_back_node(token_lst,  ft_new_token_node(split[i], token));
         i++;
     }
+    ft_display_token_sequence_lst(*token_lst);
     ft_split_clean(&split);
     return(token_lst);
 }
