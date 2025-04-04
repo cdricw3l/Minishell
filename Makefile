@@ -50,7 +50,7 @@ EMPTY=
 ifeq ($(PROD), 1)
 OBJS= $(OBJS_MAIN) $(OBJS_BUILTIN) $(OBJS_PARSER) $(OBJS_EXECUTOR)
 else ifeq ($(PROD), 0)
-OBJS= $(OBJS_TEST) $(OBJS_PARSER) $(OBJS_BUILTIN) $(OBJS_EXECUTOR)
+OBJS= $(OBJS_TEST) $(OBJS_PARSER) $(OBJS_BUILTIN) $(OBJS_EXECUTOR) 
 endif
 
 test:
@@ -119,7 +119,7 @@ else
 	git add .
 	git commit -m $(NAME)/$(gcom)/$(DATE)
 endif
-	git push big $(BRANCH)
+	git push  $(BRANCH)
 
 
 all: $(NAME)

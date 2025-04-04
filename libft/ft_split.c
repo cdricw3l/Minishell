@@ -3,120 +3,114 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:53:35 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/28 16:59:23 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/03/28 23:55:34 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <assert.h>
 
-static size_t	count_word(char const *str, char c)
+static int	ft_clean_memory_exit(char ***split, int idx)
 {
-	size_t	i;
-	size_t	word_count;
-	size_t	is_word;
+	int	i;
 
 	i = 0;
-	word_count = 0;
-	is_word = 0;
-	while (str[i] && i < ft_strlen(str) - 1)
+	while (i < idx)
 	{
-		if (str[i] == c)
-		{
-			is_word = 0;
-			i++;
-		}
-		if (str[i] != c)
-		{
-			if (is_word == 0)
-				word_count++;
-			is_word = 1;
-			i++;
-		}
-	}
-	return (word_count);
-}
-
-static void	ft_free(char **p, size_t index)
-{
-	size_t	k;
-
-	k = 0;
-	while (k <= index)
-	{
-		p[k] = NULL;
-		free(p[k]);
-		k++;
-	}
-	p = NULL;
-	free(p);
-}
-
-static void	check_alloc(char **ptr, size_t j)
-{
-	if (!*ptr[j])
-		ft_free(ptr, j);
-}
-
-static char	**process_data(char **ptr, char const *s, char c, size_t nb_word)
-{
-	size_t	i;
-	size_t	j;
-	size_t	len;
-
-	j = 0;
-	i = 0;
-	while (j < nb_word)
-	{
-		if (s[i] != c)
-		{
-			len = (ft_strchr(&s[i], c)) - &s[i];
-			if (len <= ft_strlen(s))
-			{
-				ptr[j] = ft_substr(&s[i], 0, len);
-				i = (len - 1) + i;
-			}
-			else if (len > ft_strlen(s))
-				ptr[j] = ft_strdup(&s[i]);
-			check_alloc(ptr, j);
-			j++;
-		}
+		free(*split[i]);
+		*split[i] = NULL;
 		i++;
 	}
-	ptr[j] = NULL;
-	return (ptr);
+	free(*split);
+	*split = NULL;
+	return (0);
 }
 
-char	**ft_split(char const *s, char c)
+int	ft_count_word(char const *str, char c)
 {
-	size_t	word;
-	char	**ptr;
+	int	i;
+	int	on;
+	int	count;
 
-	word = 0;
-	if (!s)
-		return (NULL);
-	word = count_word(s, c);
-	// if(word == 0)
-	// 	word = 1;
-	printf("voici str %s et count %ld\n", s, word);
-	ptr = malloc((sizeof(char *) * (word + 1)));
-	if (!ptr)
+	i = 0;
+	on = 0;
+	count = 0;
+	if (!str[i])
+		return (-1);
+	while (str[i])
 	{
-		free(ptr);
-		return (NULL);
+		if (str[i] != c && on == 0)
+		{
+			count++;
+			on = 1;
+		}
+		else if (str[i] == c)
+			on = 0;
+		i++;
 	}
-	process_data(ptr, s, c, word);
-	return (ptr);
+	return (count);
 }
-int main(void)
-{
-	char *s="|";
 
-	char **sp =  ft_split(s,32);
-	ft_split_print(sp);
-	ft_split_clean(&sp);
-	return(0);
+int	ft_get_word_len(char const *str, char c)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i] && str[i] != c)
+		i++;
+	return (i);
 }
-//ccc ft_split.c ft_strlen.c ft_substr.c ft_strdup.c ft_split_clean.c ft_strlcpy.c ft_strchr.c ft_split_print.c -o test
+
+int	ft_process_data(char **split, char const *str, char c)
+{
+	int	i;
+	int	j;
+	int	word_len;
+
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] != c)
+		{
+			word_len = ft_get_word_len(&str[i], c);
+			split[j] = malloc(sizeof(char) * (word_len + 1));
+			if (!split[j])
+				return (ft_clean_memory_exit(&split, i));
+			ft_strlcpy(split[j], &str[i], word_len + 1);
+			i += word_len;
+			j++;
+		}
+		else
+			i++;
+	}
+	split[j] = NULL;
+	return (1);
+}
+
+char	**ft_split(char const *str, char c)
+{
+	size_t	size_arr_word;
+	char	**arr_str;
+
+	size_arr_word = 0;
+	if (!str)
+		return (NULL);
+	size_arr_word = ft_count_word(str, c);
+	if ((int)size_arr_word == -1)
+		return (NULL);
+	arr_str = malloc((sizeof(char *) * (size_arr_word + 1)));
+	if (!arr_str)
+		return (NULL);
+	if (!ft_process_data(arr_str, str, c))
+	{
+		free(arr_str);
+		arr_str = NULL;
+	}
+	return (arr_str);
+}

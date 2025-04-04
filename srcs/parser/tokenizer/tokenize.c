@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:36:54 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/28 16:36:21 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/03 16:11:45 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void ft_add_back_node(t_token **lst, t_token *node)
 
 t_token **ft_tokenize(char *str)
 {
+    TEST_START;
     char    **split;
     int     token;
     int i;
@@ -92,5 +93,6 @@ t_token **ft_tokenize(char *str)
     }
     ft_display_token_sequence_lst(*token_lst);
     ft_split_clean(&split);
+    TEST_SUCCES;
     return(token_lst);
 }

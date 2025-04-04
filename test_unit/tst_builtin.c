@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/28 16:17:00 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:06:38 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int ft_read_line_test(char *str)
 {
     char *line;
     //t_token **token_lst;
-
+    
     while (1)
     {
         line = readline(str);
@@ -81,14 +81,19 @@ int tst_builtin(int argc, char *envp[])
 {
     char *line;
     t_token **token_lst;
-
+    char **duplicate_env;
     (void)argc;
-    ft_split_print(envp);
+    
+
+
+    //build quick sort algo
+    duplicate_env = ft_duplicate_env(envp);
+    ft_set_signal();
     while (1)
     {
         line = readline("minni ");
         if(!line)
-            return(-1);
+            exit(0);
         token_lst = ft_tokenize(line);
         if(!token_lst)
             return(-1);
@@ -96,7 +101,8 @@ int tst_builtin(int argc, char *envp[])
             ft_display_token_node_lst(*token_lst);
         else
         {
-            ft_cmd_launcher(*token_lst);
+            //ft_cmd_launcher(*token_lst);
+            ft_export(&duplicate_env, NULL);
         }
 
     }

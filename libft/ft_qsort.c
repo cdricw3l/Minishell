@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 11:49:47 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/28 16:45:16 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/02 14:46:57 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@
 // 	int arr[] = {14, 99, -22, 56, 77, 55};
 
 // 	int size = sizeof(arr) / sizeof(arr[0]);
-// 	ft_qsort(arr,size,4,ft_cmp_char);
+ 	ft_qsort(arr,size,4,ft_cmp_char);
 	
 // 	ft_print(arr,size);
 // 	return (0);

@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 22:15:28 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/25 12:23:36 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/02 08:51:24 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,14 @@
 #include <dirent.h>
 #include <stdio.h>
 #include <assert.h>
-
+#include <signal.h>
 
 
 #include "../srcs/parser/parser.h"
 #include "../libft/libft.h"
+#include "../srcs/builtin/builtin.h"
+#include "../srcs/execution/execution.h"
+#include "../srcs/parser/tokenizer/tokenize.h"
 
 #include <string.h>
 

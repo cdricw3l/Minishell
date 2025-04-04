@@ -13,10 +13,11 @@
 #include "../include/main.h"
 
 
-int main(void)
+int main(int argc, char **argv, char *envp[])
 {
 
     
+    ft_pwd();
     ft_start_minishell("Mini-shell $ ");
     
     return(0);

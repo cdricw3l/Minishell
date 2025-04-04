@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 12:30:49 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/28 16:16:30 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/04 13:43:44 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,22 @@
 #include <signal.h>
 #include <fcntl.h>
 #include <unistd.h>
-# include "../../include/main.h"
+#include <termios.h>
 
-int ft_cmd_launcher(t_token *token);
+#include "../parser/parser.h"
+#include "../parser/tokenizer/tokenize.h"
+
+//int     ft_cmd_launcher(t_token *token);
+void    ft_set_signal(void);
+
+// environements
+
+char    **ft_duplicate_env(char *envp[]);
+int     ft_get_env_len(char *envp[]);
+void    *ft_destroy_env(char **envp[], int idx);
+void    ft_display_env(char **env);
+void	env_quick_s(char **s, int end, int (*cmp)(char *, char *, size_t len)); //quick sort fonction for env.
+int	    ft_str_env_cmp(char *s1, char *s2, size_t n);
+int     ft_is_env_sort(char **split);
 
 #endif

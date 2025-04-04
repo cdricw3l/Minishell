@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:07:18 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/26 11:31:14 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/03 16:09:35 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int tst_commande_checker(void)
 
 int tst_get_token(void)
 {
-    assert(ft_get_token("echo") == CMD);
+    TEST_START;
+    assert(ft_get_token("echo") == BUILTIN);
     assert(ft_get_token("cat") == CMD);
     assert(ft_get_token("<<") == HEREDOC);
     assert(ft_get_token(">>") == REDIR_WRITE_A);
@@ -42,7 +43,14 @@ int tst_get_token(void)
     assert(ft_get_token("$hello") == VAR);
     assert(ft_get_token("$hello") == VAR);
     assert(ft_get_token("hello") == WORD);
-    
+    assert(ft_get_token("pwd") == BUILTIN);
+    assert(ft_get_token("cd") == BUILTIN);
+    assert(ft_get_token("exit") == BUILTIN);
+    assert(ft_get_token("export") == BUILTIN);
+    assert(ft_get_token("env") == BUILTIN);
+    assert(ft_get_token("unset") == BUILTIN);
+
+    TEST_SUCCES;
     return(1);
 }
 
@@ -51,7 +59,7 @@ int tst_tokenizer(void)
 {
     t_token **token_lst;
     
-    char line[] = "cat < hello.txt | grep 'Hello world'"; 
+    char line[] = "echo < hello.txt | grep 'Hello world'"; 
 
     
     tst_commande_checker();
