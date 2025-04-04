@@ -186,64 +186,6 @@ t_token *ft_tokenize(char *str)
 t_token *ft_create_ast(t_token *token_list)
 {
     t_token *root = NULL;
-    t_token *current_node_being_added = NULL;
-    t_token *insertion_point = NULL; // Used for finding where to attach
-
-    while (token_list != NULL)
-    {
-        // 1. Get the next token and detach it from the input list
-        current_node_being_added = token_list;
-        token_list = token_list->right; // Advance the list pointer
-
-        // Reset the node's links to prepare it for insertion into the AST
-        current_node_being_added->right = NULL;
-        current_node_being_added->left = NULL;
-        current_node_being_added->parent = NULL;
-
-        // 2. If the AST is empty, the current node becomes the root
-        if (root == NULL)
-        {
-            root = current_node_being_added;
-        }
-        // 3. If the AST is not empty, decide where to insert
-        else
-        {
-            // 3a. If the new node has HIGHER precedence than the current root,
-            //     it becomes the new root of the tree.
-            if (current_node_being_added->precedence > root->precedence)
-            {
-                current_node_being_added->left = root; // Old root becomes left child
-                if (root != NULL) { // Should always be true here, but good practice
-                   root->parent = current_node_being_added; // Set parent of old root
-                }
-                root = current_node_being_added; // Update root pointer
-            }
-            // 3b. If the new node has LOWER or EQUAL precedence,
-            //     find the rightmost node and append it there.
-            else
-            {
-                insertion_point = root;
-                // Traverse to the end of the right spine
-                while (insertion_point->right != NULL)
-                {
-                    insertion_point = insertion_point->right;
-                }
-                // Attach the new node as the right child of the rightmost node
-                insertion_point->right = current_node_being_added;
-                current_node_being_added->parent = insertion_point; // Set parent link
-            }
-        }
-        // The 'current' variable from the original code, used for argument joining,
-        // is no longer needed here.
-    }
-
-    return root; // Return the final root of the constructed AST
-}
-
-/* 3) last working code before using Gemini
-t_token *ft_create_ast(t_token *token_list)
-{
-    t_token *root = NULL;
     t_token *current = NULL;
     t_token *new_node = NULL;
 
@@ -288,7 +230,6 @@ t_token *ft_create_ast(t_token *token_list)
 
     return root; // Return the constructed AST
 }
-*/
 
 t_token *ft_parse(char *str)
 {
