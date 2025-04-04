@@ -45,9 +45,9 @@ int ft_read_line(char *prompt)
             return 1;
 
         assert(line);
-
-        ast_root = ft_tokenize(line);  // Returns AST root now
-
+		add_history(line);//permitted lib
+        //ast_root = ft_tokenize(line);  // Returns AST root now
+		ast_root= ft_parse(line);
         if (!ast_root)
         {
             printf("Error: Tokenization failed!\n");
@@ -56,10 +56,9 @@ int ft_read_line(char *prompt)
         }
 
         printf("Generated AST:\n");
-        print_ast(ast_root, 0);  // Print AST structure
-
+        //print_ast(ast_root, 0);  // Print AST structure
+		print_ast_simple(ast_root, 0); 
 		execute_ast(ast_root); // Execute AST!
-
         free(line);  // Free input line after processing
     }
     return 0;

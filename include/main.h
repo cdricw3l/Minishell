@@ -30,7 +30,7 @@
 
 #include "../srcs/exec/exec.h"
 #include "../srcs/parser/parser.h"
-#include "../srcs/parser/tokenizer/tokenize.h"
+//#include "../srcs/parser/tokenizer/tokenize.h" circular include issues
 #include "../libft/libft.h"
 
 #include <string.h>

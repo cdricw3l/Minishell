@@ -5,10 +5,10 @@ NAME= minishell
 OS = $(shell uname)
 ifeq ($(OS), Darwin)
 CC=cc
-GFLAGS= -Werror -Wall -Wextra
+GFLAGS= -Werror -Wall -Wextra -I./srcs/parser/tokenizer -I./srcs/exec
 else ifeq ($(OS), Linux)
 CC=gcc
-GFLAGS= -Werror -Wall -Wextra
+GFLAGS= -Werror -Wall -Wextra -I./srcs/parser/tokenizer -I./srcs/exec
 endif
 
 mode=0

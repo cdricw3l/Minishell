@@ -8,7 +8,9 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 
-#include "../parser/tokenizer/tokenize.h" // or the actual path where s_token is defined
+typedef struct s_token t_token;
+
+#include "../parser/tokenizer/tokenize.h"
 
 void	execute_ast(t_token *node);
 
