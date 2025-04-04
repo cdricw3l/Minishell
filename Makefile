@@ -5,10 +5,10 @@ NAME= minishell
 OS = $(shell uname)
 ifeq ($(OS), Darwin)
 CC=cc
-GFLAGS= -Werror -Wall -Wextra
+GFLAGS= -Werror -Wall -Wextra -I./srcs/parser/tokenizer -I./srcs/exec
 else ifeq ($(OS), Linux)
 CC=gcc
-GFLAGS= -Werror -Wall -Wextra
+GFLAGS= -Werror -Wall -Wextra -I./srcs/parser/tokenizer -I./srcs/exec
 endif
 
 TEST=1
@@ -73,6 +73,7 @@ run: $(NAME)
 ifeq ($(OS), Darwin)
 	bin/$(NAME)
 else ifeq ($(OS), Linux)
+	valgrind --leak-check=full --log-file=$(MEMORY_CHECK_PATH)/$(DATE) -s ./$(NAME)
 	valgrind --leak-check=full --log-file=$(MEMORY_CHECK_PATH)/$(DATE) -s ./$(NAME)
 endif
 

@@ -51,7 +51,9 @@ typedef struct s_token
 
 } t_token;
 
-t_token **ft_tokenize(char *str);
+t_token *ft_tokenize(char *str);
+t_token *ft_create_ast(t_token *token_list);//Nami add
+t_token *ft_parse(char *str);//Nami add 
 t_token *ft_new_token_node(char *str, int token);
 void    ft_add_back_node(t_token **lst, t_token *node);
 int     ft_is_commande(char *str);
@@ -59,16 +61,20 @@ int     ft_get_token(char *str);
 int     ft_count_occurence_of_token(t_token *token_lst, int token);
 int     ft_delete_token_lst(t_token **token_lst);
 
-
+//display fonction
 void    ft_display_commande_lst(t_token *token_lst);
 void    ft_display_token_node_lst(t_token *token_lst);
 void    ft_display_token_sequence_lst(t_token *token_lst);
-void    ft_display_token_node(t_token *token_lst);
+void	print_ast(t_token *node, int depth);
+void 	print_ast_simple(t_token *node, int indent);
+void   	ft_display_token_node(t_token *token_lst);
+
+
+
 
 int     ft_get_precedence(int token);
 int     ft_get_associativity(int token);
 char    *ft_get_str_token(int token);
 
-void    ft_token_lst_iter(t_token *token, void (*f)(t_token *token_node, int token));
 
 #endif

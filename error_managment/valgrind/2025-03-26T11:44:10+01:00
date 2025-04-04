@@ -1,0 +1,30 @@
+==864388== Memcheck, a memory error detector
+==864388== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==864388== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==864388== Command: ./minishell
+==864388== Parent PID: 864380
+==864388== 
+==864388== 
+==864388== HEAP SUMMARY:
+==864388==     in use at exit: 204,179 bytes in 225 blocks
+==864388==   total heap usage: 446 allocs, 221 frees, 224,916 bytes allocated
+==864388== 
+==864388== 27 bytes in 4 blocks are definitely lost in loss record 13 of 63
+==864388==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==864388==    by 0x48ABBAC: xmalloc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==864388==    by 0x4889694: readline_internal_teardown (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==864388==    by 0x4893D2A: readline (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==864388==    by 0x109F42: ft_read_line (parser.c:22)
+==864388==    by 0x109F70: ft_start_minishell (parser.c:36)
+==864388==    by 0x10925F: main (main.c:18)
+==864388== 
+==864388== LEAK SUMMARY:
+==864388==    definitely lost: 27 bytes in 4 blocks
+==864388==    indirectly lost: 0 bytes in 0 blocks
+==864388==      possibly lost: 0 bytes in 0 blocks
+==864388==    still reachable: 204,152 bytes in 221 blocks
+==864388==         suppressed: 0 bytes in 0 blocks
+==864388== Reachable blocks (those to which a pointer was found) are not shown.
+==864388== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==864388== 
+==864388== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
