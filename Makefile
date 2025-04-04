@@ -53,10 +53,10 @@ else ifeq ($(PROD), 0)
 OBJS= $(OBJS_TEST) $(OBJS_PARSER) $(OBJS_BUILTIN) $(OBJS_EXECUTOR) 
 endif
 
-test:
-ifeq ($(PROD), 0)
-	echo "\033[0;33m *** Start programme in test env \033[0m"
-endif
+# test:
+# ifeq ($(PROD), 0)
+# 	echo "\033[0;33m *** Start programme in test env \033[0m"
+# endif
 
 
 .PHONY: clean fclean run git testenv var lib t

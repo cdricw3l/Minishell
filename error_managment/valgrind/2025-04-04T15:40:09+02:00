@@ -1,0 +1,32 @@
+==2313928== Memcheck, a memory error detector
+==2313928== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==2313928== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==2313928== Command: ./minishell
+==2313928== Parent PID: 2313919
+==2313928== 
+==2313928== 
+==2313928== Process terminating with default action of signal 2 (SIGINT)
+==2313928==    at 0x490875B: kill (syscall-template.S:120)
+==2313928==    by 0x48A5F39: _rl_signal_handler (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==2313928==    by 0x48A6BEC: rl_getc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==2313928==    by 0x48A6460: rl_read_key (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==2313928==    by 0x488AC86: readline_internal_char (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==2313928==    by 0x4893D14: readline (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==2313928==    by 0x10A771: ft_read_line (parser.c:43)
+==2313928==    by 0x10A850: ft_start_minishell (parser.c:70)
+==2313928==    by 0x1094BF: main (main.c:18)
+==2313928== 
+==2313928== HEAP SUMMARY:
+==2313928==     in use at exit: 210,405 bytes in 246 blocks
+==2313928==   total heap usage: 427 allocs, 181 frees, 224,780 bytes allocated
+==2313928== 
+==2313928== LEAK SUMMARY:
+==2313928==    definitely lost: 0 bytes in 0 blocks
+==2313928==    indirectly lost: 0 bytes in 0 blocks
+==2313928==      possibly lost: 0 bytes in 0 blocks
+==2313928==    still reachable: 210,405 bytes in 246 blocks
+==2313928==         suppressed: 0 bytes in 0 blocks
+==2313928== Reachable blocks (those to which a pointer was found) are not shown.
+==2313928== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==2313928== 
+==2313928== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
