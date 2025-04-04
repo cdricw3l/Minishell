@@ -222,10 +222,30 @@ void execute_ast(t_token *node)
             break;
 
 		case 10: // HEREDOC (<<)
+        {
+            int original_stdin = dup(STDIN_FILENO); // Save the original stdin
+            if (original_stdin == -1)
+            {
+                perror("dup failed");
+                return;
+            }
+            heredoc_redirect(node);
+            execute_ast(node->left); // Execute the command with redirected input
+            if (dup2(original_stdin, STDIN_FILENO) == -1) // Restore original stdin
+            {
+                perror("dup2 failed to restore stdin");
+            }
+            close(original_stdin);
+            break;
+        }
+
+
+		/*
+		case 10: // HEREDOC (<<)
             heredoc_redirect(node);
             execute_ast(node->left); // Execute the command after setting up heredoc. why? 
             break;
-
+		*/
         default:
             fprintf(stderr, "Unknown token type: %d\n", node->token);
             break;

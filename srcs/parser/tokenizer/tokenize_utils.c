@@ -41,8 +41,7 @@ int ft_get_precedence(int token)
 
 int ft_get_associativity(int token)
 {
-    if(token == REDIR_OPEN
-        || token == HEREDOC)
+    if(token == REDIR_OPEN || token == HEREDOC)
         return(2);
     return (1);
 }

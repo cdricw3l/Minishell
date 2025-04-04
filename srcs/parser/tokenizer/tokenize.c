@@ -78,6 +78,7 @@ int ft_delete_token_lst(t_token **token_lst)
             free(node->string);
             node->string = NULL;
         }
+		
         free(node);
         *token_lst = tmp;
     }
@@ -137,6 +138,27 @@ t_token *ft_tokenize(char *str)
     {
         token = ft_get_token(split[i]);  // Get token type
 
+		if (token == HEREDOC && split[i + 1]) // Handle HEREDOC
+        {
+            new_node = ft_new_token_node(split[i], token);
+            ft_add_back_node(&token_list, new_node);
+
+            // The delimiter is the next token
+            i++;
+            if (split[i])
+            {
+                t_token *delimiter_node = ft_new_token_node(split[i], 0); // Assuming 0 is a generic type for delimiter
+                ft_add_back_node(&token_list, delimiter_node);
+            }
+            else
+            {
+                fprintf(stderr, "Error: << without a delimiter\n");
+                // Handle error
+            }
+            i++;
+            continue;
+        }
+
         // Handle tokens that begin with a quote
         if ((split[i][0] == '"' || split[i][0] == '\'') &&
             split[i][strlen(split[i]) - 1] != split[i][0])
@@ -183,64 +205,91 @@ t_token *ft_tokenize(char *str)
     return token_list;  // Return the list of tokens (linked list)
 }
 
+
 t_token *ft_create_ast(t_token *token_list)
 {
     t_token *root = NULL;
-    t_token *current_node_being_added = NULL;
-    t_token *insertion_point = NULL; // Used for finding where to attach
+    t_token *current = NULL;
+    t_token *new_node = NULL;
+	t_token *delimiter_node = NULL; // To store the delimiter token
 
-    while (token_list != NULL)
+    while (token_list)
     {
-        // 1. Get the next token and detach it from the input list
-        current_node_being_added = token_list;
-        token_list = token_list->right; // Advance the list pointer
+        new_node = token_list;
+        token_list = token_list->right;
+        new_node->right = NULL;
 
-        // Reset the node's links to prepare it for insertion into the AST
-        current_node_being_added->right = NULL;
-        current_node_being_added->left = NULL;
-        current_node_being_added->parent = NULL;
-
-        // 2. If the AST is empty, the current node becomes the root
-        if (root == NULL)
+        if (!root)
         {
-            root = current_node_being_added;
+            root = new_node;//If there is no root. the first one become root. 
         }
-        // 3. If the AST is not empty, decide where to insert
         else
         {
-            // 3a. If the new node has HIGHER precedence than the current root,
-            //     it becomes the new root of the tree.
-            if (current_node_being_added->precedence > root->precedence)
+			if (new_node->token == HEREDOC)
             {
-                current_node_being_added->left = root; // Old root becomes left child
-                if (root != NULL) { // Should always be true here, but good practice
-                   root->parent = current_node_being_added; // Set parent of old root
-                }
-                root = current_node_being_added; // Update root pointer
+				// The command before '<<' becomes the left child
+				new_node->left = current;
+				if (current)
+					current->parent = new_node;
+
+				// The delimiter is the next token
+				if (token_list)
+				{
+					delimiter_node = token_list;
+					token_list = token_list->right;
+					delimiter_node->right = NULL;
+					delimiter_node->left = NULL; // Ensure delimiter node has no children initially
+
+					new_node->left = root; // The current root (command) becomes left child
+					if (root)
+						root->parent = new_node;
+					new_node->right = delimiter_node; // Delimiter becomes right child
+					delimiter_node->parent = new_node;
+					root = new_node; // HEREDOC node becomes the new root
+					current = new_node;
+				}
+				else
+				{
+					fprintf(stderr, "Error: << without a delimiter in AST creation\n");
+					// Handle error appropriately
+				}
+
+				// The '<<' node becomes the new 'current' for subsequent operations
+				current = new_node;
+				continue; // Skip the default 'current' update at the end
+                
             }
-            // 3b. If the new node has LOWER or EQUAL precedence,
-            //     find the rightmost node and append it there.
+            else if (new_node->precedence == 1 && current && current->precedence == 1)
+            {
+                // Join arguments (e.g., "echo hello world")
+                char *new_str = malloc(strlen(current->string) + strlen(new_node->string) + 2);
+                sprintf(new_str, "%s %s", current->string, new_node->string);
+                free(current->string);
+                current->string = new_str;
+                free(new_node);
+            }
+            else if (new_node->precedence > root->precedence)
+            {
+                new_node->left = root;
+                root->parent = new_node;
+                root = new_node;
+            }
             else
             {
-                insertion_point = root;
-                // Traverse to the end of the right spine
-                while (insertion_point->right != NULL)
-                {
-                    insertion_point = insertion_point->right;
-                }
-                // Attach the new node as the right child of the rightmost node
-                insertion_point->right = current_node_being_added;
-                current_node_being_added->parent = insertion_point; // Set parent link
+                current = root;
+                while (current->right)
+                    current = current->right;
+                current->right = new_node;
+                new_node->parent = current;
             }
         }
-        // The 'current' variable from the original code, used for argument joining,
-        // is no longer needed here.
+        current = new_node;
     }
 
-    return root; // Return the final root of the constructed AST
+    return root; // Return the constructed AST
 }
 
-/* 3) last working code before using Gemini
+/* 3) work well. Before doing heredoc
 t_token *ft_create_ast(t_token *token_list)
 {
     t_token *root = NULL;
@@ -255,7 +304,7 @@ t_token *ft_create_ast(t_token *token_list)
 
         if (!root)
         {
-            root = new_node;
+            root = new_node;//If there is no root. the first one become root. 
         }
         else
         {
