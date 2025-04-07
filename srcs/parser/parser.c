@@ -13,6 +13,29 @@
 #include "parser.h"
 #include "tokenizer/tokenize.h"
 
+
+void ft_binary_tree_traversal(t_token *node)
+{
+    if (!node)
+        return ;
+
+    // Si associativité est 2, on traverse d'abord à droite
+    if (node->asso == 2)
+    {
+        ft_binary_tree_traversal(node->right);  // Passe d'abord à droite
+        printf("node %s asso %d\n", node->string, node->asso);
+        ft_binary_tree_traversal(node->left);  // Ensuite à gauche
+    }
+    else
+    {
+        // Sinon, on suit le parcours classique (gauche - racine - droite)
+        ft_binary_tree_traversal(node->left);
+        printf("node %s asso %d\n", node->string, node->asso);
+        ft_binary_tree_traversal(node->right);
+    }
+}
+
+
 /* Previous version of Cedric
 int ft_read_line(char *str)
 {
@@ -57,8 +80,9 @@ int ft_read_line(char *prompt)
 
         printf("Generated AST:\n");
         print_ast(ast_root, 0);  // Print AST structure
+        ft_binary_tree_traversal(ast_root);
 		//print_ast_simple(ast_root, 0); 
-		execute_ast(ast_root); // Execute AST!
+		//execute_ast(ast_root); // Execute AST!
         free(line);  // Free input line after processing
     }
     return 0;

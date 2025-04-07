@@ -1,0 +1,40 @@
+==195021== Memcheck, a memory error detector
+==195021== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==195021== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==195021== Command: ./minishell
+==195021== Parent PID: 195013
+==195021== 
+==195021== 
+==195021== HEAP SUMMARY:
+==195021==     in use at exit: 232,994 bytes in 245 blocks
+==195021==   total heap usage: 641 allocs, 396 frees, 265,791 bytes allocated
+==195021== 
+==195021== 3 bytes in 1 blocks are definitely lost in loss record 2 of 81
+==195021==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==195021==    by 0x10C23A: ft_strdup (in /home/ast/Documents/Minishell/minishell)
+==195021==    by 0x10A097: ft_new_token_node (tokenize.c:98)
+==195021==    by 0x10A51B: ft_tokenize (tokenize.c:196)
+==195021==    by 0x10A817: ft_parse (tokenize.c:344)
+==195021==    by 0x10B0A5: ft_read_line (parser.c:50)
+==195021==    by 0x10B128: ft_start_minishell (parser.c:70)
+==195021==    by 0x10955F: main (main.c:19)
+==195021== 
+==195021== 105 (96 direct, 9 indirect) bytes in 2 blocks are definitely lost in loss record 29 of 81
+==195021==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==195021==    by 0x10A079: ft_new_token_node (tokenize.c:95)
+==195021==    by 0x10A51B: ft_tokenize (tokenize.c:196)
+==195021==    by 0x10A817: ft_parse (tokenize.c:344)
+==195021==    by 0x10B0A5: ft_read_line (parser.c:50)
+==195021==    by 0x10B128: ft_start_minishell (parser.c:70)
+==195021==    by 0x10955F: main (main.c:19)
+==195021== 
+==195021== LEAK SUMMARY:
+==195021==    definitely lost: 99 bytes in 3 blocks
+==195021==    indirectly lost: 9 bytes in 2 blocks
+==195021==      possibly lost: 0 bytes in 0 blocks
+==195021==    still reachable: 232,886 bytes in 240 blocks
+==195021==         suppressed: 0 bytes in 0 blocks
+==195021== Reachable blocks (those to which a pointer was found) are not shown.
+==195021== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==195021== 
+==195021== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)

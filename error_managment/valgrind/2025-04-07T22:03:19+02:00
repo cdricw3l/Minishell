@@ -1,0 +1,51 @@
+==212330== Memcheck, a memory error detector
+==212330== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==212330== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==212330== Command: ./minishell
+==212330== Parent PID: 212322
+==212330== 
+==212330== 
+==212330== Process terminating with default action of signal 2 (SIGINT)
+==212330==    at 0x490253B: kill (syscall-template.S:120)
+==212330==    by 0x489E818: _rl_signal_handler (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==212330==    by 0x489F5B3: rl_getc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==212330==    by 0x489ED6C: rl_read_key (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==212330==    by 0x4882443: readline_internal_char (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==212330==    by 0x488B8D4: readline (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==212330==    by 0x10B101: ft_read_line (parser.c:66)
+==212330==    by 0x10B1E0: ft_start_minishell (parser.c:94)
+==212330==    by 0x10955F: main (main.c:19)
+==212330== 
+==212330== HEAP SUMMARY:
+==212330==     in use at exit: 243,709 bytes in 332 blocks
+==212330==   total heap usage: 1,320 allocs, 988 frees, 308,314 bytes allocated
+==212330== 
+==212330== 10 bytes in 3 blocks are definitely lost in loss record 11 of 121
+==212330==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==212330==    by 0x10C2F2: ft_strdup (in /home/ast/Documents/Minishell/minishell)
+==212330==    by 0x10A097: ft_new_token_node (tokenize.c:98)
+==212330==    by 0x10A51B: ft_tokenize (tokenize.c:196)
+==212330==    by 0x10A817: ft_parse (tokenize.c:344)
+==212330==    by 0x10B15D: ft_read_line (parser.c:73)
+==212330==    by 0x10B1E0: ft_start_minishell (parser.c:94)
+==212330==    by 0x10955F: main (main.c:19)
+==212330== 
+==212330== 372 (48 direct, 324 indirect) bytes in 1 blocks are definitely lost in loss record 64 of 121
+==212330==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==212330==    by 0x10A079: ft_new_token_node (tokenize.c:95)
+==212330==    by 0x10A51B: ft_tokenize (tokenize.c:196)
+==212330==    by 0x10A817: ft_parse (tokenize.c:344)
+==212330==    by 0x10B15D: ft_read_line (parser.c:73)
+==212330==    by 0x10B1E0: ft_start_minishell (parser.c:94)
+==212330==    by 0x10955F: main (main.c:19)
+==212330== 
+==212330== LEAK SUMMARY:
+==212330==    definitely lost: 58 bytes in 4 blocks
+==212330==    indirectly lost: 324 bytes in 13 blocks
+==212330==      possibly lost: 0 bytes in 0 blocks
+==212330==    still reachable: 243,327 bytes in 315 blocks
+==212330==         suppressed: 0 bytes in 0 blocks
+==212330== Reachable blocks (those to which a pointer was found) are not shown.
+==212330== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==212330== 
+==212330== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)

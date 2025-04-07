@@ -1,0 +1,42 @@
+==214278== Memcheck, a memory error detector
+==214278== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==214278== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==214278== Command: ./minishell
+==214278== Parent PID: 214259
+==214278== 
+==214278== 
+==214278== Process terminating with default action of signal 2 (SIGINT)
+==214278==    at 0x490253B: kill (syscall-template.S:120)
+==214278==    by 0x489E818: _rl_signal_handler (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==214278==    by 0x489F5B3: rl_getc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==214278==    by 0x489ED6C: rl_read_key (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==214278==    by 0x4882443: readline_internal_char (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==214278==    by 0x488B8D4: readline (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==214278==    by 0x10B101: ft_read_line (parser.c:66)
+==214278==    by 0x10B1E0: ft_start_minishell (parser.c:94)
+==214278==    by 0x10955F: main (main.c:19)
+==214278== 
+==214278== HEAP SUMMARY:
+==214278==     in use at exit: 242,785 bytes in 305 blocks
+==214278==   total heap usage: 919 allocs, 614 frees, 269,559 bytes allocated
+==214278== 
+==214278== 2 bytes in 1 blocks are definitely lost in loss record 1 of 106
+==214278==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==214278==    by 0x10C2F2: ft_strdup (in /home/ast/Documents/Minishell/minishell)
+==214278==    by 0x10A097: ft_new_token_node (tokenize.c:98)
+==214278==    by 0x10A51B: ft_tokenize (tokenize.c:196)
+==214278==    by 0x10A817: ft_parse (tokenize.c:344)
+==214278==    by 0x10B15D: ft_read_line (parser.c:73)
+==214278==    by 0x10B1E0: ft_start_minishell (parser.c:94)
+==214278==    by 0x10955F: main (main.c:19)
+==214278== 
+==214278== LEAK SUMMARY:
+==214278==    definitely lost: 2 bytes in 1 blocks
+==214278==    indirectly lost: 0 bytes in 0 blocks
+==214278==      possibly lost: 0 bytes in 0 blocks
+==214278==    still reachable: 242,783 bytes in 304 blocks
+==214278==         suppressed: 0 bytes in 0 blocks
+==214278== Reachable blocks (those to which a pointer was found) are not shown.
+==214278== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==214278== 
+==214278== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

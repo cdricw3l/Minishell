@@ -1,0 +1,42 @@
+==199844== Memcheck, a memory error detector
+==199844== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==199844== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==199844== Command: ./minishell
+==199844== Parent PID: 199836
+==199844== 
+==199844== 
+==199844== Process terminating with default action of signal 2 (SIGINT)
+==199844==    at 0x490253B: kill (syscall-template.S:120)
+==199844==    by 0x489E818: _rl_signal_handler (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==199844==    by 0x489F5B3: rl_getc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==199844==    by 0x489ED6C: rl_read_key (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==199844==    by 0x4882443: readline_internal_char (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==199844==    by 0x488B8D4: readline (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==199844==    by 0x10B0A3: ft_read_line (parser.c:54)
+==199844==    by 0x10B182: ft_start_minishell (parser.c:82)
+==199844==    by 0x10955F: main (main.c:19)
+==199844== 
+==199844== HEAP SUMMARY:
+==199844==     in use at exit: 242,595 bytes in 299 blocks
+==199844==   total heap usage: 863 allocs, 564 frees, 334,580 bytes allocated
+==199844== 
+==199844== 16 bytes in 3 blocks are definitely lost in loss record 19 of 106
+==199844==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==199844==    by 0x10C294: ft_strdup (in /home/ast/Documents/Minishell/minishell)
+==199844==    by 0x10A097: ft_new_token_node (tokenize.c:98)
+==199844==    by 0x10A51B: ft_tokenize (tokenize.c:196)
+==199844==    by 0x10A817: ft_parse (tokenize.c:344)
+==199844==    by 0x10B0FF: ft_read_line (parser.c:61)
+==199844==    by 0x10B182: ft_start_minishell (parser.c:82)
+==199844==    by 0x10955F: main (main.c:19)
+==199844== 
+==199844== LEAK SUMMARY:
+==199844==    definitely lost: 16 bytes in 3 blocks
+==199844==    indirectly lost: 0 bytes in 0 blocks
+==199844==      possibly lost: 0 bytes in 0 blocks
+==199844==    still reachable: 242,579 bytes in 296 blocks
+==199844==         suppressed: 0 bytes in 0 blocks
+==199844== Reachable blocks (those to which a pointer was found) are not shown.
+==199844== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==199844== 
+==199844== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
