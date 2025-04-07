@@ -1,0 +1,30 @@
+==2978742== Memcheck, a memory error detector
+==2978742== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==2978742== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==2978742== Command: ./minishell
+==2978742== Parent PID: 2978724
+==2978742== 
+==2978742== 
+==2978742== HEAP SUMMARY:
+==2978742==     in use at exit: 208,271 bytes in 227 blocks
+==2978742==   total heap usage: 470 allocs, 243 frees, 229,262 bytes allocated
+==2978742== 
+==2978742== 51 (48 direct, 3 indirect) bytes in 1 blocks are definitely lost in loss record 20 of 68
+==2978742==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2978742==    by 0x10A077: ft_new_token_node (tokenize.c:95)
+==2978742==    by 0x10A507: ft_tokenize (tokenize.c:196)
+==2978742==    by 0x10A802: ft_parse (tokenize.c:344)
+==2978742==    by 0x10B08E: ft_read_line (parser.c:50)
+==2978742==    by 0x10B111: ft_start_minishell (parser.c:70)
+==2978742==    by 0x10955F: main (main.c:19)
+==2978742== 
+==2978742== LEAK SUMMARY:
+==2978742==    definitely lost: 48 bytes in 1 blocks
+==2978742==    indirectly lost: 3 bytes in 1 blocks
+==2978742==      possibly lost: 0 bytes in 0 blocks
+==2978742==    still reachable: 208,220 bytes in 225 blocks
+==2978742==         suppressed: 0 bytes in 0 blocks
+==2978742== Reachable blocks (those to which a pointer was found) are not shown.
+==2978742== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==2978742== 
+==2978742== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
