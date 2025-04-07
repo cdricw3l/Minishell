@@ -1,5 +1,16 @@
 #include "exec.h"
 
+// static void execute_builtin(t_token *node)
+// {
+//     char    **cmd;
+//     char    *f;
+//     cmd = ft_split(node->string, 32);
+//     if(!cmd)
+//         return;
+//     f = cmd[0];
+//     (void)f;
+// }
+
 static void execute_command(const char *command)
 {
     pid_t pid = fork();
@@ -237,6 +248,11 @@ void execute_ast(t_token *node)
                 perror("dup2 failed to restore stdin");
             }
             close(original_stdin);
+            break;
+        }
+        case 12: // builtin part
+        {
+            ft_display_token_node_lst(node);
             break;
         }
 		/*
