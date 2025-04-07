@@ -3,25 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:48:49 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/25 15:52:15 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/03 16:15:49 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenize.h"
 
+void    ft_display_token_node(t_token *token_lst)
+{
+   if(token_lst)
+   {
+        printf("\nvoici la valeur du noeud: \n");
+        printf("string : %s\n", token_lst->string);
+        printf("Token : %s\n", ft_get_str_token(token_lst->token));
+        printf("Précedence : %d\n", token_lst->precedence);
+        printf("Associativité : %d\n", token_lst->asso);
+        token_lst = token_lst->right;
+        printf("\n");
+   } 
+}
+
+
 void    ft_display_token_node_lst(t_token *token_lst)
 {
-
-    while (token_lst->right)
+    if(!token_lst)
+        return ;
+    while (token_lst)
     {
-       printf("voici la valeur du noeud: \n");
-       printf("string : %s\n", token_lst->string);
-       printf("Token : %s\n", ft_get_str_token(token_lst->token));
-       printf("Précedence : %d\n", token_lst->precedence);
-       printf("Associativité : %d\n", token_lst->asso);
+       ft_display_token_node(token_lst);
        token_lst = token_lst->right;
        printf("\n");
     }
@@ -49,7 +61,7 @@ int ft_get_associativity(int token)
 void    ft_display_commande_lst(t_token *token_lst)
 {
 
-    while (token_lst->right)
+    while (token_lst)
     {
         if(token_lst->string)
             printf("%s ",token_lst->string);
@@ -80,6 +92,8 @@ char *ft_get_str_token(int token)
         return ("HEREDOC ");
     if (token == VAR)
         return ("VAR");
+    if (token == BUILTIN)
+        return ("BUILTIN");
     return(NULL);
 }
 
@@ -135,9 +149,31 @@ int ft_is_commande(char *str)
     ft_split_clean(&split);
     return(0);
 }
+
+int ft_is_builtin(char *str)
+{
+    if(ft_strncmp(str,"cd",ft_strlen("cd")) == 0)
+        return(1);
+    if(ft_strncmp(str,"echo",ft_strlen("echo")) == 0)
+        return(1);
+    if(ft_strncmp(str,"export",ft_strlen("export")) == 0)
+        return(1);
+    if(ft_strncmp(str,"env",ft_strlen("env")) == 0)
+        return(1);
+    if(ft_strncmp(str, "exit", ft_strlen("exit")) == 0)
+        return(1);
+    if(ft_strncmp(str, "pwd", ft_strlen("pwd")) == 0)
+        return(1);
+    if(ft_strncmp(str, "unset", ft_strlen("unset")) == 0)
+        return(1);
+    return(0);
+}
 int ft_get_token(char *str)
 {
-    if (ft_is_commande(str))
+    if(ft_is_builtin(str))
+        return(BUILTIN);
+    //&& nnot necessaire but...
+    if (ft_is_commande(str) && !ft_is_builtin(str))
         return (CMD);
     if (ft_strlen(str) == 1 && str[0] == '|')
         return (PIPE);
@@ -155,4 +191,30 @@ int ft_get_token(char *str)
         return (VAR);
     
     return (WORD);
+}
+
+void    ft_token_lst_iter(t_token *token, void (*f)(t_token *token_node, int token))
+{
+    if(!token || !f)
+        return ;
+    while(token)
+    {
+        f(token, token->token);
+        token = token->right;        
+    }
+}
+
+int ft_count_occurence_of_token(t_token *token_lst, int token)
+{
+    int i;
+
+    i = 0;
+    while (token_lst)
+    {
+        if (token_lst->token == token)
+            i++;
+        token_lst = token_lst->right;
+    }
+    return (i);
+    
 }

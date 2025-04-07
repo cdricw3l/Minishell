@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:34:03 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/24 21:19:09 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/04 12:08:14 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	ft_putnbr_fd(int n, int fd);
 char	**ft_split(char const *s, char c);
 size_t 	ft_get_split_len(char **split);
 void	*ft_split_clean(char ***split);
+void	ft_split_print(char **split);
 
 typedef struct s_list
 {
@@ -91,5 +92,9 @@ void	ft_print_bit_64(int n);
 int		ft_index_of(int *arr, int len, int n);
 void 	ft_generate_number(int *arr, int size);
 int		ft_get_max_value(int *arr, int size);
+void    ft_split_quick_sort(char **split, int end, int (*cmp)(const char *,const char *, size_t len));
+int 	ft_is_split_sort(char **split);
+void	ft_swap_str(char **str_1, char **str_2);
+int 	ft_is_split_sort(char **split);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:36:54 by cw3l              #+#    #+#             */
-/*   Updated: 2025/03/25 15:49:51 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/03 16:11:45 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -352,6 +352,7 @@ t_token *ft_parse(char *str)
 /* 1) original codes from Cedric
 t_token **ft_tokenize(char *str)
 {
+    TEST_START;
     char    **split;
     int     token;
     int i;
@@ -367,11 +368,13 @@ t_token **ft_tokenize(char *str)
     i = 0;
     while (split[i])
     {
-        token = ft_get_token(split[i]); //get_token(*split);
+        token = ft_get_token(split[i]);
         ft_add_back_node(token_lst,  ft_new_token_node(split[i], token));
         i++;
     }
+    ft_display_token_sequence_lst(*token_lst);
     ft_split_clean(&split);
+    TEST_SUCCES;
     return(token_lst);
 }
 */

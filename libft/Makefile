@@ -37,6 +37,7 @@ SRCS=	ft_putchar_fd.c \
 		ft_split.c \
 		ft_split_len.c \
 		ft_split_clean.c \
+		ft_split_print.c \
 		ft_strncmp.c \
 		ft_itoa.c \
 		ft_atoi.c \
@@ -52,6 +53,9 @@ SRCS=	ft_putchar_fd.c \
 		ft_print_bit_64.c \
 		ft_index_of.c \
 		ft_get_max_value.c \
+		ft_split_quick_sort.c \
+		ft_split_is_sort.c \
+		ft_swap_str.c \
 
 BONUS=	ft_lstnew_bonus.c \
 		ft_lstadd_front_bonus.c \
@@ -76,7 +80,6 @@ ${NAME}: ${OBJS} ${HDRS}
 
 bonus: ${OBJS} ${BONUS_OBJS} ${HDRS}
 	${AR} ${NAME} ${OBJS} ${BONUS_OBJS}
-	make clean
 
 clean:
 	rm -rf *.o *.dSYM

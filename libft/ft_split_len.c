@@ -18,6 +18,9 @@ size_t	ft_get_split_len(char **split)
 
 	i = 0;
 	while (*split)
+	{
 		i++;
+		split++;
+	}
 	return (i);
 }

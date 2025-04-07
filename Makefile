@@ -11,34 +11,33 @@ CC=gcc
 GFLAGS= -Werror -Wall -Wextra -I./srcs/parser/tokenizer -I./srcs/exec
 endif
 
-mode=0
-PROD=0
 TEST=1
 PARSER=2
-NOFLAGS=3
 
 MEMORY_CHECK_PATH= error_managment/valgrind
 
 SRCS_MAIN= srcs/main.c
 SRCS_PARSER=  $(wildcard srcs/parser/lexer/**/*.c) $(wildcard srcs/parser/tokenizer/*.c) $(wildcard srcs/parser/*.c)
 SRCS_EXEC= $(wildcard srcs/exec/*.c) #Nami changed
-SRCS_SUB= $(wildcard srcs/subsystems/**/*.c) $(wildcard srcs/subsystems/*.c)
+SRCS_EXEC_BIS= $(wildcard srcs/execution/*.c)
+SRCS_BUILTIN= $(wildcard srcs/builtin/*.c)
 SRCS_TEST= $(wildcard test_unit/*.c)
 
 LIBFT= libft
 
-ifeq ($(mode), $(NOFLAGS))
+ifeq ($(NOFLAGS), 1)
 %.o:%.c
 	$(CC) -c $< -o $@
 else
 %.o:%.c
-	$(CC) $(GFLAGS) -g -c $< -o $@
+	$(CC) $(GFLAGS)  -g -c $< -o $@
 endif
 
 OBJS_MAIN=$(SRCS_MAIN:%.c=%.o)
 OBJS_PARSER=$(SRCS_PARSER:%.c=%.o)
 OBJS_EXEC=$(SRCS_EXEC:%.c=%.o)
-OBJS_SUB=$(SRCS_SUB:%.c=%.o)
+OBJS_EXEC_BIS=$(SRCS_EXEC_BIS:%.c=%.o)
+OBJS_BUILTIN=$(SRCS_BUILTIN:%.c=%.o)
 
 # Test env:
 
@@ -51,13 +50,13 @@ EMPTY=
 
 
 ifeq ($(mode), $(PROD))
-OBJS= $(OBJS_MAIN) $(OBJS_PARSER) $(OBJS_EXEC) # Added OBJS_EXEC
+OBJS= $(OBJS_MAIN) $(OBJS_PARSER) $(OBJS_EXEC) $(OBJS_EXEC_BIS) $(OBJS_BUILTIN)# Added OBJS_EXEC
 else ifeq ($(mode), $(TEST))
 OBJS= $(OBJS_PARSER) $(OBJS_EXEC) # Added OBJS_EXEC
 endif
 
 
-.PHONY: clean fclean run git testenv
+.PHONY: clean fclean run git testenv var lib t
 
 $(NAME): $(OBJS)
 	$(CC) $(GFLAGS) $(OBJS) -L$(LIBFT) -lft -o $(NAME) -lreadline
@@ -70,6 +69,7 @@ run: $(NAME)
 ifeq ($(OS), Darwin)
 	bin/$(NAME)
 else ifeq ($(OS), Linux)
+	valgrind --leak-check=full --log-file=$(MEMORY_CHECK_PATH)/$(DATE) -s ./$(NAME)
 	valgrind --leak-check=full --log-file=$(MEMORY_CHECK_PATH)/$(DATE) -s ./$(NAME)
 endif
 
@@ -87,13 +87,24 @@ mclean:
 	rm -f $(MEMORY_CHECK_PATH)/*
 
 
-t: $(OBJS) $(OBJS_TEST)
+t: $(OBJS) 
+# check if the PROD variable env value. The PROD variable define the path file for compilation especialy for the main().
+ifeq ($(PROD), 0)
+	@echo "\033[44m *** Start $(NAME) in test env \033[0m"
+else
+	@echo "\033[0;32m *** Start $(NAME) in prod env \033[0m"
+endif
+# Check the NOFLAGS variable. If NOFLAGS=1, No flags are used for the compilation and a warning message is displayed.
+ifeq ($(NOFLAGS), 1)
+	@echo "\033[41m *** NO FLAGS! \033[0m\n"
+endif
+# check if the of is darwin/mac
 ifeq ($(OS), Darwin)
-	$(CC) $(GFLAGS) -fsanitize=address  $(OBJS) $(OBJS_TEST) -L$(LIBFT) -lft  -lreadline -o bin/test
-	bin/test.exe
+	@$(CC) $(GFLAGS) -fsanitize=address  $(OBJS) -L $(LIBFT) -lft  -lreadline -o bin/test
+	@bin/test
 else ifeq ($(OS), Linux)
-	$(CC) $(GFLAGS) -g $(OBJS) $(OBJS_TEST) -L$(LIBFT) -lft -lreadline -o bin/test
-	valgrind --leak-check=full --log-file=valg_test  -s ./bin/test
+	@$(CC) $(GFLAGS) -g $(OBJS) -L$(LIBFT) -lft -lreadline -o bin/test
+	@valgrind --leak-check=full --log-file=valg_test  -s ./bin/test
 endif
 
 
@@ -105,9 +116,13 @@ else
 	git add .
 	git commit -m $(NAME)/$(gcom)/$(DATE)
 endif
-	git push origin $(BRANCH)
+	git push  $(BRANCH)
 
 
 all: $(NAME)
 
 re: clean fclean all
+
+lib:
+	cd libft   && make bonus
+
