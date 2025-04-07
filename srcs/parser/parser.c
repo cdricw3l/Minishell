@@ -56,8 +56,8 @@ int ft_read_line(char *prompt)
         }
 
         printf("Generated AST:\n");
-        //print_ast(ast_root, 0);  // Print AST structure
-		print_ast_simple(ast_root, 0); 
+        print_ast(ast_root, 0);  // Print AST structure
+		//print_ast_simple(ast_root, 0); 
 		execute_ast(ast_root); // Execute AST!
         free(line);  // Free input line after processing
     }

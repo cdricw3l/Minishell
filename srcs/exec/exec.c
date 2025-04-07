@@ -163,7 +163,8 @@ void heredoc_redirect(t_token *node)
         char *line;
         while (1)
         {
-            line = readline("> ");
+            //line = readline("> ");
+			line = readline("heredoc> ");
             if (!line || strcmp(line, delimiter) == 0) // Stop when delimiter is found
             {
                 free(line);
@@ -221,7 +222,7 @@ void execute_ast(t_token *node)
             execute_with_redirection(node, O_WRONLY | O_CREAT | O_APPEND);
             break;
 
-		case 10: // HEREDOC (<<)
+		case 10: // HEREDOC (<<) //added new codes for fixing unexpected crash after heredoc
         {
             int original_stdin = dup(STDIN_FILENO); // Save the original stdin
             if (original_stdin == -1)
@@ -238,8 +239,6 @@ void execute_ast(t_token *node)
             close(original_stdin);
             break;
         }
-
-
 		/*
 		case 10: // HEREDOC (<<)
             heredoc_redirect(node);

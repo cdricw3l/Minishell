@@ -53,7 +53,7 @@ void print_ast(t_token *node, int depth)
 	{
         printf("    ");  // Indentation for hierarchy
 	}
-	printf("|-- %s (Type: %d, Precedence: %d)\n", 
+	printf("@-- %s (Type: %d, Precedence: %d)\n", 
 		node->string ? node->string : "NULL", 
 		node->token, 
 		node->precedence);
