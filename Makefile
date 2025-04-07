@@ -5,38 +5,32 @@ NAME= minishell
 OS = $(shell uname)
 ifeq ($(OS), Darwin)
 CC=cc
-GFLAGS= -Werror -Wall -Wextra -I./srcs/parser/tokenizer -I./srcs/exec
+GFLAGS= -Werror -Wall -Wextra
 else ifeq ($(OS), Linux)
 CC=gcc
-GFLAGS= -Werror -Wall -Wextra -I./srcs/parser/tokenizer -I./srcs/exec
+GFLAGS= -Werror -Wall -Wextra
 endif
 
-TEST=1
-PARSER=2
+PROD=1
 
 MEMORY_CHECK_PATH= error_managment/valgrind
 
 SRCS_MAIN= srcs/main.c
-SRCS_PARSER=  $(wildcard srcs/parser/lexer/**/*.c) $(wildcard srcs/parser/tokenizer/*.c) $(wildcard srcs/parser/*.c)
-SRCS_EXEC= $(wildcard srcs/exec/*.c) #Nami changed
+SRCS_PARSER= $(wildcard srcs/parser/lexer/*.c) $(wildcard srcs/parser/tokenizer/*.c) $(wildcard srcs/parser/*.c)
+SRCS_EXEC= $(wildcard srcs/exec/*.c)
 SRCS_EXEC_BIS= $(wildcard srcs/execution/*.c)
 SRCS_BUILTIN= $(wildcard srcs/builtin/*.c)
 SRCS_TEST= $(wildcard test_unit/*.c)
 
 LIBFT= libft
 
-ifeq ($(NOFLAGS), 1)
-%.o:%.c
-	$(CC) -c $< -o $@
-else
 %.o:%.c
 	$(CC) $(GFLAGS)  -g -c $< -o $@
-endif
 
 OBJS_MAIN=$(SRCS_MAIN:%.c=%.o)
 OBJS_PARSER=$(SRCS_PARSER:%.c=%.o)
-OBJS_EXEC=$(SRCS_EXEC:%.c=%.o)
 OBJS_EXEC_BIS=$(SRCS_EXEC_BIS:%.c=%.o)
+OBJS_EXEC=$(SRCS_EXEC:%.c=%.o)
 OBJS_BUILTIN=$(SRCS_BUILTIN:%.c=%.o)
 
 # Test env:
@@ -49,27 +43,18 @@ gcom=
 EMPTY=
 
 
-ifeq ($(mode), $(PROD))
-OBJS= $(OBJS_MAIN) $(OBJS_PARSER) $(OBJS_EXEC) $(OBJS_EXEC_BIS) $(OBJS_BUILTIN)# Added OBJS_EXEC
-else ifeq ($(mode), $(TEST))
-OBJS= $(OBJS_PARSER) $(OBJS_EXEC) # Added OBJS_EXEC
-endif
+OBJS= $(OBJS_MAIN) $(OBJS_BUILTIN) $(OBJS_PARSER) $(OBJS_EXEC_BIS) $(OBJS_EXEC)
 
 
 .PHONY: clean fclean run git testenv var lib t
 
 $(NAME): $(OBJS)
 	$(CC) $(GFLAGS) $(OBJS) -L$(LIBFT) -lft -o $(NAME) -lreadline
-ifeq ($(mode), $(NOFLAGS))
-recall:  $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
-endif
-
+	
 run: $(NAME)
 ifeq ($(OS), Darwin)
 	bin/$(NAME)
 else ifeq ($(OS), Linux)
-	valgrind --leak-check=full --log-file=$(MEMORY_CHECK_PATH)/$(DATE) -s ./$(NAME)
 	valgrind --leak-check=full --log-file=$(MEMORY_CHECK_PATH)/$(DATE) -s ./$(NAME)
 endif
 
@@ -125,4 +110,3 @@ re: clean fclean all
 
 lib:
 	cd libft   && make bonus
-
