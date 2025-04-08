@@ -16,6 +16,7 @@ static void execute_command(const char *command)
         exit(EXIT_FAILURE);
     }
     waitpid(pid, NULL, 0);
+	printf("\n");
 }
 
 static void execute_with_redirection(t_token *node, int flags)
