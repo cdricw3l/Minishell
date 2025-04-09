@@ -19,3 +19,75 @@
 ==1349989==    by 0x10B33E: ft_start_minishell (parser.c:72)
 ==1349989==    by 0x10955F: main (main.c:19)
 ==1349989== 
+==1349989== 
+==1349989== HEAP SUMMARY:
+==1349989==     in use at exit: 209,127 bytes in 259 blocks
+==1349989==   total heap usage: 1,003 allocs, 744 frees, 237,126 bytes allocated
+==1349989== 
+==1349989== 10 bytes in 2 blocks are definitely lost in loss record 5 of 77
+==1349989==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1349989==    by 0x10C569: ft_strdup (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1349989==    by 0x109E0E: ft_join_cmd_and_arg (tokenize.c:20)
+==1349989==    by 0x10A6AB: ft_tokenize (tokenize.c:215)
+==1349989==    by 0x10A9E6: ft_parse (tokenize.c:368)
+==1349989==    by 0x10B2CC: ft_read_line (parser.c:50)
+==1349989==    by 0x10B33E: ft_start_minishell (parser.c:72)
+==1349989==    by 0x10955F: main (main.c:19)
+==1349989== 
+==1349989== 155 (96 direct, 59 indirect) bytes in 2 blocks are definitely lost in loss record 30 of 77
+==1349989==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1349989==    by 0x10A1F0: ft_new_token_node (tokenize.c:111)
+==1349989==    by 0x10A6C0: ft_tokenize (tokenize.c:216)
+==1349989==    by 0x10A9E6: ft_parse (tokenize.c:368)
+==1349989==    by 0x10B2CC: ft_read_line (parser.c:50)
+==1349989==    by 0x10B33E: ft_start_minishell (parser.c:72)
+==1349989==    by 0x10955F: main (main.c:19)
+==1349989== 
+==1349989== 183 bytes in 11 blocks are definitely lost in loss record 34 of 77
+==1349989==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1349989==    by 0x10C603: ft_strjoin (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1349989==    by 0x109E39: ft_join_cmd_and_arg (tokenize.c:24)
+==1349989==    by 0x10A6AB: ft_tokenize (tokenize.c:215)
+==1349989==    by 0x10A9E6: ft_parse (tokenize.c:368)
+==1349989==    by 0x10B2CC: ft_read_line (parser.c:50)
+==1349989==    by 0x10B33E: ft_start_minishell (parser.c:72)
+==1349989==    by 0x10955F: main (main.c:19)
+==1349989== 
+==1349989== 221 bytes in 11 blocks are definitely lost in loss record 35 of 77
+==1349989==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1349989==    by 0x10C603: ft_strjoin (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1349989==    by 0x109E66: ft_join_cmd_and_arg (tokenize.c:25)
+==1349989==    by 0x10A6AB: ft_tokenize (tokenize.c:215)
+==1349989==    by 0x10A9E6: ft_parse (tokenize.c:368)
+==1349989==    by 0x10B2CC: ft_read_line (parser.c:50)
+==1349989==    by 0x10B33E: ft_start_minishell (parser.c:72)
+==1349989==    by 0x10955F: main (main.c:19)
+==1349989== 
+==1349989== LEAK SUMMARY:
+==1349989==    definitely lost: 510 bytes in 26 blocks
+==1349989==    indirectly lost: 59 bytes in 2 blocks
+==1349989==      possibly lost: 0 bytes in 0 blocks
+==1349989==    still reachable: 208,558 bytes in 231 blocks
+==1349989==         suppressed: 0 bytes in 0 blocks
+==1349989== Reachable blocks (those to which a pointer was found) are not shown.
+==1349989== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==1349989== 
+==1349989== ERROR SUMMARY: 6 errors from 5 contexts (suppressed: 0 from 0)
+==1349989== 
+==1349989== 2 errors in context 1 of 5:
+==1349989== Invalid read of size 8
+==1349989==    at 0x10A717: ft_tokenize (tokenize.c:153)
+==1349989==    by 0x10A9E6: ft_parse (tokenize.c:368)
+==1349989==    by 0x10B2CC: ft_read_line (parser.c:50)
+==1349989==    by 0x10B33E: ft_start_minishell (parser.c:72)
+==1349989==    by 0x10955F: main (main.c:19)
+==1349989==  Address 0x4b623f8 is 0 bytes after a block of size 56 alloc'd
+==1349989==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1349989==    by 0x10CADD: ft_split (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1349989==    by 0x10A307: ft_tokenize (tokenize.c:148)
+==1349989==    by 0x10A9E6: ft_parse (tokenize.c:368)
+==1349989==    by 0x10B2CC: ft_read_line (parser.c:50)
+==1349989==    by 0x10B33E: ft_start_minishell (parser.c:72)
+==1349989==    by 0x10955F: main (main.c:19)
+==1349989== 
+==1349989== ERROR SUMMARY: 6 errors from 5 contexts (suppressed: 0 from 0)
