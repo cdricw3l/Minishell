@@ -53,7 +53,7 @@ $(NAME): $(OBJS)
 	
 run: $(NAME)
 ifeq ($(OS), Darwin)
-	bin/$(NAME)
+	./$(NAME)
 else ifeq ($(OS), Linux)
 	valgrind --leak-check=full --log-file=$(MEMORY_CHECK_PATH)/$(DATE) -s ./$(NAME)
 endif

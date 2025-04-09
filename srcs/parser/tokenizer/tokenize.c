@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:36:54 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/09 15:54:40 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/09 17:57:36 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,18 +210,23 @@ t_token *ft_tokenize(char *str)
         }
         else
         {   
-           
             if(token == BUILTIN || token == CMD)
             {
                 char *cmd_with_arg = ft_join_cmd_and_arg(&split[i], &i);
                 new_node = ft_new_token_node(cmd_with_arg, token);
+                if(!split[i])
+                {
+                    ft_add_back_node(&token_list, new_node);
+                    ft_split_clean(&split);
+                    return token_list;  // Return the list of tokens (linked list)
+                }
             }
             else
                 new_node = ft_new_token_node(split[i], token);
         }
         // Add to the token list
         ft_add_back_node(&token_list, new_node);
-
+        
         i++;
     }
     ft_split_clean(&split);
@@ -308,7 +313,6 @@ t_token *ft_create_ast(t_token *token_list)
         }
         current = new_node;
     }
-
     return root; // Return the constructed AST
 }
 
@@ -366,7 +370,10 @@ t_token *ft_parse(char *str)
 {
 	t_token *token_list = ft_tokenize(str); // Step 1: Tokenize input
     if (!token_list)
+    {
+        printf("error\n");
         return NULL;
+    }
     t_token *ast = ft_create_ast(token_list); // Step 2: Build AST from tokens
     return ast;
 } 
