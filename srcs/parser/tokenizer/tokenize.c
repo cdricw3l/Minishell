@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:36:54 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/09 14:17:03 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:54:40 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,15 +210,14 @@ t_token *ft_tokenize(char *str)
         }
         else
         {   
-            if(token == CMD  || token == BUILTIN)
+           
+            if(token == BUILTIN || token == CMD)
             {
                 char *cmd_with_arg = ft_join_cmd_and_arg(&split[i], &i);
                 new_node = ft_new_token_node(cmd_with_arg, token);
             }
             else
                 new_node = ft_new_token_node(split[i], token);
-
-            
         }
         // Add to the token list
         ft_add_back_node(&token_list, new_node);
