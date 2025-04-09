@@ -209,9 +209,9 @@ void heredoc_redirect(t_token *node)
 void ft_execute_builtin(t_token *node)
 {
     if(ft_strncmp(node->string, "echo", ft_strlen("echo")) == 0)
-    {
         ft_echo(node->string, 0);
-    }
+    if(ft_strncmp(node->string, "pwd", ft_strlen("pwd")) == 0)
+        ft_pwd(node);
 } 
 
 

@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:02:58 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/09 14:25:10 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:03:49 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include <unistd.h>
 # include "../../include/main.h"
 
-void	ft_pwd(void);
+void	ft_pwd(t_token *node);
 void	ft_echo(char *str, int fd);
 int		ft_cd(char *path);
 int     ft_exit(int ret);
