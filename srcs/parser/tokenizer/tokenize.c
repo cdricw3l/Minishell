@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:36:54 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/09 17:57:36 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/09 18:04:27 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,7 +218,7 @@ t_token *ft_tokenize(char *str)
                 {
                     ft_add_back_node(&token_list, new_node);
                     ft_split_clean(&split);
-                    return token_list;  // Return the list of tokens (linked list)
+                    return token_list;
                 }
             }
             else
