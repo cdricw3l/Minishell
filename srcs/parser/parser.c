@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:32:32 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/09 15:56:17 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/09 21:24:01 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ int ft_read_line(char *prompt)
             free(line);
             continue;
         }
-
         //printf("Generated AST:\n");
         //print_ast(ast_root, 0);  // Print AST structure
         //ft_binary_tree_traversal(ast_root);
         //print_ast_simple(ast_root, 0); 
+        //ft_display_token_node_lst(ast_root);
 		execute_ast(ast_root); // Execute AST!
         free(line);  // Free input line after processing
     }

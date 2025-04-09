@@ -225,33 +225,33 @@ void execute_ast(t_token *node)
     switch (node->token)
     {
         case 1: // CMD
-            printf("start case 1 :%s\n", node->string);
+            //printf("start case 1 :%s\n", node->string);
             execute_command(node->string);
             break;
             
         case 4: // PIPE
-            printf("start case 4:%s\n", node->string);
+            //printf("start case 4:%s\n", node->string);
             execute_pipe(node);
             break;
 
 		case 5: // INPUT REDIRECTION (<)
-            printf("start case 5::%s\n", node->string);
+            //printf("start case 5::%s\n", node->string);
 			redirect_input_and_execute(node);
 			break;
 
         case 6: // >
-            printf("start case 6::%s\n", node->string);
+            //printf("start case 6::%s\n", node->string);
             execute_with_redirection(node, O_WRONLY | O_CREAT | O_TRUNC);
             break;
 
         case 7: // >>
-            printf("start case 7::%s\n", node->string);
+            //printf("start case 7::%s\n", node->string);
             execute_with_redirection(node, O_WRONLY | O_CREAT | O_APPEND);
             break;
 
 		case 10: // HEREDOC (<<) //added new codes for fixing unexpected crash after heredoc
         {
-            printf("start case 10::%s\n", node->string);
+            //printf("start case 10::%s\n", node->string);
             int original_stdin = dup(STDIN_FILENO); // Save the original stdin
             if (original_stdin == -1)
             {
