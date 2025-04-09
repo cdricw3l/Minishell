@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 12:30:49 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/09 22:10:48 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/09 22:41:47 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_get_home_path(char *path)
 	if (!total_path)
 		return (NULL);
 	path = total_path;
-	return (total_path);
+	return (path);
 }
 
 int	ft_cd(char *path)
@@ -50,12 +50,20 @@ int	ft_cd(char *path)
 	char	*total_path;
 	
 	total_path = NULL;
-	path = ft_trim_path(path);
-	if (path[0] == '~')
+	if(ft_strncmp(path, "cd", ft_strlen(path)) == 0)
 	{
 		total_path = ft_get_home_path(path);
-		if (!total_path)
-			return (-1);
+		printf("voici %s\n", total_path);
+	}
+	else
+	{
+		path = ft_trim_path(path);
+		if (path[0] == '~' )
+		{
+			total_path = ft_get_home_path(path);
+			if (!total_path)
+				return (-1);
+		}
 	}
 	if(total_path)
 	{
