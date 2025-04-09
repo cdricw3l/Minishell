@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:52:00 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/07 14:46:10 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/09 09:24:28 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,7 @@ int     ft_get_precedence(int token);
 int     ft_get_associativity(int token);
 char    *ft_get_str_token(int token);
 
+
+void    ft_binary_tree_traversal(t_token *node);
 
 #endif

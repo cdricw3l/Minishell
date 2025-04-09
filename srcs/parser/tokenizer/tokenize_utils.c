@@ -6,11 +6,23 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:48:49 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/03 16:15:49 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/09 09:36:56 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenize.h"
+
+void ft_binary_tree_traversal(t_token *node)
+{
+    if(!node)
+        return;
+    ft_binary_tree_traversal(node->left);
+
+    printf("node %s\n", node->string);
+    execute_ast(node);
+    ft_binary_tree_traversal(node->right);
+
+}
 
 void    ft_display_token_node(t_token *token_lst)
 {
