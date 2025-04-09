@@ -6,11 +6,27 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:36:54 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/07 15:58:08 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:17:03 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenize.h"
+#include <assert.h>
+
+char *ft_join_cmd_and_arg(char **split, int *i)
+{
+    char *new_str;
+
+    new_str = ft_strdup(split[*i]);
+    (*i)++;
+    while (split[*i] && ft_get_token(split[*i])  == WORD)
+    {
+        new_str = ft_strjoin(new_str, " ");
+        new_str = ft_strjoin(new_str, split[*i]);
+        (*i)++;
+    }
+    return(new_str);
+}
 
 void print_ast_simple(t_token *node, int indent) 
 {
@@ -189,13 +205,21 @@ t_token *ft_tokenize(char *str)
             }
 
             new_node = ft_new_token_node(joined, 1); // CMD type
+            ft_display_token_node(new_node);
             free(joined);
         }
         else
-        {
-            new_node = ft_new_token_node(split[i], token);
-        }
+        {   
+            if(token == CMD  || token == BUILTIN)
+            {
+                char *cmd_with_arg = ft_join_cmd_and_arg(&split[i], &i);
+                new_node = ft_new_token_node(cmd_with_arg, token);
+            }
+            else
+                new_node = ft_new_token_node(split[i], token);
 
+            
+        }
         // Add to the token list
         ft_add_back_node(&token_list, new_node);
 
@@ -344,7 +368,6 @@ t_token *ft_parse(char *str)
 	t_token *token_list = ft_tokenize(str); // Step 1: Tokenize input
     if (!token_list)
         return NULL;
-
     t_token *ast = ft_create_ast(token_list); // Step 2: Build AST from tokens
     return ast;
 } 

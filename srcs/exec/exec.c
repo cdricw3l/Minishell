@@ -206,6 +206,15 @@ void heredoc_redirect(t_token *node)
 }
 
 
+void ft_execute_builtin(t_token *node)
+{
+    if(ft_strncmp(node->string, "echo", ft_strlen("echo")) == 0)
+    {
+        ft_echo(node->string, 0);
+    }
+} 
+
+
 void execute_ast(t_token *node)
 {
     if (!node)
@@ -258,8 +267,7 @@ void execute_ast(t_token *node)
         }
         case 12: // builtin part
         {
-            printf("start case 12:%s\n", node->string);
-            ft_display_token_node_lst(node);
+            ft_execute_builtin(node);
             break;
         }
 		/*

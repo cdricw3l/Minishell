@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:48:49 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/09 09:36:56 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/09 13:25:03 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void ft_binary_tree_traversal(t_token *node)
     ft_binary_tree_traversal(node->left);
 
     printf("node %s\n", node->string);
-    execute_ast(node);
+    //execute_ast(node);
     ft_binary_tree_traversal(node->right);
 
 }

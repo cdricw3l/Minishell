@@ -1,0 +1,21 @@
+==1349989== Memcheck, a memory error detector
+==1349989== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==1349989== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==1349989== Command: ./minishell
+==1349989== Parent PID: 1349981
+==1349989== 
+==1349989== Invalid read of size 8
+==1349989==    at 0x10A717: ft_tokenize (tokenize.c:153)
+==1349989==    by 0x10A9E6: ft_parse (tokenize.c:368)
+==1349989==    by 0x10B2CC: ft_read_line (parser.c:50)
+==1349989==    by 0x10B33E: ft_start_minishell (parser.c:72)
+==1349989==    by 0x10955F: main (main.c:19)
+==1349989==  Address 0x4b623f8 is 0 bytes after a block of size 56 alloc'd
+==1349989==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1349989==    by 0x10CADD: ft_split (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1349989==    by 0x10A307: ft_tokenize (tokenize.c:148)
+==1349989==    by 0x10A9E6: ft_parse (tokenize.c:368)
+==1349989==    by 0x10B2CC: ft_read_line (parser.c:50)
+==1349989==    by 0x10B33E: ft_start_minishell (parser.c:72)
+==1349989==    by 0x10955F: main (main.c:19)
+==1349989== 

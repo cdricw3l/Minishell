@@ -6,14 +6,14 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:41:50 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/09 09:43:09 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/09 13:24:04 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // input hello ll | eo
 // output h****
 
-int tst_pipe(char *envp[])
-{
+// int tst_pipe(char *envp[])
+// {
     
-}
+// }

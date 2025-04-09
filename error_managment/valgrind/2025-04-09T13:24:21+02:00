@@ -1,0 +1,91 @@
+==1336923== Memcheck, a memory error detector
+==1336923== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==1336923== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==1336923== Command: ./minishell
+==1336923== Parent PID: 1336915
+==1336923== 
+==1337008== 
+==1337008== HEAP SUMMARY:
+==1337008==     in use at exit: 208,450 bytes in 234 blocks
+==1337008==   total heap usage: 697 allocs, 463 frees, 298,648 bytes allocated
+==1337008== 
+==1337008== 14 bytes in 2 blocks are definitely lost in loss record 9 of 71
+==1337008==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1337008==    by 0x10C36A: ft_strdup (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1337008==    by 0x10A095: ft_new_token_node (tokenize.c:98)
+==1337008==    by 0x10A507: ft_tokenize (tokenize.c:196)
+==1337008==    by 0x10A802: ft_parse (tokenize.c:344)
+==1337008==    by 0x10B0F4: ft_read_line (parser.c:50)
+==1337008==    by 0x10B177: ft_start_minishell (parser.c:72)
+==1337008==    by 0x10955F: main (main.c:19)
+==1337008== 
+==1337008== LEAK SUMMARY:
+==1337008==    definitely lost: 14 bytes in 2 blocks
+==1337008==    indirectly lost: 0 bytes in 0 blocks
+==1337008==      possibly lost: 0 bytes in 0 blocks
+==1337008==    still reachable: 208,436 bytes in 232 blocks
+==1337008==         suppressed: 0 bytes in 0 blocks
+==1337008== Reachable blocks (those to which a pointer was found) are not shown.
+==1337008== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==1337008== 
+==1337008== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==1337009== 
+==1337009== HEAP SUMMARY:
+==1337009==     in use at exit: 208,450 bytes in 234 blocks
+==1337009==   total heap usage: 697 allocs, 463 frees, 298,648 bytes allocated
+==1337009== 
+==1337009== 14 bytes in 2 blocks are definitely lost in loss record 9 of 71
+==1337009==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1337009==    by 0x10C36A: ft_strdup (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1337009==    by 0x10A095: ft_new_token_node (tokenize.c:98)
+==1337009==    by 0x10A507: ft_tokenize (tokenize.c:196)
+==1337009==    by 0x10A802: ft_parse (tokenize.c:344)
+==1337009==    by 0x10B0F4: ft_read_line (parser.c:50)
+==1337009==    by 0x10B177: ft_start_minishell (parser.c:72)
+==1337009==    by 0x10955F: main (main.c:19)
+==1337009== 
+==1337009== LEAK SUMMARY:
+==1337009==    definitely lost: 14 bytes in 2 blocks
+==1337009==    indirectly lost: 0 bytes in 0 blocks
+==1337009==      possibly lost: 0 bytes in 0 blocks
+==1337009==    still reachable: 208,436 bytes in 232 blocks
+==1337009==         suppressed: 0 bytes in 0 blocks
+==1337009== Reachable blocks (those to which a pointer was found) are not shown.
+==1337009== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==1337009== 
+==1337009== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==1336923== 
+==1336923== Process terminating with default action of signal 2 (SIGINT)
+==1336923==    at 0x49B03EA: wait4 (wait4.c:30)
+==1336923==    by 0x10BACC: execute_command (exec.c:29)
+==1336923==    by 0x10C0B9: execute_ast (exec.c:218)
+==1336923==    by 0x10A87B: ft_binary_tree_traversal (tokenize_utils.c:22)
+==1336923==    by 0x10A88B: ft_binary_tree_traversal (tokenize_utils.c:23)
+==1336923==    by 0x10B148: ft_read_line (parser.c:61)
+==1336923==    by 0x10B177: ft_start_minishell (parser.c:72)
+==1336923==    by 0x10955F: main (main.c:19)
+==1336923== 
+==1336923== HEAP SUMMARY:
+==1336923==     in use at exit: 214,642 bytes in 259 blocks
+==1336923==   total heap usage: 697 allocs, 438 frees, 298,648 bytes allocated
+==1336923== 
+==1336923== 14 bytes in 2 blocks are definitely lost in loss record 13 of 85
+==1336923==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1336923==    by 0x10C36A: ft_strdup (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1336923==    by 0x10A095: ft_new_token_node (tokenize.c:98)
+==1336923==    by 0x10A507: ft_tokenize (tokenize.c:196)
+==1336923==    by 0x10A802: ft_parse (tokenize.c:344)
+==1336923==    by 0x10B0F4: ft_read_line (parser.c:50)
+==1336923==    by 0x10B177: ft_start_minishell (parser.c:72)
+==1336923==    by 0x10955F: main (main.c:19)
+==1336923== 
+==1336923== LEAK SUMMARY:
+==1336923==    definitely lost: 14 bytes in 2 blocks
+==1336923==    indirectly lost: 0 bytes in 0 blocks
+==1336923==      possibly lost: 0 bytes in 0 blocks
+==1336923==    still reachable: 214,628 bytes in 257 blocks
+==1336923==         suppressed: 0 bytes in 0 blocks
+==1336923== Reachable blocks (those to which a pointer was found) are not shown.
+==1336923== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==1336923== 
+==1336923== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

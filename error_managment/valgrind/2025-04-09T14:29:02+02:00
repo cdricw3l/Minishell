@@ -1,0 +1,104 @@
+==1346494== Memcheck, a memory error detector
+==1346494== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==1346494== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==1346494== Command: ./minishell
+==1346494== Parent PID: 1346480
+==1346494== 
+==1346494== Invalid read of size 8
+==1346494==    at 0x10A704: ft_tokenize (tokenize.c:153)
+==1346494==    by 0x10A9D3: ft_parse (tokenize.c:368)
+==1346494==    by 0x10B2B9: ft_read_line (parser.c:50)
+==1346494==    by 0x10B32B: ft_start_minishell (parser.c:72)
+==1346494==    by 0x10955F: main (main.c:19)
+==1346494==  Address 0x4b62038 is 0 bytes after a block of size 24 alloc'd
+==1346494==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1346494==    by 0x10CAD9: ft_split (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1346494==    by 0x10A2F4: ft_tokenize (tokenize.c:148)
+==1346494==    by 0x10A9D3: ft_parse (tokenize.c:368)
+==1346494==    by 0x10B2B9: ft_read_line (parser.c:50)
+==1346494==    by 0x10B32B: ft_start_minishell (parser.c:72)
+==1346494==    by 0x10955F: main (main.c:19)
+==1346494== 
+==1346494== 
+==1346494== Process terminating with default action of signal 2 (SIGINT)
+==1346494==    at 0x490875B: kill (syscall-template.S:120)
+==1346494==    by 0x48A5F39: _rl_signal_handler (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1346494==    by 0x48A6BEC: rl_getc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1346494==    by 0x48A6460: rl_read_key (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1346494==    by 0x488AC86: readline_internal_char (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1346494==    by 0x4893D14: readline (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1346494==    by 0x10B25D: ft_read_line (parser.c:43)
+==1346494==    by 0x10B32B: ft_start_minishell (parser.c:72)
+==1346494==    by 0x10955F: main (main.c:19)
+==1346494== 
+==1346494== HEAP SUMMARY:
+==1346494==     in use at exit: 214,650 bytes in 265 blocks
+==1346494==   total heap usage: 605 allocs, 340 frees, 231,185 bytes allocated
+==1346494== 
+==1346494== 10 bytes in 2 blocks are definitely lost in loss record 5 of 90
+==1346494==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1346494==    by 0x10C565: ft_strdup (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1346494==    by 0x109DFB: ft_join_cmd_and_arg (tokenize.c:20)
+==1346494==    by 0x10A698: ft_tokenize (tokenize.c:215)
+==1346494==    by 0x10A9D3: ft_parse (tokenize.c:368)
+==1346494==    by 0x10B2B9: ft_read_line (parser.c:50)
+==1346494==    by 0x10B32B: ft_start_minishell (parser.c:72)
+==1346494==    by 0x10955F: main (main.c:19)
+==1346494== 
+==1346494== 24 bytes in 3 blocks are definitely lost in loss record 27 of 90
+==1346494==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1346494==    by 0x10C5FF: ft_strjoin (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1346494==    by 0x109E26: ft_join_cmd_and_arg (tokenize.c:24)
+==1346494==    by 0x10A698: ft_tokenize (tokenize.c:215)
+==1346494==    by 0x10A9D3: ft_parse (tokenize.c:368)
+==1346494==    by 0x10B2B9: ft_read_line (parser.c:50)
+==1346494==    by 0x10B32B: ft_start_minishell (parser.c:72)
+==1346494==    by 0x10955F: main (main.c:19)
+==1346494== 
+==1346494== 36 bytes in 3 blocks are definitely lost in loss record 30 of 90
+==1346494==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1346494==    by 0x10C5FF: ft_strjoin (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1346494==    by 0x109E53: ft_join_cmd_and_arg (tokenize.c:25)
+==1346494==    by 0x10A698: ft_tokenize (tokenize.c:215)
+==1346494==    by 0x10A9D3: ft_parse (tokenize.c:368)
+==1346494==    by 0x10B2B9: ft_read_line (parser.c:50)
+==1346494==    by 0x10B32B: ft_start_minishell (parser.c:72)
+==1346494==    by 0x10955F: main (main.c:19)
+==1346494== 
+==1346494== 59 (48 direct, 11 indirect) bytes in 1 blocks are definitely lost in loss record 35 of 90
+==1346494==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1346494==    by 0x10A1DD: ft_new_token_node (tokenize.c:111)
+==1346494==    by 0x10A6AD: ft_tokenize (tokenize.c:216)
+==1346494==    by 0x10A9D3: ft_parse (tokenize.c:368)
+==1346494==    by 0x10B2B9: ft_read_line (parser.c:50)
+==1346494==    by 0x10B32B: ft_start_minishell (parser.c:72)
+==1346494==    by 0x10955F: main (main.c:19)
+==1346494== 
+==1346494== LEAK SUMMARY:
+==1346494==    definitely lost: 118 bytes in 9 blocks
+==1346494==    indirectly lost: 11 bytes in 1 blocks
+==1346494==      possibly lost: 0 bytes in 0 blocks
+==1346494==    still reachable: 214,521 bytes in 255 blocks
+==1346494==         suppressed: 0 bytes in 0 blocks
+==1346494== Reachable blocks (those to which a pointer was found) are not shown.
+==1346494== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==1346494== 
+==1346494== ERROR SUMMARY: 6 errors from 5 contexts (suppressed: 0 from 0)
+==1346494== 
+==1346494== 2 errors in context 1 of 5:
+==1346494== Invalid read of size 8
+==1346494==    at 0x10A704: ft_tokenize (tokenize.c:153)
+==1346494==    by 0x10A9D3: ft_parse (tokenize.c:368)
+==1346494==    by 0x10B2B9: ft_read_line (parser.c:50)
+==1346494==    by 0x10B32B: ft_start_minishell (parser.c:72)
+==1346494==    by 0x10955F: main (main.c:19)
+==1346494==  Address 0x4b62038 is 0 bytes after a block of size 24 alloc'd
+==1346494==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1346494==    by 0x10CAD9: ft_split (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1346494==    by 0x10A2F4: ft_tokenize (tokenize.c:148)
+==1346494==    by 0x10A9D3: ft_parse (tokenize.c:368)
+==1346494==    by 0x10B2B9: ft_read_line (parser.c:50)
+==1346494==    by 0x10B32B: ft_start_minishell (parser.c:72)
+==1346494==    by 0x10955F: main (main.c:19)
+==1346494== 
+==1346494== ERROR SUMMARY: 6 errors from 5 contexts (suppressed: 0 from 0)

@@ -1,0 +1,361 @@
+==1344540== Memcheck, a memory error detector
+==1344540== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==1344540== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==1344540== Command: ./minishell
+==1344540== Parent PID: 1344526
+==1344540== 
+==1344540== Invalid read of size 8
+==1344540==    at 0x10A6A3: ft_tokenize (tokenize.c:153)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Address 0x4b64d10 is 0 bytes after a block of size 32 alloc'd
+==1344540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10CA31: ft_split (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1344540==    by 0x10A27E: ft_tokenize (tokenize.c:148)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== Invalid read of size 4
+==1344540==    at 0x10A83D: ft_create_ast (tokenize.c:289)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Address 0x4b6f98c is 12 bytes inside a block of size 48 free'd
+==1344540==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A8C8: ft_create_ast (tokenize.c:296)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Block was alloc'd at
+==1344540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A167: ft_new_token_node (tokenize.c:111)
+==1344540==    by 0x10A672: ft_tokenize (tokenize.c:221)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== Invalid read of size 8
+==1344540==    at 0x10A84D: ft_create_ast (tokenize.c:292)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Address 0x4b6f980 is 0 bytes inside a block of size 48 free'd
+==1344540==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A8C8: ft_create_ast (tokenize.c:296)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Block was alloc'd at
+==1344540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A167: ft_new_token_node (tokenize.c:111)
+==1344540==    by 0x10A672: ft_tokenize (tokenize.c:221)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== Invalid read of size 8
+==1344540==    at 0x10A888: ft_create_ast (tokenize.c:293)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Address 0x4b6f980 is 0 bytes inside a block of size 48 free'd
+==1344540==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A8C8: ft_create_ast (tokenize.c:296)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Block was alloc'd at
+==1344540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A167: ft_new_token_node (tokenize.c:111)
+==1344540==    by 0x10A672: ft_tokenize (tokenize.c:221)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== Invalid read of size 8
+==1344540==    at 0x10A8A7: ft_create_ast (tokenize.c:294)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Address 0x4b6f980 is 0 bytes inside a block of size 48 free'd
+==1344540==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A8C8: ft_create_ast (tokenize.c:296)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Block was alloc'd at
+==1344540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A167: ft_new_token_node (tokenize.c:111)
+==1344540==    by 0x10A672: ft_tokenize (tokenize.c:221)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== Invalid write of size 8
+==1344540==    at 0x10A8BA: ft_create_ast (tokenize.c:295)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Address 0x4b6f980 is 0 bytes inside a block of size 48 free'd
+==1344540==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A8C8: ft_create_ast (tokenize.c:296)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Block was alloc'd at
+==1344540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A167: ft_new_token_node (tokenize.c:111)
+==1344540==    by 0x10A672: ft_tokenize (tokenize.c:221)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== 
+==1344540== Process terminating with default action of signal 2 (SIGINT)
+==1344540==    at 0x490875B: kill (syscall-template.S:120)
+==1344540==    by 0x48A5F39: _rl_signal_handler (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1344540==    by 0x48A6BEC: rl_getc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1344540==    by 0x48A6460: rl_read_key (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1344540==    by 0x488AC86: readline_internal_char (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1344540==    by 0x4893D14: readline (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1344540==    by 0x10B1FC: ft_read_line (parser.c:43)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== HEAP SUMMARY:
+==1344540==     in use at exit: 215,245 bytes in 306 blocks
+==1344540==   total heap usage: 1,320 allocs, 1,014 frees, 241,750 bytes allocated
+==1344540== 
+==1344540== 5 bytes in 1 blocks are definitely lost in loss record 3 of 94
+==1344540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10C4BD: ft_strdup (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1344540==    by 0x10A185: ft_new_token_node (tokenize.c:114)
+==1344540==    by 0x10A672: ft_tokenize (tokenize.c:221)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== 11 bytes in 1 blocks are definitely lost in loss record 8 of 94
+==1344540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A878: ft_create_ast (tokenize.c:292)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== 18 bytes in 6 blocks are definitely lost in loss record 19 of 94
+==1344540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10C4BD: ft_strdup (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1344540==    by 0x109D85: ft_join_cmd_and_arg (tokenize.c:20)
+==1344540==    by 0x10A61C: ft_tokenize (tokenize.c:215)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== 50 bytes in 8 blocks are definitely lost in loss record 33 of 94
+==1344540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10C557: ft_strjoin (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1344540==    by 0x109DB0: ft_join_cmd_and_arg (tokenize.c:24)
+==1344540==    by 0x10A61C: ft_tokenize (tokenize.c:215)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== 59 (48 direct, 11 indirect) bytes in 1 blocks are definitely lost in loss record 34 of 94
+==1344540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A167: ft_new_token_node (tokenize.c:111)
+==1344540==    by 0x10A672: ft_tokenize (tokenize.c:221)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== 87 bytes in 8 blocks are definitely lost in loss record 38 of 94
+==1344540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10C557: ft_strjoin (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1344540==    by 0x109DDD: ft_join_cmd_and_arg (tokenize.c:25)
+==1344540==    by 0x10A61C: ft_tokenize (tokenize.c:215)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== 300 (240 direct, 60 indirect) bytes in 5 blocks are definitely lost in loss record 50 of 94
+==1344540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A167: ft_new_token_node (tokenize.c:111)
+==1344540==    by 0x10A631: ft_tokenize (tokenize.c:216)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== LEAK SUMMARY:
+==1344540==    definitely lost: 459 bytes in 30 blocks
+==1344540==    indirectly lost: 71 bytes in 6 blocks
+==1344540==      possibly lost: 0 bytes in 0 blocks
+==1344540==    still reachable: 214,715 bytes in 270 blocks
+==1344540==         suppressed: 0 bytes in 0 blocks
+==1344540== Reachable blocks (those to which a pointer was found) are not shown.
+==1344540== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==1344540== 
+==1344540== ERROR SUMMARY: 16 errors from 13 contexts (suppressed: 0 from 0)
+==1344540== 
+==1344540== 1 errors in context 1 of 13:
+==1344540== Invalid write of size 8
+==1344540==    at 0x10A8BA: ft_create_ast (tokenize.c:295)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Address 0x4b6f980 is 0 bytes inside a block of size 48 free'd
+==1344540==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A8C8: ft_create_ast (tokenize.c:296)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Block was alloc'd at
+==1344540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A167: ft_new_token_node (tokenize.c:111)
+==1344540==    by 0x10A672: ft_tokenize (tokenize.c:221)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== 
+==1344540== 1 errors in context 2 of 13:
+==1344540== Invalid read of size 8
+==1344540==    at 0x10A8A7: ft_create_ast (tokenize.c:294)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Address 0x4b6f980 is 0 bytes inside a block of size 48 free'd
+==1344540==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A8C8: ft_create_ast (tokenize.c:296)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Block was alloc'd at
+==1344540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A167: ft_new_token_node (tokenize.c:111)
+==1344540==    by 0x10A672: ft_tokenize (tokenize.c:221)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== 
+==1344540== 1 errors in context 3 of 13:
+==1344540== Invalid read of size 8
+==1344540==    at 0x10A888: ft_create_ast (tokenize.c:293)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Address 0x4b6f980 is 0 bytes inside a block of size 48 free'd
+==1344540==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A8C8: ft_create_ast (tokenize.c:296)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Block was alloc'd at
+==1344540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A167: ft_new_token_node (tokenize.c:111)
+==1344540==    by 0x10A672: ft_tokenize (tokenize.c:221)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== 
+==1344540== 1 errors in context 4 of 13:
+==1344540== Invalid read of size 8
+==1344540==    at 0x10A84D: ft_create_ast (tokenize.c:292)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Address 0x4b6f980 is 0 bytes inside a block of size 48 free'd
+==1344540==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A8C8: ft_create_ast (tokenize.c:296)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Block was alloc'd at
+==1344540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A167: ft_new_token_node (tokenize.c:111)
+==1344540==    by 0x10A672: ft_tokenize (tokenize.c:221)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== 
+==1344540== 1 errors in context 5 of 13:
+==1344540== Invalid read of size 4
+==1344540==    at 0x10A83D: ft_create_ast (tokenize.c:289)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Address 0x4b6f98c is 12 bytes inside a block of size 48 free'd
+==1344540==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A8C8: ft_create_ast (tokenize.c:296)
+==1344540==    by 0x10A990: ft_parse (tokenize.c:374)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Block was alloc'd at
+==1344540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10A167: ft_new_token_node (tokenize.c:111)
+==1344540==    by 0x10A672: ft_tokenize (tokenize.c:221)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== 
+==1344540== 4 errors in context 6 of 13:
+==1344540== Invalid read of size 8
+==1344540==    at 0x10A6A3: ft_tokenize (tokenize.c:153)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540==  Address 0x4b64d10 is 0 bytes after a block of size 32 alloc'd
+==1344540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1344540==    by 0x10CA31: ft_split (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1344540==    by 0x10A27E: ft_tokenize (tokenize.c:148)
+==1344540==    by 0x10A972: ft_parse (tokenize.c:371)
+==1344540==    by 0x10B258: ft_read_line (parser.c:50)
+==1344540==    by 0x10B2CA: ft_start_minishell (parser.c:72)
+==1344540==    by 0x10955F: main (main.c:19)
+==1344540== 
+==1344540== ERROR SUMMARY: 16 errors from 13 contexts (suppressed: 0 from 0)

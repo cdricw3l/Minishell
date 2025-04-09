@@ -1,0 +1,177 @@
+==1342788== Memcheck, a memory error detector
+==1342788== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==1342788== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==1342788== Command: ./minishell
+==1342788== Parent PID: 1342780
+==1342788== 
+==1342788== Invalid read of size 8
+==1342788==    at 0x109E79: ft_join_cmd_and_arg (tokenize.c:23)
+==1342788==    by 0x10A667: ft_tokenize (tokenize.c:219)
+==1342788==    by 0x10A9A6: ft_parse (tokenize.c:372)
+==1342788==    by 0x10B28C: ft_read_line (parser.c:50)
+==1342788==    by 0x10B2FE: ft_start_minishell (parser.c:72)
+==1342788==    by 0x10955F: main (main.c:19)
+==1342788==  Address 0x4b669d0 is 0 bytes after a block of size 16 alloc'd
+==1342788==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1342788==    by 0x10CA65: ft_split (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1342788==    by 0x10A2C9: ft_tokenize (tokenize.c:152)
+==1342788==    by 0x10A9A6: ft_parse (tokenize.c:372)
+==1342788==    by 0x10B28C: ft_read_line (parser.c:50)
+==1342788==    by 0x10B2FE: ft_start_minishell (parser.c:72)
+==1342788==    by 0x10955F: main (main.c:19)
+==1342788== 
+==1342788== Invalid read of size 8
+==1342788==    at 0x109E22: ft_join_cmd_and_arg (tokenize.c:27)
+==1342788==    by 0x10A667: ft_tokenize (tokenize.c:219)
+==1342788==    by 0x10A9A6: ft_parse (tokenize.c:372)
+==1342788==    by 0x10B28C: ft_read_line (parser.c:50)
+==1342788==    by 0x10B2FE: ft_start_minishell (parser.c:72)
+==1342788==    by 0x10955F: main (main.c:19)
+==1342788==  Address 0x4b669d0 is 0 bytes after a block of size 16 alloc'd
+==1342788==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1342788==    by 0x10CA65: ft_split (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1342788==    by 0x10A2C9: ft_tokenize (tokenize.c:152)
+==1342788==    by 0x10A9A6: ft_parse (tokenize.c:372)
+==1342788==    by 0x10B28C: ft_read_line (parser.c:50)
+==1342788==    by 0x10B2FE: ft_start_minishell (parser.c:72)
+==1342788==    by 0x10955F: main (main.c:19)
+==1342788== 
+==1342788== Invalid read of size 8
+==1342788==    at 0x10A697: ft_tokenize (tokenize.c:224)
+==1342788==    by 0x10A9A6: ft_parse (tokenize.c:372)
+==1342788==    by 0x10B28C: ft_read_line (parser.c:50)
+==1342788==    by 0x10B2FE: ft_start_minishell (parser.c:72)
+==1342788==    by 0x10955F: main (main.c:19)
+==1342788==  Address 0x4b669e8 is 24 bytes after a block of size 16 in arena "client"
+==1342788== 
+==1342788== Invalid read of size 1
+==1342788==    at 0x10C482: ft_strlen (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1342788==    by 0x10C4DD: ft_strdup (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1342788==    by 0x10A1D0: ft_new_token_node (tokenize.c:118)
+==1342788==    by 0x10A6A6: ft_tokenize (tokenize.c:224)
+==1342788==    by 0x10A9A6: ft_parse (tokenize.c:372)
+==1342788==    by 0x10B28C: ft_read_line (parser.c:50)
+==1342788==    by 0x10B2FE: ft_start_minishell (parser.c:72)
+==1342788==    by 0x10955F: main (main.c:19)
+==1342788==  Address 0x50 is not stack'd, malloc'd or (recently) free'd
+==1342788== 
+==1342788== 
+==1342788== Process terminating with default action of signal 11 (SIGSEGV)
+==1342788==  Access not within mapped region at address 0x50
+==1342788==    at 0x10C482: ft_strlen (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1342788==    by 0x10C4DD: ft_strdup (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1342788==    by 0x10A1D0: ft_new_token_node (tokenize.c:118)
+==1342788==    by 0x10A6A6: ft_tokenize (tokenize.c:224)
+==1342788==    by 0x10A9A6: ft_parse (tokenize.c:372)
+==1342788==    by 0x10B28C: ft_read_line (parser.c:50)
+==1342788==    by 0x10B2FE: ft_start_minishell (parser.c:72)
+==1342788==    by 0x10955F: main (main.c:19)
+==1342788==  If you believe this happened as a result of a stack
+==1342788==  overflow in your program's main thread (unlikely but
+==1342788==  possible), you can try to increase the size of the
+==1342788==  main thread stack using the --main-stacksize= flag.
+==1342788==  The main thread stack size used in this run was 8388608.
+==1342788== 
+==1342788== HEAP SUMMARY:
+==1342788==     in use at exit: 214,879 bytes in 277 blocks
+==1342788==   total heap usage: 686 allocs, 409 frees, 232,538 bytes allocated
+==1342788== 
+==1342788== 4 bytes in 1 blocks are definitely lost in loss record 3 of 89
+==1342788==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1342788==    by 0x10C58B: ft_strjoin (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1342788==    by 0x109E06: ft_join_cmd_and_arg (tokenize.c:26)
+==1342788==    by 0x10A667: ft_tokenize (tokenize.c:219)
+==1342788==    by 0x10A9A6: ft_parse (tokenize.c:372)
+==1342788==    by 0x10B28C: ft_read_line (parser.c:50)
+==1342788==    by 0x10B2FE: ft_start_minishell (parser.c:72)
+==1342788==    by 0x10955F: main (main.c:19)
+==1342788== 
+==1342788== 6 bytes in 2 blocks are definitely lost in loss record 5 of 89
+==1342788==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1342788==    by 0x10C4F1: ft_strdup (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1342788==    by 0x109D85: ft_join_cmd_and_arg (tokenize.c:19)
+==1342788==    by 0x10A667: ft_tokenize (tokenize.c:219)
+==1342788==    by 0x10A9A6: ft_parse (tokenize.c:372)
+==1342788==    by 0x10B28C: ft_read_line (parser.c:50)
+==1342788==    by 0x10B2FE: ft_start_minishell (parser.c:72)
+==1342788==    by 0x10955F: main (main.c:19)
+==1342788== 
+==1342788== 162 (144 direct, 18 indirect) bytes in 3 blocks are definitely lost in loss record 40 of 89
+==1342788==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1342788==    by 0x10A1B2: ft_new_token_node (tokenize.c:115)
+==1342788==    by 0x10A6A6: ft_tokenize (tokenize.c:224)
+==1342788==    by 0x10A9A6: ft_parse (tokenize.c:372)
+==1342788==    by 0x10B28C: ft_read_line (parser.c:50)
+==1342788==    by 0x10B2FE: ft_start_minishell (parser.c:72)
+==1342788==    by 0x10955F: main (main.c:19)
+==1342788== 
+==1342788== LEAK SUMMARY:
+==1342788==    definitely lost: 154 bytes in 6 blocks
+==1342788==    indirectly lost: 18 bytes in 3 blocks
+==1342788==      possibly lost: 0 bytes in 0 blocks
+==1342788==    still reachable: 214,707 bytes in 268 blocks
+==1342788==         suppressed: 0 bytes in 0 blocks
+==1342788== Reachable blocks (those to which a pointer was found) are not shown.
+==1342788== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==1342788== 
+==1342788== ERROR SUMMARY: 12 errors from 7 contexts (suppressed: 0 from 0)
+==1342788== 
+==1342788== 1 errors in context 1 of 7:
+==1342788== Invalid read of size 1
+==1342788==    at 0x10C482: ft_strlen (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1342788==    by 0x10C4DD: ft_strdup (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1342788==    by 0x10A1D0: ft_new_token_node (tokenize.c:118)
+==1342788==    by 0x10A6A6: ft_tokenize (tokenize.c:224)
+==1342788==    by 0x10A9A6: ft_parse (tokenize.c:372)
+==1342788==    by 0x10B28C: ft_read_line (parser.c:50)
+==1342788==    by 0x10B2FE: ft_start_minishell (parser.c:72)
+==1342788==    by 0x10955F: main (main.c:19)
+==1342788==  Address 0x50 is not stack'd, malloc'd or (recently) free'd
+==1342788== 
+==1342788== 
+==1342788== 1 errors in context 2 of 7:
+==1342788== Invalid read of size 8
+==1342788==    at 0x10A697: ft_tokenize (tokenize.c:224)
+==1342788==    by 0x10A9A6: ft_parse (tokenize.c:372)
+==1342788==    by 0x10B28C: ft_read_line (parser.c:50)
+==1342788==    by 0x10B2FE: ft_start_minishell (parser.c:72)
+==1342788==    by 0x10955F: main (main.c:19)
+==1342788==  Address 0x4b669e8 is 24 bytes after a block of size 16 in arena "client"
+==1342788== 
+==1342788== 
+==1342788== 3 errors in context 3 of 7:
+==1342788== Invalid read of size 8
+==1342788==    at 0x109E22: ft_join_cmd_and_arg (tokenize.c:27)
+==1342788==    by 0x10A667: ft_tokenize (tokenize.c:219)
+==1342788==    by 0x10A9A6: ft_parse (tokenize.c:372)
+==1342788==    by 0x10B28C: ft_read_line (parser.c:50)
+==1342788==    by 0x10B2FE: ft_start_minishell (parser.c:72)
+==1342788==    by 0x10955F: main (main.c:19)
+==1342788==  Address 0x4b669d0 is 0 bytes after a block of size 16 alloc'd
+==1342788==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1342788==    by 0x10CA65: ft_split (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1342788==    by 0x10A2C9: ft_tokenize (tokenize.c:152)
+==1342788==    by 0x10A9A6: ft_parse (tokenize.c:372)
+==1342788==    by 0x10B28C: ft_read_line (parser.c:50)
+==1342788==    by 0x10B2FE: ft_start_minishell (parser.c:72)
+==1342788==    by 0x10955F: main (main.c:19)
+==1342788== 
+==1342788== 
+==1342788== 4 errors in context 4 of 7:
+==1342788== Invalid read of size 8
+==1342788==    at 0x109E79: ft_join_cmd_and_arg (tokenize.c:23)
+==1342788==    by 0x10A667: ft_tokenize (tokenize.c:219)
+==1342788==    by 0x10A9A6: ft_parse (tokenize.c:372)
+==1342788==    by 0x10B28C: ft_read_line (parser.c:50)
+==1342788==    by 0x10B2FE: ft_start_minishell (parser.c:72)
+==1342788==    by 0x10955F: main (main.c:19)
+==1342788==  Address 0x4b669d0 is 0 bytes after a block of size 16 alloc'd
+==1342788==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1342788==    by 0x10CA65: ft_split (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1342788==    by 0x10A2C9: ft_tokenize (tokenize.c:152)
+==1342788==    by 0x10A9A6: ft_parse (tokenize.c:372)
+==1342788==    by 0x10B28C: ft_read_line (parser.c:50)
+==1342788==    by 0x10B2FE: ft_start_minishell (parser.c:72)
+==1342788==    by 0x10955F: main (main.c:19)
+==1342788== 
+==1342788== ERROR SUMMARY: 12 errors from 7 contexts (suppressed: 0 from 0)
