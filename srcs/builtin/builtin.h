@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:02:58 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/10 12:38:39 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/10 12:39:28 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ char    **ft_add_variable(char **old_env, char **new_var);
 int     ft_check_variable(char *var);
 void    ft_display_variables_list(char *envp[]);
 int     ft_idx_of(char *str, char c);
+
 #endif

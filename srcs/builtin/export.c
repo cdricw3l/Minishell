@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/10 12:38:07 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/10 13:23:29 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,12 @@ static int ft_is_on_env(char **env, char *var, int size)
         int idx = ft_idx_of(env[i], '=');
         if(ft_str_env_cmp(env[i], var, idx) == 0)
         {
-            printf("nous najouterons pas %s comparer avec %s\n",var,  env[i]);
-            return(1);
+            printf("Variable already exist %s %s\n",var,  env[i]);
+            return(i);
         }
         i++;
     }
-    return(0);
+    return(-1);
 }
 
 
@@ -94,6 +94,7 @@ char **ft_add_variable(char **old_env, char **new_var)
     size_t j;
     char **new_env;
     int env_len;
+    int idx_variable;
 
     env_len = ft_get_split_len(old_env) + ft_get_split_len(new_var);
     new_env = malloc(sizeof(char *) * (env_len + 1));
@@ -106,14 +107,16 @@ char **ft_add_variable(char **old_env, char **new_var)
     i = 0;
     while (i < ft_get_split_len(new_var))
     {
+        idx_variable = ft_is_on_env(new_env, new_var[i],j);
+        printf("idx variable = %d\n", idx_variable);
         // check if the new variable is already in env.
-        if(!ft_is_on_env(new_env, new_var[i],j))
-            new_env[j++] = new_var[i];
-        else
+        if(idx_variable != -1)
         {
-            //if the variable is already in env, dont forget to free the unused variable.
-            free(new_var[i]);
+            free(new_env[idx_variable]);
+            new_env[idx_variable] = new_var[i];
         }
+        else
+            new_env[j++] = new_var[i];
         i++;
     }
     new_env[j] = NULL;
@@ -143,13 +146,14 @@ int ft_export(char ***env, char *args)
     int valide_variable_len;
     char **var;
 
-    if(!(*env))
-        return(-1);
+    
     var = ft_split(args, 32);
-
+    if(!(*env || !var))
+        return(-1);
     if(!var[1] || ft_strncmp(var[1],"", 1) == 0)
     {
         /*  if no variable shell display the list of variable env */
+        ft_split_clean(&var);
         ft_display_variables_list(*env);
         return(1);
     }
@@ -161,13 +165,13 @@ int ft_export(char ***env, char *args)
         if(valide_variable_len)
         {
             new_env = ft_add_variable(*env, &var[1]);
-            if(!env)
+            if(!new_env)
                 return(0);
+            
             free(*env);
             free(var);
-            *env = new_env;
             env_quick_s(new_env,ft_get_split_len(new_env),ft_str_env_cmp);
-            //ft_sort_env(*env);
+            *env = new_env;
         }
     }
     return(1);

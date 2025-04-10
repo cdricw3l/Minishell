@@ -29,7 +29,7 @@ static void execute_command(const char *command)
     waitpid(pid, NULL, 0);
 }
 
-static void execute_with_redirection(t_token *node, int flags, char **envp)
+static void execute_with_redirection(t_token *node, int flags, char ***envp)
 {
     if (!node->left || !node->right)
     {
@@ -68,7 +68,7 @@ static void execute_with_redirection(t_token *node, int flags, char **envp)
 }
 
 // 입력 리다이렉션 처리 (<)
-void redirect_input_and_execute(t_token *node, char **envp)
+void redirect_input_and_execute(t_token *node, char ***envp)
 {
     if (!node->left || !node->right)
     {
@@ -106,7 +106,7 @@ void redirect_input_and_execute(t_token *node, char **envp)
 }
 
 
-static void  execute_pipe(t_token *node, char **envp)
+static void  execute_pipe(t_token *node, char ***envp)
 {
     int pipefd[2];
     if (pipe(pipefd) == -1)
@@ -206,7 +206,7 @@ void heredoc_redirect(t_token *node)
 }
 
 
-void ft_execute_builtin(t_token *node, char **envp)
+void ft_execute_builtin(t_token *node, char ***envp)
 {
     if(ft_strncmp(node->string, "echo", ft_strlen("echo")) == 0)
         ft_echo(node->string, 0);
@@ -217,11 +217,11 @@ void ft_execute_builtin(t_token *node, char **envp)
         ft_cd(node->string);
     }
     if(ft_strncmp(node->string, "export", ft_strlen("export")) == 0)
-        ft_export(&envp, node->string);
+        ft_export(envp, node->string);
 } 
 
 
-void execute_ast(t_token *node, char **envp)
+void execute_ast(t_token *node, char ***envp)
 {
     if (!node)
         return;

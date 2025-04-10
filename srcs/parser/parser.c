@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:32:32 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/10 12:03:32 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/10 12:55:50 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int ft_read_line(char *prompt, char **envp)
         //ft_binary_tree_traversal(ast_root);
         //print_ast_simple(ast_root, 0); 
         //ft_display_token_node_lst(ast_root);
-		execute_ast(ast_root, envp); // Execute AST!
+		execute_ast(ast_root, &envp); // Execute AST!
         free(line);  // Free input line after processing
     }
     return 0;
