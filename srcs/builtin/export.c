@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/04 13:37:18 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/10 12:38:07 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,14 +137,17 @@ int ft_count_valide_variable(char **var)
     return(i);
 }
 
-int ft_export(char ***env, char ***var)
+int ft_export(char ***env, char *args)
 {
     char **new_env;
     int valide_variable_len;
+    char **var;
 
     if(!(*env))
         return(-1);
-    if(!var || ft_strncmp(*(*var),"", 1) == 0)
+    var = ft_split(args, 32);
+
+    if(!var[1] || ft_strncmp(var[1],"", 1) == 0)
     {
         /*  if no variable shell display the list of variable env */
         ft_display_variables_list(*env);
@@ -154,14 +157,14 @@ int ft_export(char ***env, char ***var)
     {
         /* else add the variable to the variable list but before,
         we need to check and count the good variable format  for the new allocation*/
-        valide_variable_len = ft_count_valide_variable(*var);
+        valide_variable_len = ft_count_valide_variable(&var[1]);
         if(valide_variable_len)
         {
-            new_env = ft_add_variable(*env, *var);
+            new_env = ft_add_variable(*env, &var[1]);
             if(!env)
                 return(0);
             free(*env);
-            free(*var);
+            free(var);
             *env = new_env;
             env_quick_s(new_env,ft_get_split_len(new_env),ft_str_env_cmp);
             //ft_sort_env(*env);

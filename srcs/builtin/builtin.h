@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:02:58 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/09 16:03:49 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/10 12:38:39 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int     ft_exit(int ret);
 
 // Export fonction
 
-int     ft_export(char ***env, char ***var);
+int     ft_export(char ***env, char *str);
 int     ft_count_valide_variable(char **var);
 char    **ft_add_variable(char **old_env, char **new_var);
 int     ft_check_variable(char *var);

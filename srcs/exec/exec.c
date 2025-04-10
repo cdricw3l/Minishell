@@ -206,7 +206,7 @@ void heredoc_redirect(t_token *node)
 }
 
 
-void ft_execute_builtin(t_token *node)
+void ft_execute_builtin(t_token *node, char **envp)
 {
     if(ft_strncmp(node->string, "echo", ft_strlen("echo")) == 0)
         ft_echo(node->string, 0);
@@ -216,8 +216,8 @@ void ft_execute_builtin(t_token *node)
     {
         ft_cd(node->string);
     }
-    // if(ft_strncmp(node->string, "export", ft_strlen("export")) == 0)
-    //     ft_export(node);
+    if(ft_strncmp(node->string, "export", ft_strlen("export")) == 0)
+        ft_export(&envp, node->string);
 } 
 
 
@@ -273,7 +273,7 @@ void execute_ast(t_token *node, char **envp)
         }
         case 12: // builtin part
         {
-            ft_execute_builtin(node);
+            ft_execute_builtin(node, envp);
             break;
         }
 		/*
