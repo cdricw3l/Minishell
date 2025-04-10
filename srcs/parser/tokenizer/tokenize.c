@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:36:54 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/09 22:00:33 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/10 08:40:45 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ int ft_count_number_of_arg(char **split)
 
     i = 1;
     while (split[i] && ft_get_token(split[i])  == WORD)
-    {
         i++;
-    }
     return(i - 1);
 }
 
@@ -235,6 +233,7 @@ t_token *ft_tokenize(char *str)
                 char *cmd_with_arg = ft_join_cmd_and_arg(&split[i]);
                 //create new node
                 new_node = ft_new_token_node(cmd_with_arg, token);
+
                 // increment by the number of arg.
                 i += args;
             }
