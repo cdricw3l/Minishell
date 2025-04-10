@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 12:30:49 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/09 22:41:47 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/10 08:04:01 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char *ft_trim_path(char *path)
 	return(path);
 }
 
-char	*ft_get_home_path(char *path)
+char	*ft_get_home_path(char *path, int cd)
 {
 	char	*env;
 	char	*total_path;
@@ -37,7 +37,10 @@ char	*ft_get_home_path(char *path)
 	env = getenv("HOME");
 	if (!env)
 		return (NULL);
-	total_path = ft_strjoin(env, &path[1]);
+	if(cd == 0)
+		total_path = ft_strjoin(env, &path[1]);
+	else
+		total_path = env;
 	if (!total_path)
 		return (NULL);
 	path = total_path;
@@ -48,24 +51,25 @@ int	ft_cd(char *path)
 {
 	int		chdir_return;
 	char	*total_path;
+	char	*home_path;
 	
 	total_path = NULL;
+	home_path = NULL;
 	if(ft_strncmp(path, "cd", ft_strlen(path)) == 0)
-	{
-		total_path = ft_get_home_path(path);
-		printf("voici %s\n", total_path);
-	}
+		home_path = ft_get_home_path(path, 1);
 	else
 	{
 		path = ft_trim_path(path);
 		if (path[0] == '~' )
 		{
-			total_path = ft_get_home_path(path);
+			total_path = ft_get_home_path(path, 0);
 			if (!total_path)
 				return (-1);
 		}
 	}
-	if(total_path)
+	if(home_path)
+		chdir_return = chdir(home_path);
+	else if(total_path)
 	{
 		chdir_return = chdir(total_path);
 		free(total_path);
