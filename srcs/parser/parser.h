@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:31:06 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/03/28 15:55:25 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/10 11:59:44 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 
 
 
-int     ft_start_minishell(char *str);
-int     ft_read_line(char *str);
+int     ft_start_minishell(char *str, char **envp);
+int     ft_read_line(char *str, char **envp);
 
 
 #endif

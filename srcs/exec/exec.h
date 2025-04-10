@@ -12,6 +12,6 @@ typedef struct s_token t_token;
 
 #include "../parser/tokenizer/tokenize.h"
 
-void	execute_ast(t_token *node);
+void	execute_ast(t_token *node, char **envp);
 
 #endif
