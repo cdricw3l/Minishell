@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/10 13:23:29 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/10 15:34:28 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,7 @@ static int ft_is_on_env(char **env, char *var, int size)
 
         int idx = ft_idx_of(env[i], '=');
         if(ft_str_env_cmp(env[i], var, idx) == 0)
-        {
-            printf("Variable already exist %s %s\n",var,  env[i]);
             return(i);
-        }
         i++;
     }
     return(-1);
@@ -108,7 +105,6 @@ char **ft_add_variable(char **old_env, char **new_var)
     while (i < ft_get_split_len(new_var))
     {
         idx_variable = ft_is_on_env(new_env, new_var[i],j);
-        printf("idx variable = %d\n", idx_variable);
         // check if the new variable is already in env.
         if(idx_variable != -1)
         {
