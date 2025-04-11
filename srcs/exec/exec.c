@@ -460,6 +460,11 @@ void execute_ast(t_token *node, char ***envp)
 				close(original_stdin);
 				break;
 			}
+            case 12: // builtin part
+            {
+                ft_execute_builtin(node, envp);
+                break;
+            }
 			default:
 				fprintf(stderr, "minishell: Unknown or unhandled token type: %d\n", command_node->token);
 				break;
