@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/11 16:27:24 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/11 16:29:10 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,8 @@ int ft_delete_from_env(char *env, char **var)
 
         idx = ft_idx_of(env, '=');
         if(idx != -1)
-        {
             if(ft_strncmp(env, var[i], ft_strlen(var[i])) == 0)
                 return(i);
-        }
         i++;
     }
     return(-1);

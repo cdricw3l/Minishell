@@ -463,7 +463,6 @@ void execute_ast(t_token *node, char ***envp)
             case 12: // builtin part
             {
                 ft_execute_builtin(node, envp);
-                printf("SOrti\n");
                 break;
             }
 			default:
