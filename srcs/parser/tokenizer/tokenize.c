@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:36:54 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/10 08:40:45 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/11 13:52:49 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ const char *get_token_type_string(int token_type) {
         case 6: return "OUTPUT_REDIRECT";
         case 7: return "APPEND_REDIRECT";
         case 10: return "HEREDOC (<<)";
+        case 12: return "BUILTIN";
         default: return "UNKNOWN";
     }
 }
