@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_quick_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:07:08 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/10 18:26:18 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/11 12:54:24 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ int	ft_split_part(char **s, int end, int (*cmp)(char *, char *, size_t len))
 void	env_quick_s(char **s, int end, int (*cmp)(char *, char *, size_t len))
 {
 	int	i;
-
 	if (end <= 1)
 		return ;
 	i = ft_split_part(s, end, cmp);

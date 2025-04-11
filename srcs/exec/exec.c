@@ -218,8 +218,8 @@ void ft_execute_builtin(t_token *node, char ***envp)
         ft_export(envp, node->string);
     if(ft_strncmp(node->string, "exit", ft_strlen("exit")) == 0)
         ft_exit(0);
-    // if(ft_strncmp(node->string, "unset", ft_strlen("unset")) == 0)
-    //     ft_unset(node->string,envp);
+    if(ft_strncmp(node->string, "unset", ft_strlen("unset")) == 0)
+        ft_unset(node->string,envp);
 } 
 
 

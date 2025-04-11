@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:02:58 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/10 16:54:40 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/11 12:10:47 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ void    ft_display_variables_list(char *envp[]);
 int     ft_idx_of(char *str, char c);
 int     ft_is_on_env(char **env, char *var, int size);
 void    ft_unset(char *variable, char ***envp);
+char    *transform_variable(char *str);
 
 #endif
