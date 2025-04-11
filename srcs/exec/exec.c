@@ -29,7 +29,7 @@ static void execute_command(const char *command)
     waitpid(pid, NULL, 0);
 }
 
-static void execute_with_redirection(t_token *node, int flags)
+static void execute_with_redirection(t_token *node, int flags, char ***envp)
 {
     if (!node->left || !node->right)
     {
@@ -61,14 +61,14 @@ static void execute_with_redirection(t_token *node, int flags)
         }
         close(fd);
 
-        execute_ast(node->left);
+        execute_ast(node->left, envp);
         exit(EXIT_SUCCESS);
     }
     waitpid(pid, NULL, 0);
 }
 
 // 입력 리다이렉션 처리 (<)
-void redirect_input_and_execute(t_token *node)
+void redirect_input_and_execute(t_token *node, char ***envp)
 {
     if (!node->left || !node->right)
     {
@@ -93,7 +93,7 @@ void redirect_input_and_execute(t_token *node)
             exit(EXIT_FAILURE);
         }
         close(fd);
-        execute_ast(node->left); // 입력 리다이렉션 후 왼쪽 명령 실행
+        execute_ast(node->left, envp); // 입력 리다이렉션 후 왼쪽 명령 실행
         exit(EXIT_SUCCESS);
     }
     else if (pid > 0)
@@ -106,7 +106,7 @@ void redirect_input_and_execute(t_token *node)
 }
 
 
-static void  execute_pipe(t_token *node)
+static void  execute_pipe(t_token *node, char ***envp)
 {
     int pipefd[2];
     if (pipe(pipefd) == -1)
@@ -122,7 +122,7 @@ static void  execute_pipe(t_token *node)
         dup2(pipefd[1], STDOUT_FILENO);
         close(pipefd[1]);
 
-        execute_ast(node->left);
+        execute_ast(node->left, envp);
         exit(EXIT_SUCCESS);
     }
 
@@ -133,7 +133,7 @@ static void  execute_pipe(t_token *node)
         dup2(pipefd[0], STDIN_FILENO);
         close(pipefd[0]);
 
-        execute_ast(node->right);
+        execute_ast(node->right, envp);
         exit(EXIT_SUCCESS);
     }
 
@@ -206,7 +206,7 @@ void heredoc_redirect(t_token *node)
 }
 
 
-void ft_execute_builtin(t_token *node)
+void ft_execute_builtin(t_token *node, char ***envp)
 {
     if(ft_strncmp(node->string, "echo", ft_strlen("echo")) == 0)
         ft_echo(node->string, 0);
@@ -214,11 +214,16 @@ void ft_execute_builtin(t_token *node)
         ft_pwd(node);
     if(ft_strncmp(node->string, "cd", ft_strlen("cd")) == 0)
         ft_cd(node->string);
-   
+    if(ft_strncmp(node->string, "export", ft_strlen("export")) == 0)
+        ft_export(envp, node->string);
+    if(ft_strncmp(node->string, "exit", ft_strlen("exit")) == 0)
+        ft_exit(0);
+    if(ft_strncmp(node->string, "unset", ft_strlen("unset")) == 0)
+        ft_unset(node->string,envp);
 } 
 
 
-void execute_ast(t_token *node)
+void execute_ast(t_token *node, char ***envp)
 {
     if (!node)
         return;
@@ -232,22 +237,22 @@ void execute_ast(t_token *node)
             
         case 4: // PIPE
             //printf("start case 4:%s\n", node->string);
-            execute_pipe(node);
+            execute_pipe(node, envp);
             break;
 
 		case 5: // INPUT REDIRECTION (<)
             //printf("start case 5::%s\n", node->string);
-			redirect_input_and_execute(node);
+			redirect_input_and_execute(node, envp);
 			break;
 
         case 6: // >
             //printf("start case 6::%s\n", node->string);
-            execute_with_redirection(node, O_WRONLY | O_CREAT | O_TRUNC);
+            execute_with_redirection(node, O_WRONLY | O_CREAT | O_TRUNC, envp);
             break;
 
         case 7: // >>
             //printf("start case 7::%s\n", node->string);
-            execute_with_redirection(node, O_WRONLY | O_CREAT | O_APPEND);
+            execute_with_redirection(node, O_WRONLY | O_CREAT | O_APPEND, envp);
             break;
 
 		case 10: // HEREDOC (<<) //added new codes for fixing unexpected crash after heredoc
@@ -260,7 +265,7 @@ void execute_ast(t_token *node)
                 return;
             }
             heredoc_redirect(node);
-            execute_ast(node->left); // Execute the command with redirected input
+            execute_ast(node->left, envp); // Execute the command with redirected input
             if (dup2(original_stdin, STDIN_FILENO) == -1) // Restore original stdin
             {
                 perror("dup2 failed to restore stdin");
@@ -270,7 +275,7 @@ void execute_ast(t_token *node)
         }
         case 12: // builtin part
         {
-            ft_execute_builtin(node);
+            ft_execute_builtin(node, envp);
             break;
         }
 		/*
