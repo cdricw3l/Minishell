@@ -93,7 +93,7 @@ void redirect_input_and_execute(t_token *node, char ***envp)
             exit(EXIT_FAILURE);
         }
         close(fd);
-        execute_ast(node->left, envp); // 입력 리다이렉션 후 왼쪽 명령 실행
+        execute_ast(node->left, &envp); // 입력 리다이렉션 후 왼쪽 명령 실행
         exit(EXIT_SUCCESS);
     }
     else if (pid > 0)
@@ -105,13 +105,13 @@ void redirect_input_and_execute(t_token *node, char ***envp)
         perror("fork (input redirection)");
 }
 
-static void execute_pipe(t_token *node)
+static void execute_pipe(t_token *node, char ***envp)
 {
     // 추가된 부분: 왼쪽 자식이 출력 리다이렉션인지 확인
     if (node->left && (node->left->token == 6 /* > */ || node->left->token == 7 /* >> */))
     {
         // 1. 왼쪽 리다이렉션 실행 (이 안에서 fork/exec/wait 발생)
-        execute_ast(node->left);
+        execute_ast(node->left, envp);
 
         // 2. 오른쪽 명령어 실행 (stdin은 닫힌 상태로)
         pid_t right_pid = fork();
@@ -135,7 +135,7 @@ static void execute_pipe(t_token *node)
             }
 
             // 오른쪽 노드 실행
-            execute_ast(node->right);
+            execute_ast(node->right, envp);
             exit(EXIT_SUCCESS); // 자식 프로세스 종료
         }
 
@@ -169,7 +169,7 @@ static void execute_pipe(t_token *node)
              exit(EXIT_FAILURE);
         }
         close(pipefd[1]); // 복제 후 원본 fd 닫기
-        execute_ast(node->left); // 왼쪽 노드 실행
+        execute_ast(node->left, envp); // 왼쪽 노드 실행
         exit(EXIT_SUCCESS);
     }
 
@@ -192,7 +192,7 @@ static void execute_pipe(t_token *node)
              exit(EXIT_FAILURE);
          }
         close(pipefd[0]); // 복제 후 원본 fd 닫기
-        execute_ast(node->right); // 오른쪽 노드 실행
+        execute_ast(node->right, &envp); // 오른쪽 노드 실행
         exit(EXIT_SUCCESS);
     }
 
@@ -367,7 +367,7 @@ void heredoc_redirect(t_token *node)
     }
 }
 
-void execute_ast(t_token *node) 
+void execute_ast(t_token *node, char ***envp) 
 {
     if (!node) {
         return;
@@ -404,7 +404,7 @@ void execute_ast(t_token *node)
                 free_redir_list(redir_list); // Free list in child before exiting
                 exit(EXIT_FAILURE); // Child exits on redirection error
             }
-             execute_ast(command_node);
+             execute_ast(command_node, &envp);
              exit(EXIT_SUCCESS);
 
         } 
@@ -424,7 +424,7 @@ void execute_ast(t_token *node)
 				break;
 
 			case 4: // PIPE
-				execute_pipe(node);
+				execute_pipe(node, envp);
 				break;
 
 			case 10: // HEREDOC (<<) //added new codes for fixing unexpected crash after heredoc
@@ -436,7 +436,7 @@ void execute_ast(t_token *node)
 					return;
 				}
 				heredoc_redirect(node);
-				execute_ast(node->left); // Execute the command with redirected input
+				execute_ast(node->left, &envp); // Execute the command with redirected input
 				if (dup2(original_stdin, STDIN_FILENO) == -1) // Restore original stdin
 				{
 					perror("dup2 failed to restore stdin");
