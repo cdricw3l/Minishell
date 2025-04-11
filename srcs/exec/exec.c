@@ -367,6 +367,22 @@ void heredoc_redirect(t_token *node)
     }
 }
 
+void ft_execute_builtin(t_token *node, char ***envp)
+{
+    if(ft_strncmp(node->string, "echo", ft_strlen("echo")) == 0)
+        ft_echo(node->string, 0);
+    if(ft_strncmp(node->string, "pwd", ft_strlen("pwd")) == 0)
+        ft_pwd(node);
+    if(ft_strncmp(node->string, "cd", ft_strlen("cd")) == 0)
+        ft_cd(node->string);
+    if(ft_strncmp(node->string, "export", ft_strlen("export")) == 0)
+        ft_export(envp, node->string);
+    if(ft_strncmp(node->string, "exit", ft_strlen("exit")) == 0)
+        ft_exit(0);
+    if(ft_strncmp(node->string, "unset", ft_strlen("unset")) == 0)
+        ft_unset(node->string,envp);
+} 
+
 void execute_ast(t_token *node, char ***envp) 
 {
     if (!node) {
