@@ -3,14 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:36:54 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/03 16:11:45 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/10 08:40:45 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenize.h"
+#include <assert.h>
+
+int ft_count_number_of_arg(char **split)
+{
+    int i;
+
+    i = 1;
+    while (split[i] && ft_get_token(split[i])  == WORD)
+        i++;
+    return(i - 1);
+}
+
+char *ft_join_cmd_and_arg(char **split)
+{
+    char *new_str;
+    int i;
+
+    new_str = ft_strdup(split[0]);
+    i = 1;
+    while (split[i] && ft_get_token(split[i])  == WORD)
+    {
+        new_str = ft_strjoin(new_str, " ");
+        new_str = ft_strjoin(new_str, split[i]);
+        i++;
+    }
+    return(new_str);
+}
 
 void print_ast_simple(t_token *node, int indent) 
 {
@@ -192,13 +219,29 @@ t_token *ft_tokenize(char *str)
             free(joined);
         }
         else
-        {
-            new_node = ft_new_token_node(split[i], token);
-        }
+        {   
+            /* 
+                cedric if modification: 
+                get all the word after CMD token or BUILTIN token.
+                
+            */
+            if(token == BUILTIN || token == CMD)
+            {
+                // If token is BUILTIN or CMD, we count the number of WORD token after;
+                int args = ft_count_number_of_arg(&split[i]);
+                //and then we join the number of arg to the commande.
+                char *cmd_with_arg = ft_join_cmd_and_arg(&split[i]);
+                //create new node
+                new_node = ft_new_token_node(cmd_with_arg, token);
 
+                // increment by the number of arg.
+                i += args;
+            }
+            else
+                new_node = ft_new_token_node(split[i], token);
+        }
         // Add to the token list
         ft_add_back_node(&token_list, new_node);
-
         i++;
     }
     ft_split_clean(&split);
@@ -285,7 +328,6 @@ t_token *ft_create_ast(t_token *token_list)
         }
         current = new_node;
     }
-
     return root; // Return the constructed AST
 }
 
@@ -343,8 +385,10 @@ t_token *ft_parse(char *str)
 {
 	t_token *token_list = ft_tokenize(str); // Step 1: Tokenize input
     if (!token_list)
+    {
+        printf("error\n");
         return NULL;
-
+    }
     t_token *ast = ft_create_ast(token_list); // Step 2: Build AST from tokens
     return ast;
 } 

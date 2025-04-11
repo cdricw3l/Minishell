@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:32:32 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/07 14:46:42 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/11 13:12:11 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,7 @@
 #include "tokenizer/tokenize.h"
 
 
-void ft_binary_tree_traversal(t_token *node)
-{
-    if (!node)
-        return ;
 
-    // Si associativité est 2, on traverse d'abord à droite
-    if (node->asso == 2)
-    {
-        ft_binary_tree_traversal(node->right);  // Passe d'abord à droite
-        printf("node %s asso %d\n", node->string, node->asso);
-        ft_binary_tree_traversal(node->left);  // Ensuite à gauche
-    }
-    else
-    {
-        // Sinon, on suit le parcours classique (gauche - racine - droite)
-        ft_binary_tree_traversal(node->left);
-        printf("node %s asso %d\n", node->string, node->asso);
-        ft_binary_tree_traversal(node->right);
-    }
-}
 
 
 /* Previous version of Cedric
@@ -56,7 +37,7 @@ int ft_read_line(char *str)
 }
 */
 
-int ft_read_line(char *prompt)
+int ft_read_line(char *prompt, char **envp)
 {
     char *line;
     t_token *ast_root;  // Now ft_tokenize returns a single AST root
@@ -77,21 +58,21 @@ int ft_read_line(char *prompt)
             free(line);
             continue;
         }
-
-        printf("Generated AST:\n");
-        print_ast(ast_root, 0);  // Print AST structure
-        ft_binary_tree_traversal(ast_root);
-		//print_ast_simple(ast_root, 0); 
-		//execute_ast(ast_root); // Execute AST!
+        //printf("Generated AST:\n");
+        //print_ast(ast_root, 0);  // Print AST structure
+        //ft_binary_tree_traversal(ast_root);
+        //print_ast_simple(ast_root, 0); 
+        //ft_display_token_node_lst(ast_root);
+		execute_ast(ast_root, &envp); // Execute AST!
         free(line);  // Free input line after processing
     }
     return 0;
 }
 
-int  ft_start_minishell(char *str)
+int  ft_start_minishell(char *str, char **envp)
 {
     int read;
-    read = ft_read_line(str);
+    read = ft_read_line(str, envp);
     if(read == 1)
         return(1);
     return(0);

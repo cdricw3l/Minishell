@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:52:00 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/07 14:46:10 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:52:05 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 typedef struct s_token
 {
     char            *string;
+    
     int             token;
     int             precedence;
     int             asso;
@@ -63,15 +64,17 @@ int     ft_delete_token_lst(t_token **token_lst);
 
 //display fonction
 void    ft_display_commande_lst(t_token *token_lst);
+void    ft_display_token_node(t_token *token_lst);
 void    ft_display_token_node_lst(t_token *token_lst);
 void    ft_display_token_sequence_lst(t_token *token_lst);
 void	print_ast(t_token *node, int depth);
 void 	print_ast_simple(t_token *node, int indent);
 
-
 int     ft_get_precedence(int token);
 int     ft_get_associativity(int token);
 char    *ft_get_str_token(int token);
 
+
+void    ft_binary_tree_traversal(t_token *node);
 
 #endif
