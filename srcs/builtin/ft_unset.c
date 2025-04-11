@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/11 13:12:51 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:27:24 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int ft_delete_from_env(char *env, char **var)
         idx = ft_idx_of(env, '=');
         if(idx != -1)
         {
-            if(ft_strncmp(env, var[i], idx) == 0)
+            if(ft_strncmp(env, var[i], ft_strlen(var[i])) == 0)
                 return(i);
         }
         i++;
@@ -92,6 +92,7 @@ char **ft_delete_variable(char **old_env, char **del_var, int valide_variable)
             new_env[j++] = old_env[i++];
     }
     new_env[j] = NULL;
+
     return(new_env);
 }
 
@@ -114,20 +115,16 @@ void ft_unset(char *variable, char ***envp)
         new_env size = actual size env - valide variable to delete.
     */
     valide_variable = ft_count_unset_valide_variable(&var[1]);
-    if(valide_variable)
-    {
-        new_env = ft_delete_variable(*envp, &var[1], valide_variable);
+    new_env = ft_delete_variable(*envp, &var[1], valide_variable);
         //ft_display_env(new_env);
-        if(!new_env)
-        {
-            free(var);
-            return;
-        }
-        free(*envp);
+    if(!new_env)
+    {
         free(var);
-        env_quick_s(new_env,ft_get_split_len(new_env),ft_str_env_cmp);
-        *envp = new_env;
-    }
-    else
         return;
+    }
+    env_quick_s(new_env,ft_get_split_len(new_env),ft_str_env_cmp);
+    free(*envp);
+    *envp = new_env;
+    ft_split_clean(&var);
+    return;
 }
