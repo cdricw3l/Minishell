@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/10 15:34:28 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/11 09:13:48 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,26 @@
 //error message;
 //bash: export: « 2x » : identifiant non valable
 
+
+char *ft_add_equal(char *str)
+{
+    char *changed_variable;
+    int new_variable_len;
+    int len;
+    // new len = variable len + len of =''
+    new_variable_len = ft_strlen(str) + 3;
+    changed_variable= malloc(sizeof(char) * (new_variable_len + 1));
+    if(!changed_variable)
+        return(NULL);
+    len = ft_strlen(str);
+    ft_strlcpy(changed_variable, str, len - 1);
+    changed_variable[len] =  61;
+    changed_variable[len + 1] =  39;
+    changed_variable[len + 2] =  39;
+    changed_variable[len + 3] =  '\0';
+    free(str);
+    return(changed_variable);
+}
 
 void ft_display_variables_list(char *envp[])
 {
@@ -68,7 +88,7 @@ int ft_idx_of(char *str, char c)
     return(-1);
 }
 /* fonction who check if de variable is arlready in env  before copying it */
-static int ft_is_on_env(char **env, char *var, int size)
+int ft_is_on_env(char **env, char *var, int size)
 {
     int i;
 
@@ -104,6 +124,17 @@ char **ft_add_variable(char **old_env, char **new_var)
     i = 0;
     while (i < ft_get_split_len(new_var))
     {
+        /* 
+            check  if the variable is nude : exemple: export Z.
+            We need change the variable format: Z=''. 
+        */
+
+        if(ft_idx_of(new_var[i],'=') == -1)
+        {
+            printf("pas de equal\n");
+            new_var[i] = ft_add_equal(new_var[i]);
+        }
+                
         idx_variable = ft_is_on_env(new_env, new_var[i],j);
         // check if the new variable is already in env.
         if(idx_variable != -1)
@@ -162,13 +193,17 @@ int ft_export(char ***env, char *args)
         {
             new_env = ft_add_variable(*env, &var[1]);
             if(!new_env)
+            {
+                free(var);
                 return(0);
-            
+            }
             free(*env);
             free(var);
             env_quick_s(new_env,ft_get_split_len(new_env),ft_str_env_cmp);
             *env = new_env;
         }
+        else
+            return(0);
     }
     return(1);
 }

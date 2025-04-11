@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:02:58 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/10 12:39:28 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/10 16:54:40 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		ft_cd(char *path);
 int     ft_exit(int ret);
 
 
+
 // Export fonction
 
 int     ft_export(char ***env, char *str);
@@ -35,5 +36,7 @@ char    **ft_add_variable(char **old_env, char **new_var);
 int     ft_check_variable(char *var);
 void    ft_display_variables_list(char *envp[]);
 int     ft_idx_of(char *str, char c);
+int     ft_is_on_env(char **env, char *var, int size);
+void    ft_unset(char *variable, char ***envp);
 
 #endif
