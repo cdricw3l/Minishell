@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 12:30:49 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/10 11:34:01 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/11 12:56:58 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
+
+
+//  VERIFIER LE MESSAGE D'erreur pour les acces non auautorise.
 
 char *ft_trim_path(char *path)
 {
