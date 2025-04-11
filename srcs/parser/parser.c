@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:32:32 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/11 13:12:11 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/11 13:42:24 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int ft_read_line(char *prompt, char **envp)
 
 		print_ast_start(ast_root);
         //ft_binary_tree_traversal(ast_root);
-		execute_ast(ast_root); // Execute AST!
+		execute_ast(ast_root, envp); // Execute AST!
         free(line);  // Free input line after processing
     }
     return 0;
