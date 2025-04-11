@@ -52,6 +52,13 @@ typedef struct s_token
 
 } t_token;
 
+// Structure to hold a list of redirections
+typedef struct s_redir {
+    int type;           // Token type: 5 (<), 6 (>), 7 (>>)
+    char *filename;     // Filename for redirection
+    struct s_redir *next; // Pointer to the next redirection in the list
+} t_redir;
+
 t_token *ft_tokenize(char *str);
 t_token *ft_create_ast(t_token *token_list);//Nami add
 t_token *ft_parse(char *str);//Nami add 
@@ -67,13 +74,16 @@ void    ft_display_commande_lst(t_token *token_lst);
 void    ft_display_token_node(t_token *token_lst);
 void    ft_display_token_node_lst(t_token *token_lst);
 void    ft_display_token_sequence_lst(t_token *token_lst);
-void	print_ast(t_token *node, int depth);
-void 	print_ast_simple(t_token *node, int indent);
+void 	print_ast_start(t_token *root); 
 
 int     ft_get_precedence(int token);
 int     ft_get_associativity(int token);
 char    *ft_get_str_token(int token);
 
+//redirection
+void add_redirection_to_list(t_redir **list_head, int type, char *filename);
+int apply_redirections(t_redir *list);
+void free_redir_list(t_redir *list);
 
 void    ft_binary_tree_traversal(t_token *node);
 

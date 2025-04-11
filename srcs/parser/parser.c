@@ -58,12 +58,10 @@ int ft_read_line(char *prompt, char **envp)
             free(line);
             continue;
         }
-        //printf("Generated AST:\n");
-        //print_ast(ast_root, 0);  // Print AST structure
+
+		print_ast_start(ast_root);
         //ft_binary_tree_traversal(ast_root);
-        //print_ast_simple(ast_root, 0); 
-        //ft_display_token_node_lst(ast_root);
-		execute_ast(ast_root, &envp); // Execute AST!
+		execute_ast(ast_root); // Execute AST!
         free(line);  // Free input line after processing
     }
     return 0;

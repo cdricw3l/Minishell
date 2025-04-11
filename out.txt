@@ -1,7 +1,15 @@
-hallo
-hallo
-hallo hallo
-hello how are you
-
-
-hallo from otherside
+color_code.txt
+error_managment
+git.txt
+include
+libft
+Makefile
+minishell
+out.txt
+README.md
+ressource
+srcs
+t2.txt
+temp.txt
+test_unit
+t.txt
