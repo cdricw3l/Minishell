@@ -17,7 +17,7 @@ static void execute_command(const char *command)
     }
     waitpid(pid, NULL, 0);
 }
-
+/*
 static void execute_with_redirection(t_token *node, int flags)
 {
     if (!node->left || !node->right)
@@ -55,7 +55,7 @@ static void execute_with_redirection(t_token *node, int flags)
     }
     waitpid(pid, NULL, 0);
 }
-
+*/
 // 입력 리다이렉션 처리 (<)
 void redirect_input_and_execute(t_token *node)
 {
@@ -356,7 +356,94 @@ void heredoc_redirect(t_token *node)
     }
 }
 
+void execute_ast(t_token *node) 
+{
+    if (!node) {
+        return;
+    }
 
+    t_redir *redir_list = NULL;
+    t_token *command_node = node;
+
+
+    while (command_node &&((command_node->token >= 5 && command_node->token <= 7)))//not heredoc here
+    {
+        if (!command_node->right || !command_node->right->string) {
+            fprintf(stderr, "minishell: syntax error near redirection\n");
+            free_redir_list(redir_list); 
+            return;
+        }
+        add_redirection_to_list(&redir_list, command_node->token, command_node->right->string);
+        command_node = command_node->left;
+    }
+
+    if (redir_list != NULL) 
+	{
+        pid_t pid = fork();
+        if (pid == -1) {
+            perror("fork failed");
+            free_redir_list(redir_list);
+            return;
+        }
+
+        if (pid == 0) 
+		{
+            if (apply_redirections(redir_list) == -1) 
+			{
+                free_redir_list(redir_list); // Free list in child before exiting
+                exit(EXIT_FAILURE); // Child exits on redirection error
+            }
+             execute_ast(command_node);
+             exit(EXIT_SUCCESS);
+
+        } 
+		else 
+		{ // Parent process
+            free_redir_list(redir_list); // Free the list in the parent
+            waitpid(pid, NULL, 0);
+        }
+
+    } 
+	else 
+	{
+        switch (command_node->token) // Use command_node here, as it's the relevant node
+        {
+			case 1: // CMD
+				execute_command(node->string);
+				break;
+
+			case 4: // PIPE
+				execute_pipe(node);
+				break;
+
+			case 10: // HEREDOC (<<) //added new codes for fixing unexpected crash after heredoc
+			{
+				int original_stdin = dup(STDIN_FILENO); // Save the original stdin
+				if (original_stdin == -1)
+				{
+					perror("dup failed");
+					return;
+				}
+				heredoc_redirect(node);
+				execute_ast(node->left); // Execute the command with redirected input
+				if (dup2(original_stdin, STDIN_FILENO) == -1) // Restore original stdin
+				{
+					perror("dup2 failed to restore stdin");
+				}
+				close(original_stdin);
+				break;
+			}
+			default:
+				fprintf(stderr, "minishell: Unknown or unhandled token type: %d\n", command_node->token);
+				break;
+        }
+    }
+     // Don't forget to free the redir_list if allocated, although it should be freed
+     // within the branches above. Adding a failsafe might be good if error paths are complex.
+     //free_redir_list(redir_list); // Probably redundant here.
+}
+
+/* april 9 before take care of multiple redirecton 
 void execute_ast(t_token *node)
 {
     if (!node)
@@ -401,16 +488,11 @@ void execute_ast(t_token *node)
             }
             close(original_stdin);
             break;
-        }
-		/*
-		case 10: // HEREDOC (<<)
-            heredoc_redirect(node);
-            execute_ast(node->left); // Execute the command after setting up heredoc. why? 
-            break;
-		*/
+        }		
         default:
             fprintf(stderr, "Unknown token type: %d\n", node->token);
             break;
     }
 }
+*/
 

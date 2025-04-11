@@ -27,10 +27,10 @@
 #include <stdio.h>
 #include <assert.h>
 #include <signal.h>
+#include <fcntl.h> // O_RDONLY, O_WRONLY, O_CREAT, O_TRUNC, O_APPEND
 
 #include "../srcs/exec/exec.h"
 #include "../srcs/parser/parser.h"
-//#include "../srcs/parser/tokenizer/tokenize.h" circular include issues
 #include "../libft/libft.h"
 #include "../srcs/builtin/builtin.h"
 #include "../srcs/execution/execution.h"

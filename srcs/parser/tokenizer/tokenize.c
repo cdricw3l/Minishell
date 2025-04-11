@@ -12,28 +12,6 @@
 
 #include "tokenize.h"
 
-/*
-void print_ast(t_token *node, int depth)
-{
-    if (!node)
-        return;
-
-    // Print current node with indentation based on depth
-    for (int i = 0; i < depth; i++)
-	{
-        printf("    ");  // Indentation for hierarchy
-	}
-	printf("@-- %s (Type: %d, Precedence: %d)\n", 
-		node->string ? node->string : "NULL", 
-		node->token, 
-		node->precedence);
-    // Print left subtree first
-    print_ast(node->left, depth + 1);   
-    // Print right subtree after
-    print_ast(node->right, depth + 1);
-}
-*/
-
 const char *get_token_type_string(int token_type) {
     switch (token_type) {
         case 0: return "STRING"; // Or a more specific type if you have one for filenames
@@ -116,6 +94,81 @@ t_token *ft_new_token_node(char *str, int token)
     token_node->right = NULL;
     return(token_node);
 }
+
+// Adding to the beginning is important for correct override behavior later.
+void add_redirection_to_list(t_redir **list_head, int type, char *filename) {
+    t_redir *new_redir = (t_redir *)malloc(sizeof(t_redir));
+    if (!new_redir) {
+        perror("malloc failed in add_redirection_to_list");
+        // Consider more robust error handling if needed
+        return;
+    }
+    new_redir->type = type;
+    new_redir->filename = filename; // Assuming filename persists; strdup if necessary
+    new_redir->next = *list_head;
+    *list_head = new_redir;
+}
+
+// --- Helper Function: Apply redirections from the list ---
+// Returns 0 on success, -1 on failure.
+int apply_redirections(t_redir *list) {
+    t_redir *current = list;
+
+    while (current) {
+        int fd = -1;
+        int flags = 0;
+        int target_std_fd = -1; // STDIN_FILENO or STDOUT_FILENO
+
+        switch (current->type) {
+            case 5: // INPUT REDIRECTION (<)
+                flags = O_RDONLY;
+                target_std_fd = STDIN_FILENO;
+                break;
+            case 6: // OUTPUT REDIRECTION (>)
+                flags = O_WRONLY | O_CREAT | O_TRUNC;
+                target_std_fd = STDOUT_FILENO;
+                break;
+            case 7: // APPEND REDIRECTION (>>)
+                flags = O_WRONLY | O_CREAT | O_APPEND;
+                target_std_fd = STDOUT_FILENO;
+                break;
+            default:
+                fprintf(stderr, "minishell: Internal error - Unknown redirection type %d\n", current->type);
+                return -1; // Indicate failure
+        }
+
+        fd = open(current->filename, flags, 0644); // Use standard permissions
+        if (fd == -1) {
+            perror(current->filename); // Print error related to the specific file
+            return -1; // Indicate failure
+        }
+
+        // If dup2 fails, we should still report error, maybe close fd
+        if (dup2(fd, target_std_fd) == -1) {
+            perror("dup2 failed");
+            close(fd); // Close the file descriptor we opened
+            return -1; // Indicate failure
+        }
+
+        // We MUST close the original file descriptor after dup2
+        close(fd);
+
+        current = current->next; // Move to the next redirection in the list
+    }
+    return 0; // Indicate success
+}
+
+// --- Helper Function: Free the redirection list ---
+void free_redir_list(t_redir *list) {
+    t_redir *current = list;
+    t_redir *next;
+    while (current) {
+        next = current->next;
+        // free(current->filename); // Only if you used strdup earlier
+        free(current);
+        current = next;
+    }
+} 
 
 void ft_add_back_node(t_token **lst, t_token *node)
 {
