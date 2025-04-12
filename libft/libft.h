@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:34:03 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/12 09:37:35 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/12 10:52:35 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ int 	ft_is_split_sort(char **split);
 void	ft_swap_str(char **str_1, char **str_2);
 int 	ft_is_split_sort(char **split);
 int 	ft_strlen_longest(char *str_1, char *str_2);
+char	*ft_skip_space(char *str);
 
 #endif

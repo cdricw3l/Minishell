@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:17:20 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/12 09:26:13 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/12 19:59:02 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ int tst_exe(void);
 int tst_export(char *envp[]);
 int tst_quick(int argc, char **argv, char *envp[]);
 int tst_variable(char *envp[]);
+int tst_echo(char *envp[]);
 
 #endif

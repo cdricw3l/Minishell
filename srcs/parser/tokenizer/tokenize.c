@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:36:54 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/12 08:10:49 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/12 20:59:16 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int ft_count_number_of_arg(char **split)
     int i;
 
     i = 1;
-    while (split[i] && ft_get_token(split[i])  == WORD)
+    while (split[i] && (ft_get_token(split[i])  == WORD || ft_get_token(split[i])  == VAR))
         i++;
     return(i - 1);
 }
@@ -30,7 +30,7 @@ char *ft_join_cmd_and_arg(char **split)
 
     new_str = ft_strdup(split[0]);
     i = 1;
-    while (split[i] && ft_get_token(split[i])  == WORD)
+    while (split[i] && (ft_get_token(split[i])  == WORD || ft_get_token(split[i])  == VAR))
     {
         new_str = ft_strjoin(new_str, " ");
         new_str = ft_strjoin(new_str, split[i]);

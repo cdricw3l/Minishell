@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_print.c                                   :+:      :+:    :+:   */
+/*   tst_echo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/28 14:16:19 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/12 12:51:18 by cw3l             ###   ########.fr       */
+/*   Created: 2025/04/12 19:38:22 by cw3l              #+#    #+#             */
+/*   Updated: 2025/04/12 20:51:32 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "test_unit.h"
 
-void	ft_split_print(char **split)
+int tst_echo(char **envp)
 {
-	while (*split)
-	{
-		write(1, *split, ft_strlen(*split));
-		write(1, "\n", 1);
-		split++;
-	}
+    TEST_START;
+    
+    //ft_display_env(envp);
+    char *var = ft_strdup("export NOFLAGS=1");
+    char **dup_env = ft_duplicate_env(envp);
+    ft_export(&dup_env,var);
+    assert(ft_is_variable("$NOFLAGS"));
+    
+    printf("%s\n", ft_get_env_variable(dup_env,"$NOFLAGS"));
+
+    ft_echo("echo $NOFLAGS", 1, dup_env);
+    return(1);
 }

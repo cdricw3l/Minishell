@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_print.c                                   :+:      :+:    :+:   */
+/*   ft_skip_space.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/28 14:16:19 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/12 12:51:18 by cw3l             ###   ########.fr       */
+/*   Created: 2025/04/12 10:51:46 by cw3l              #+#    #+#             */
+/*   Updated: 2025/04/12 10:52:25 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_split_print(char **split)
+char *ft_skip_space(char *str)
 {
-	while (*split)
-	{
-		write(1, *split, ft_strlen(*split));
-		write(1, "\n", 1);
-		split++;
-	}
+    if(!str)
+        return(NULL);
+    while (*str == 32)
+        str++;
+    return(str);
 }
