@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tst_change_vriable.c                               :+:      :+:    :+:   */
+/*   tst_variable.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 08:52:59 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/11 12:14:52 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/12 07:53:20 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,11 @@ int ft_strle(char *str)
 
 
 
-int main(void)
+int tst_variable(void)
 {
 
 
     char *s[] = {"unset","Z=1", "Z2=2", NULL};
-
     char t[] = "Z";
     assert(ft_delete_from(t,s) > 0);
     return(0);

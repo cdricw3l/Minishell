@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tst_export.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/04 15:05:02 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/12 07:24:20 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@
                 export a==1   = zsh: 1 not found
 
 */
-
-
-
-
 
 int ft_tst_check_variable(void)
 {

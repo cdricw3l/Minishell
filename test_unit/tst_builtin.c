@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/11 08:18:12 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/12 07:53:53 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int ft_read_line_test(char *str)
         // ft_display_token_node_lst(*token_lst);
         printf("voici line %s\n", line);
         ft_cd(line);
-        ft_pwd();
     }
     return(0);
 }
@@ -80,7 +79,7 @@ void    ft_filter_token(t_token *token_node, int token_value)
 int tst_builtin(int argc, char *envp[])
 {
     char *line;
-    t_token **token_lst;
+    t_token *token_lst;
     char **duplicate_env;
     (void)argc;
     
@@ -98,7 +97,7 @@ int tst_builtin(int argc, char *envp[])
         if(!token_lst)
             return(-1);
         if(ft_strncmp(line, "print",5) == 0)
-            ft_display_token_node_lst(*token_lst);
+            ft_display_token_node_lst(token_lst);
         else
         {
             //ft_cmd_launcher(*token_lst);
