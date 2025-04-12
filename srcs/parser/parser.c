@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:32:32 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/11 13:44:16 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/12 08:22:24 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int ft_read_line(char *prompt, char **envp)
 {
     char *line;
     t_token *ast_root;  // Now ft_tokenize returns a single AST root
-
+    (void)envp;
     while (1)
     {
         line = readline(prompt);
@@ -61,7 +61,7 @@ int ft_read_line(char *prompt, char **envp)
 
 		print_ast_start(ast_root);
         //ft_binary_tree_traversal(ast_root);
-		execute_ast(ast_root, &envp); // Execute AST!
+		//execute_ast(ast_root, &envp); // Execute AST!
         free(line);  // Free input line after processing
     }
     return 0;
