@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 07:23:51 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/12 07:41:22 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/12 09:44:06 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char *ft_get_variable(char *var, char **env)
     }
     return(NULL);
 }
+
 
 
 //Des outils de productions, des competence, des idées , une bonne equipe.

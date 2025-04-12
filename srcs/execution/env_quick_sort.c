@@ -3,26 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   env_quick_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:07:08 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/11 12:54:24 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/12 09:53:28 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 
-static char	*ft_extract_var(char *str)
+char *ft_extract_var(char *env_var)
 {
-	int		idx;
-	char	*new_var;
+    char *var;
+    int equal_idx;
 
-	idx = ft_idx_of(str, '=');
-	if (idx == -1)
-		return (str);
-	new_var = ft_strdup(str);
-	new_var[idx] = '\0';
-	return (new_var);
+    if(!env_var)
+        return(NULL);
+    equal_idx = ft_index_of_char(env_var, '=');
+    if(equal_idx == -1)
+        return(env_var);
+    var = ft_substr(env_var, 0, equal_idx);
+    return(var);
 }
 
 int	str_env_cmp_process(char *s1, char *s2, size_t n)
@@ -55,15 +56,10 @@ int	str_env_cmp_process(char *s1, char *s2, size_t n)
 int	ft_str_env_cmp(char *s1, char *s2, size_t n)
 {
 	int		process_r;
-	int		len;
 
 	if (n == 0)
 		return (0);	
-	if (ft_strlen(s1) >= ft_strlen(s2))
-		len = ft_strlen(s1);
-	else
-		len = ft_strlen(s2);
-	process_r = str_env_cmp_process(s1, s2, len);
+	process_r = str_env_cmp_process(s1, s2, ft_strlen_longest(s1,s2));
 	//TEST_SUCCES;
 	if (process_r != 0)
 		return (process_r);

@@ -44,7 +44,7 @@ EMPTY=
 
 
 OBJS= $(OBJS_MAIN) $(OBJS_BUILTIN) $(OBJS_PARSER) $(OBJS_EXEC_BIS) $(OBJS_EXEC)
-
+OBJS_T= $(OBJS_TEST) $(OBJS_BUILTIN) $(OBJS_PARSER) $(OBJS_EXEC_BIS) $(OBJS_EXEC)
 
 .PHONY: clean fclean run git testenv var lib tenv
 
@@ -71,7 +71,7 @@ fclean: clean
 mclean:
 	rm -f $(MEMORY_CHECK_PATH)/*
 
-tenv: $(OBJS_TEST) $(OBJS) 
+tenv: $(OBJS_T)
 # check if the PROD variable env value. The PROD variable define the path file for compilation especialy for the main().
 ifeq ($(PROD), 0)
 	@echo "\033[44m *** Start $(NAME) in test env \033[0m"
@@ -79,10 +79,10 @@ ifeq ($(NOFLAGS), 1)
 	@echo "\033[41m *** NO FLAGS! \033[0m\n"
 endif
 ifeq ($(OS), Darwin)
-	@$(CC) $(GFLAGS) -fsanitize=address  $(OBJS) -L $(LIBFT) -lft  -lreadline -o bin/test
+	$(CC) $(GFLAGS) -fsanitize=address  $(OBJS_T) -L $(LIBFT) -lft  -lreadline -o bin/test
 	@bin/test
 else ifeq ($(OS), Linux)
-	@$(CC) $(GFLAGS) -g $(OBJS) -L$(LIBFT) -lft -lreadline -o bin/test
+	@$(CC) $(GFLAGS) -g $(OBJS_T) -L$(LIBFT) -lft -lreadline -o bin/test
 	@valgrind --leak-check=full --log-file=valg_test  -s ./bin/test
 endif
 else ifeq ($(PROD), $(EMPTY))

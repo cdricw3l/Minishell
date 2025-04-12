@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:34:03 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/04 12:08:14 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/12 09:37:35 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,14 @@ void	ft_print_bit_8(int n);
 void	ft_print_bit_16(int n);
 void	ft_print_bit_32(int n);
 void	ft_print_bit_64(int n);
-int		ft_index_of(int *arr, int len, int n);
+int		ft_index_of_int(int *arr, int len, int n);
+int		ft_index_of_char(char *arr, char c);
 void 	ft_generate_number(int *arr, int size);
 int		ft_get_max_value(int *arr, int size);
 void    ft_split_quick_sort(char **split, int end, int (*cmp)(const char *,const char *, size_t len));
 int 	ft_is_split_sort(char **split);
 void	ft_swap_str(char **str_1, char **str_2);
 int 	ft_is_split_sort(char **split);
+int 	ft_strlen_longest(char *str_1, char *str_2);
 
 #endif
