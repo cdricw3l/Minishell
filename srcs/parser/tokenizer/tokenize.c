@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:36:54 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/12 20:59:16 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/12 23:26:49 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -294,7 +294,7 @@ t_token *ft_tokenize(char *str)
             */
             if(token == BUILTIN || token == CMD)
             {
-                // If token is BUILTIN or CMD, we count the number of WORD token after;
+                // If token is BUILTIN or CMD, we count the number of WORD or $VAR token after;
                 int args = ft_count_number_of_arg(&split[i]);
                 //and then we join the number of arg to the commande.
                 char *cmd_with_arg = ft_join_cmd_and_arg(&split[i]);

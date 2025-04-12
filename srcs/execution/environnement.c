@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environnement.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/11 12:52:36 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/12 23:30:31 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,5 @@ char **ft_duplicate_env(char *envp[])
     }
     dup_env[i] = NULL;
     /* bubble sort fonction ft_sort_env(dup_env); */
-    env_quick_s(dup_env,ft_get_split_len(dup_env),ft_str_env_cmp);
     return(dup_env);
 }
