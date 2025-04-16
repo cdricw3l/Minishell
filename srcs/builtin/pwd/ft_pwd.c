@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:06:30 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/16 15:02:45 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/16 15:59:00 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ void	ft_pwd(t_token *node)
 {
 	int		i;
 	char	path[1024];
+	int		len;
 
-	if(ft_strncmp(node->string,"pwd", ft_strlen(node->string)) != 0)
+	len = ft_strlen(node->string);
+	if (ft_strncmp(node->string, "pwd", len) != 0)
 	{
 		printf("pwd: too many arguments\n");
-		return;
+		return ;
 	}
 	if (!getcwd(path, sizeof(path)))
 	{
@@ -35,6 +37,3 @@ void	ft_pwd(t_token *node)
 	}
 	write(1, "\n", 1);
 }
-
-/*  !!!! Check for change sizeof buffer */ 
-// maybe change this error output.
