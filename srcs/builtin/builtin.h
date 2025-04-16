@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:02:58 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/16 14:37:01 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/16 15:02:54 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-# include "export_env_unset/enviro.h"
+# include "export_env_unset/environnement.h"
 #include "../../libft/libft.h"
 #include "../parser/tokenizer/tokenize.h"
 

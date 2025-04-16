@@ -6,36 +6,11 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/16 14:21:29 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/16 15:03:30 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "enviro.h"
-
-static char *transform_variable(char *str)
-{
-    char *changed_variable;
-    int new_variable_len;
-    char *add;
-    int len;
-    // new len = variable len + len of =''
-    new_variable_len = ft_strlen(str) + 3;
-    changed_variable= malloc(sizeof(char) * (new_variable_len + 1));
-    if(!changed_variable)
-        return(NULL);
-    len = ft_strlen(str);
-    // copy the origal variable.
-    ft_memcpy(changed_variable, str, len);
-    if(ft_idx_of(str, '=') != -1)
-        add = ft_strdup("''");
-    else
-        add = ft_strdup("=''");
-    // add ='' if ofrmat variable is Z or only '' if the format is Z=
-    ft_memcpy(&changed_variable[len], add, ft_strlen(add));
-    free(str);
-    free(add);
-    return(changed_variable);
-}
+#include "../builtin.h"
 
 static int ft_count_valide_variable(char **var, char **envp)
 {
@@ -59,7 +34,7 @@ static int ft_count_valide_variable(char **var, char **envp)
 
 static int  display_export_env(char ***env, char ***split_args)
 {
-    ft_split_clean(&split_args);
+    ft_split_clean(split_args);
     ft_print_env(*env, 1);
     return(1);
 }
@@ -100,7 +75,7 @@ int ft_export(char ***env, char *args)
     if(!(*env || !split_args))
         return(-1);
     if(!split_args[1] || ft_strncmp(split_args[1],"", 1) == 0)
-        return(display_export_env(env,split_args));
+        return(display_export_env(env,&split_args));
     add_variable_ex(env,split_args);
     ft_split_clean(&split_args);
     return(1);

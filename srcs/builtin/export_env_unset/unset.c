@@ -6,11 +6,11 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/16 13:32:59 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/16 15:04:07 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "enviro.h"
+#include "../builtin.h"
 
 int is_unset_valide_variable(char *var)
 {
@@ -55,7 +55,7 @@ int ft_delete_from_env(char *env, char **var)
     while (var[i] != NULL)
     {
 
-        idx = ft_idx_of(env, '=');
+        idx = ft_index_of_char(env, '=');
         if(idx != -1)
             if(ft_strncmp(env, var[i], ft_strlen(var[i])) == 0)
                 return(i);

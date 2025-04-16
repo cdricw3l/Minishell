@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 12:30:49 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/16 14:38:26 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/16 15:47:30 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,3 +122,59 @@ int	ft_cd(char *path)
 	}
 	return (1);
 }
+// char **ft_add_variable_to_env(char **old_env, char **new_var)
+// {    
+//     size_t i;
+//     size_t j;
+//     char **new_env;
+//     int env_len;
+//     int idx_variable;
+
+//     env_len = ft_get_split_len(old_env) + ft_get_split_len(new_var);
+//     new_env = malloc(sizeof(char *) * (env_len + 1));
+//     if(!new_env)
+//         return(NULL);
+//     i = 0;
+//     j = 0;
+//     while (i < ft_get_split_len(old_env))
+//         new_env[j++] = old_env[i++];
+//     i = 0;
+//     while (i < ft_get_split_len(new_var))
+//     {
+//         /* 
+//             check  if the variable is nude : exemple: export Z.
+//             We need change the variable format: Z=''. 
+//             or Z= ---> Z=''
+//         */
+
+//         if(ft_index_of_char(new_var[i],'=') == -1 || new_var[i][ft_index_of_char(new_var[i],'=') + 1] == '\0')
+//         {
+//             if(new_var[i][0] == '$')
+//             {
+//                 new_var[i] = ft_get_env_variable(old_env, new_var[i]);
+//                 if(!new_var[i])
+//                     continue;
+//                 new_var[i] = &new_var[i][ft_index_of_char(new_var[i],'=') + 1];
+//             }
+//             else
+//                 new_var[i] = transform_variable(new_var[i]);
+//         }
+                
+//         // check if the new variable is already in env.
+//         idx_variable = ft_is_variable_on_env(new_env, new_var[i],j);
+//         if(idx_variable != -1)
+//         {
+//             /* 
+//                 if the new variable is on env, th newest variable take place of the oldest variable.
+//                 Else, the new variable is add att the end of the variable list.
+//             */
+//             free(new_env[idx_variable]);
+//             new_env[idx_variable] = new_var[i];
+//         }
+//         else
+//             new_env[j++] = new_var[i];
+//         i++;
+//     }
+//     new_env[j] = NULL;
+//     return(new_env);
+// }

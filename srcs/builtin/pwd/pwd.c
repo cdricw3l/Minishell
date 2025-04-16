@@ -6,11 +6,11 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:06:30 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/09 16:06:46 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/16 15:02:45 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtin.h"
+#include "../builtin.h"
 
 void	ft_pwd(t_token *node)
 {

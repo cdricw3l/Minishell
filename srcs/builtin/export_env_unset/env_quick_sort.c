@@ -6,11 +6,11 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:07:08 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/16 14:49:00 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/16 15:02:12 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execution.h"
+#include "../builtin.h"
 
 static char *ft_extract_var(char *env_var)
 {

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enviro.h                                           :+:      :+:    :+:   */
+/*   environnement.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 13:06:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/16 14:49:29 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/16 15:00:26 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENVIRO_H
-#define ENVIRO_H
+#ifndef ENVIRONNEMENT_H
+#define ENVIRONNEMENT_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,7 +20,7 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 
-#include "../parser/tokenizer/tokenize.h"
+#include "../../parser/tokenizer/tokenize.h"
 
 // variable tools
 
@@ -29,6 +29,7 @@ int     ft_check_variable_export(char *var, char **envp);
 int     ft_is_variable_on_env(char **env, char *var, int size);
 int     ft_is_variable(char *str);
 char    *ft_parse_env_variable(char *env_var);
+char    *transform_variable(char *str);
 
 // environnement tools
 

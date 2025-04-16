@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/10 15:38:46 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/16 15:02:05 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtin.h"
-
+#include "../builtin.h"
 
 int ft_exit(int ret)
 {
