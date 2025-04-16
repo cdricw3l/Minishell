@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tst_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:17:01 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/04 09:32:50 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/12 07:51:56 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int main(int argc, char **argv, char *envp[])
 
     //tst_quick(argc, argv,envp);
     // assert(tst_tokenizer() == 1);
-    assert(tst_export(envp) == 1);
+    //assert(tst_export(envp) == 1);
+    assert(tst_variable() == 1);
 
     //printf("%d\n",tst_builtin(argc,envp));
     //assert(tst_exe() == 1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/04/07 14:45:38 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/12 08:21:58 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
  #include "../include/main.h"
 
 
- int main(void)//int argc char **argv, char **env
+ int main(int argc, char **argv, char **envp)
  {
- 	ft_start_minishell("minishell: ");
+	(void)argc;
+	(void)argv;
+	char **dupplicate_env;
+
+	dupplicate_env = ft_duplicate_env(envp);
+ 	ft_start_minishell("minishell: ", dupplicate_env);
  	return(0);
  }
  

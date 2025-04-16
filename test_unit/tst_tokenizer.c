@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tst_tokenizer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:07:18 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/03 16:09:35 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/12 07:54:55 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int tst_get_token(void)
 
 int tst_tokenizer(void)
 {
-    t_token **token_lst;
+    t_token *token_lst;
     
     char line[] = "echo < hello.txt | grep 'Hello world'"; 
 
@@ -66,10 +66,10 @@ int tst_tokenizer(void)
     tst_get_token();
     
     token_lst = ft_tokenize(line);
-    ft_display_token_node_lst(*token_lst);
-    ft_display_commande_lst(*token_lst);
-    ft_display_token_sequence_lst(*token_lst);
-    ft_delete_token_lst(token_lst);
+    ft_display_token_node_lst(token_lst);
+    ft_display_commande_lst(token_lst);
+    ft_display_token_sequence_lst(token_lst);
+    ft_delete_token_lst(&token_lst);
     
     return(1);
 }

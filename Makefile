@@ -11,7 +11,7 @@ CC=gcc
 GFLAGS= -Werror -Wall -Wextra
 endif
 
-PROD=1
+PROD=0
 
 MEMORY_CHECK_PATH= error_managment/valgrind
 
@@ -46,16 +46,16 @@ EMPTY=
 OBJS= $(OBJS_MAIN) $(OBJS_BUILTIN) $(OBJS_PARSER) $(OBJS_EXEC_BIS) $(OBJS_EXEC)
 
 
-.PHONY: clean fclean run git testenv var lib t
+.PHONY: clean fclean run git testenv var lib tenv
 
 $(NAME): $(OBJS)
 	$(CC) $(GFLAGS) $(OBJS) -L$(LIBFT) -lft -o $(NAME) -lreadline
 	
 run: $(NAME)
 ifeq ($(OS), Darwin)
-	bin/$(NAME)
+	./$(NAME)
 else ifeq ($(OS), Linux)
-	valgrind --leak-check=full --log-file=$(MEMORY_CHECK_PATH)/$(DATE) -s ./$(NAME)
+	valgrind --leak-check=full --log-file=$(MEMORY_CHECK_PATH) -s ./$(NAME)
 endif
 
 # cleaning rules
@@ -71,19 +71,13 @@ fclean: clean
 mclean:
 	rm -f $(MEMORY_CHECK_PATH)/*
 
-
-t: $(OBJS) 
+tenv: $(OBJS_TEST) $(OBJS) 
 # check if the PROD variable env value. The PROD variable define the path file for compilation especialy for the main().
 ifeq ($(PROD), 0)
 	@echo "\033[44m *** Start $(NAME) in test env \033[0m"
-else
-	@echo "\033[0;32m *** Start $(NAME) in prod env \033[0m"
-endif
-# Check the NOFLAGS variable. If NOFLAGS=1, No flags are used for the compilation and a warning message is displayed.
 ifeq ($(NOFLAGS), 1)
 	@echo "\033[41m *** NO FLAGS! \033[0m\n"
 endif
-# check if the of is darwin/mac
 ifeq ($(OS), Darwin)
 	@$(CC) $(GFLAGS) -fsanitize=address  $(OBJS) -L $(LIBFT) -lft  -lreadline -o bin/test
 	@bin/test
@@ -91,6 +85,14 @@ else ifeq ($(OS), Linux)
 	@$(CC) $(GFLAGS) -g $(OBJS) -L$(LIBFT) -lft -lreadline -o bin/test
 	@valgrind --leak-check=full --log-file=valg_test  -s ./bin/test
 endif
+else ifeq ($(PROD), $(EMPTY))
+	@echo "\033[0;32m *** Start $(NAME) in prod env \033[0m"
+	@$(MAKE) run
+endif
+# Check the NOFLAGS variable. If NOFLAGS=1, No flags are used for the compilation and a warning message is displayed.
+
+# check if the of is darwin/mac
+
 
 
 git: fclean

@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   tst_pipe.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/10 15:38:46 by cw3l             ###   ########.fr       */
+/*   Created: 2025/04/09 09:41:50 by cbouhadr          #+#    #+#             */
+/*   Updated: 2025/04/09 13:24:04 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtin.h"
+// input hello ll | eo
+// output h****
 
-
-int ft_exit(int ret)
-{
-    exit(ret);
-    return(ret);
-}
+// int tst_pipe(char *envp[])
+// {
+    
+// }

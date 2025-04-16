@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:07:08 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/04 15:10:29 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/11 12:54:24 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ int	str_env_cmp_process(char *s1, char *s2, size_t n)
 		}
 		i++;
 	}
-	free(trimed_s1);
-	free(trimed_s2);
+	if(trimed_s1)
+		free(trimed_s1);
+	if(trimed_s2)
+		free(trimed_s2);
 	return (0);
 }
 
@@ -62,6 +64,7 @@ int	ft_str_env_cmp(char *s1, char *s2, size_t n)
 	else
 		len = ft_strlen(s2);
 	process_r = str_env_cmp_process(s1, s2, len);
+	//TEST_SUCCES;
 	if (process_r != 0)
 		return (process_r);
 	return (0);
@@ -91,7 +94,6 @@ int	ft_split_part(char **s, int end, int (*cmp)(char *, char *, size_t len))
 void	env_quick_s(char **s, int end, int (*cmp)(char *, char *, size_t len))
 {
 	int	i;
-
 	if (end <= 1)
 		return ;
 	i = ft_split_part(s, end, cmp);

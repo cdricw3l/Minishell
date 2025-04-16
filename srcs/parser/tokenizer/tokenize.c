@@ -3,64 +3,83 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:36:54 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/03 16:11:45 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/12 08:39:18 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenize.h"
+#include <assert.h>
 
-void print_ast_simple(t_token *node, int indent) 
+int ft_count_number_of_arg(char **split)
 {
-    if (node == NULL) 
-	{
-        return;
-    }
-    // Print node value and precedence
-    for (int i = 0; i < indent; i++) printf("  ");
-    printf("Node: '%s' (Prec: %d)\n", node->string ? node->string : "N/A", node->precedence);
+    int i;
 
-    // Recursively print left child
-    if (node->left) {
-        for (int i = 0; i < indent; i++) printf("  ");
-        printf(" L-> ");
-        print_ast_simple(node->left, indent + 1);
-    } else {
-         for (int i = 0; i < indent; i++) printf("  ");
-         printf(" L-> NULL\n");
-    }
+    i = 1;
+    while (split[i] && ft_get_token(split[i])  == WORD)
+        i++;
+    return(i - 1);
+}
 
-    // Recursively print right child
-    if (node->right) {
-        for (int i = 0; i < indent; i++) printf("  ");
-        printf(" R-> ");
-        print_ast_simple(node->right, indent + 1);
-    } else {
-         for (int i = 0; i < indent; i++) printf("  ");
-         printf(" R-> NULL\n");
+char *ft_join_cmd_and_arg(char **split)
+{
+    char *new_str;
+    int i;
+
+    new_str = ft_strdup(split[0]);
+    i = 1;
+    while (split[i] && ft_get_token(split[i])  == WORD)
+    {
+        new_str = ft_strjoin(new_str, " ");
+        new_str = ft_strjoin(new_str, split[i]);
+        i++;
+    }
+    return(new_str);
+}
+
+const char *get_token_type_string(int token_type) {
+    switch (token_type) {
+        case 0: return "STRING"; // Or a more specific type if you have one for filenames
+        case 1: return "CMD";
+        case 4: return "PIPE";
+        case 5: return "INPUT_REDIRECT";
+        case 6: return "OUTPUT_REDIRECT";
+        case 7: return "APPEND_REDIRECT";
+        case 10: return "HEREDOC (<<)";
+        case 12: return "BUILTIN";
+        default: return "UNKNOWN";
     }
 }
 
-void print_ast(t_token *node, int depth)
+void print_ast(t_token *node, int level) 
 {
-    if (!node)
+    if (node == NULL) {
         return;
+    }
 
-    // Print current node with indentation based on depth
-    for (int i = 0; i < depth; i++)
-	{
-        printf("    ");  // Indentation for hierarchy
-	}
-	printf("@-- %s (Type: %d, Precedence: %d)\n", 
-		node->string ? node->string : "NULL", 
-		node->token, 
-		node->precedence);
-    // Print left subtree first
-    print_ast(node->left, depth + 1);   
-    // Print right subtree after
-    print_ast(node->right, depth + 1);
+    for (int i = 0; i < level - 1; i++) {
+        printf("|   ");
+    }
+
+    if (level > 0) {
+        printf("|-- ");
+    }
+
+    printf("%s", get_token_type_string(node->token));
+    if (node->string) {
+        printf(" (%s)", node->string);
+    }
+    printf("\n");
+
+    print_ast(node->left, level + 1);
+    print_ast(node->right, level + 1);
+}
+
+void print_ast_start(t_token *root) 
+{
+    print_ast(root, 0);
 }
 
 int ft_delete_token_lst(t_token **token_lst)
@@ -103,6 +122,81 @@ t_token *ft_new_token_node(char *str, int token)
     token_node->right = NULL;
     return(token_node);
 }
+
+// Adding to the beginning is important for correct override behavior later.
+void add_redirection_to_list(t_redir **list_head, int type, char *filename) {
+    t_redir *new_redir = (t_redir *)malloc(sizeof(t_redir));
+    if (!new_redir) {
+        perror("malloc failed in add_redirection_to_list");
+        // Consider more robust error handling if needed
+        return;
+    }
+    new_redir->type = type;
+    new_redir->filename = filename; // Assuming filename persists; strdup if necessary
+    new_redir->next = *list_head;
+    *list_head = new_redir;
+}
+
+// --- Helper Function: Apply redirections from the list ---
+// Returns 0 on success, -1 on failure.
+int apply_redirections(t_redir *list) {
+    t_redir *current = list;
+
+    while (current) {
+        int fd = -1;
+        int flags = 0;
+        int target_std_fd = -1; // STDIN_FILENO or STDOUT_FILENO
+
+        switch (current->type) {
+            case 5: // INPUT REDIRECTION (<)
+                flags = O_RDONLY;
+                target_std_fd = STDIN_FILENO;
+                break;
+            case 6: // OUTPUT REDIRECTION (>)
+                flags = O_WRONLY | O_CREAT | O_TRUNC;
+                target_std_fd = STDOUT_FILENO;
+                break;
+            case 7: // APPEND REDIRECTION (>>)
+                flags = O_WRONLY | O_CREAT | O_APPEND;
+                target_std_fd = STDOUT_FILENO;
+                break;
+            default:
+                fprintf(stderr, "minishell: Internal error - Unknown redirection type %d\n", current->type);
+                return -1; // Indicate failure
+        }
+
+        fd = open(current->filename, flags, 0644); // Use standard permissions
+        if (fd == -1) {
+            perror(current->filename); // Print error related to the specific file
+            return -1; // Indicate failure
+        }
+
+        // If dup2 fails, we should still report error, maybe close fd
+        if (dup2(fd, target_std_fd) == -1) {
+            perror("dup2 failed");
+            close(fd); // Close the file descriptor we opened
+            return -1; // Indicate failure
+        }
+
+        // We MUST close the original file descriptor after dup2
+        close(fd);
+
+        current = current->next; // Move to the next redirection in the list
+    }
+    return 0; // Indicate success
+}
+
+// --- Helper Function: Free the redirection list ---
+void free_redir_list(t_redir *list) {
+    t_redir *current = list;
+    t_redir *next;
+    while (current) {
+        next = current->next;
+        // free(current->filename); // Only if you used strdup earlier
+        free(current);
+        current = next;
+    }
+} 
 
 void ft_add_back_node(t_token **lst, t_token *node)
 {
@@ -192,20 +286,156 @@ t_token *ft_tokenize(char *str)
             free(joined);
         }
         else
-        {
-            new_node = ft_new_token_node(split[i], token);
-        }
+        {   
+            /* 
+                cedric if modification: 
+                get all the word after CMD token or BUILTIN token.
+                
+            */
+            if(token == BUILTIN || token == CMD)
+            {
+                // If token is BUILTIN or CMD, we count the number of WORD token after;
+                int args = ft_count_number_of_arg(&split[i]);
+                //and then we join the number of arg to the commande.
+                char *cmd_with_arg = ft_join_cmd_and_arg(&split[i]);
+                //create new node
+                new_node = ft_new_token_node(cmd_with_arg, token);
 
+                // increment by the number of arg.
+                i += args;
+            }
+            else
+                new_node = ft_new_token_node(split[i], token);
+        }
         // Add to the token list
         ft_add_back_node(&token_list, new_node);
-
         i++;
     }
     ft_split_clean(&split);
     return token_list;  // Return the list of tokens (linked list)
 }
 
+t_token *ft_create_ast(t_token *token_list)
+{
+    t_token *root = NULL;
+    t_token *current = NULL;
+    t_token *new_node = NULL;
+    t_token *delimiter_node = NULL; // To store the delimiter token
 
+    while (token_list)
+    {
+        new_node = token_list;
+        token_list = token_list->right;
+        new_node->right = NULL;
+
+        if (!root)
+        {
+            root = new_node;//If there is no root. the first one become root.
+        }
+        else
+        {
+            if (new_node->token == 10) //HEREDOC
+            {
+                new_node->left = current;
+                if (current)
+                    current->parent = new_node;
+                if (token_list)
+                {
+                    delimiter_node = token_list;
+                    token_list = token_list->right;
+                    delimiter_node->right = NULL;
+                    delimiter_node->left = NULL;
+                    new_node->left = root;
+                    if (root)
+                        root->parent = new_node;
+                    new_node->right = delimiter_node;
+                    delimiter_node->parent = new_node;
+                    root = new_node;
+                    current = new_node;
+                }
+                else
+                {
+                    fprintf(stderr, "Error: << without a delimiter in AST creation\n");
+                }
+                current = new_node;
+                continue;
+            }
+			else if (new_node->token == 5 || new_node->token == 6 || new_node->token == 7) // INPUT, OUTPUT, APPEND
+			{
+				if (root)
+				{
+					new_node->left = root;
+					if (root)
+						root->parent = new_node;
+
+					if (token_list) // The next token should be the filename
+					{
+						t_token *filename_node = token_list;
+						token_list = token_list->right; // Advance token_list to the token after the filename
+
+						new_node->right = filename_node;
+						filename_node->parent = new_node;
+						filename_node->right = NULL; // Ensure the filename node is properly terminated
+					}
+					else
+					{
+						fprintf(stderr, "Error: Redirection without a target\n");
+					}
+					root = new_node;
+					current = new_node;
+				}
+				else
+				{
+					fprintf(stderr, "Error: Redirection needs a command\n");
+				}
+				continue;
+			}
+            else if (new_node->token == 4) // PIPE
+            {
+                if (!root)
+                {
+                    root = new_node;
+                }
+                else
+                {
+                    new_node->left = root;
+                    if (root)
+                        root->parent = new_node;
+                    root = new_node;
+                }
+                current = new_node;
+                continue;
+            }
+            else if (new_node->precedence == 1 && current && current->precedence == 1)
+            {
+                char *new_str = malloc(strlen(current->string) + strlen(new_node->string) + 2);
+                sprintf(new_str, "%s %s", current->string, new_node->string);
+                free(current->string);
+                current->string = new_str;
+                free(new_node);
+            }
+            else if (root && new_node->precedence > root->precedence)
+            {
+                new_node->left = root;
+                root->parent = new_node;
+                root = new_node;
+            }
+            else if (root)
+            {
+                current = root;
+                while (current->right)
+                    current = current->right;
+                current->right = new_node;
+                new_node->parent = current;
+            }
+        }
+        current = new_node;
+    }
+
+    return root;
+}
+
+/* It works well except for multiple redirection
 t_token *ft_create_ast(t_token *token_list)
 {
     t_token *root = NULL;
@@ -225,7 +455,7 @@ t_token *ft_create_ast(t_token *token_list)
         }
         else
         {
-			if (new_node->token == HEREDOC)
+			if (new_node->token == 10) //HEREDOC
             {
 				// The command before '<<' becomes the left child
 				new_node->left = current;
@@ -259,6 +489,117 @@ t_token *ft_create_ast(t_token *token_list)
 				continue; // Skip the default 'current' update at the end
                 
             }
+			else if (new_node->token == 6) // OUTPUT_REDIRECT
+            {
+                if (root && root->right && root->right->token == 1) // CMD
+                {
+                    t_token *command_node = root->right;
+                    new_node->left = command_node;
+                    command_node->parent = new_node;
+
+                    // The filename is the next token in the list
+                    if (token_list)
+                    {
+                        new_node->right = token_list;
+                        token_list->parent = new_node;
+                        // Move to the next token
+                        token_list = token_list->right;
+                    }
+                    else
+                    {
+                        fprintf(stderr, "Error: Output redirection without a filename\n");
+                        // Handle error
+                    }
+                    root->right = new_node;
+                    new_node->parent = root;
+                }
+                else if (root && root->token == 1) // CMD
+                {
+                    new_node->left = root;
+                    root->parent = new_node;
+                    if (token_list)
+                    {
+                        new_node->right = token_list;
+                        token_list->parent = new_node;
+                        token_list = token_list->right;
+                    }
+                    else
+                    {
+                        fprintf(stderr, "Error: Output redirection without a filename\n");
+                    }
+                    root = new_node;
+                }
+                else
+                {
+                    fprintf(stderr, "Error: Output redirection needs a command\n");
+                    // Handle error
+                }
+                continue; // Skip the default current update
+            }
+			else if (new_node->token == 4) // PIPE
+			{
+				if (!root)
+				{
+					root = new_node;
+				}
+				else
+				{
+					new_node->left = root;
+					if (root)
+						root->parent = new_node;
+					root = new_node;
+				}
+				current = new_node;
+				continue; // Move to the next token
+			}
+			else if (new_node->token == 7) // APPEND_REDIRECT
+			{
+				if (root && root->right && root->right->token == 1) // CMD
+				{
+					t_token *command_node = root->right;
+					new_node->left = command_node;
+					command_node->parent = new_node;
+
+					// The filename is the next token in the list
+					if (token_list)
+					{
+						new_node->right = token_list;
+						token_list->parent = new_node;
+						// Move to the next token
+						token_list = token_list->right;
+					}
+					else
+					{
+						fprintf(stderr, "Error: Append redirection without a filename\n");
+						// Handle error
+					}
+					root->right = new_node;
+					new_node->parent = root;
+				}
+				else if (root && root->token == 1) // CMD
+				{
+					new_node->left = root;
+					root->parent = new_node;
+					if (token_list)
+					{
+						new_node->right = token_list;
+						token_list->parent = new_node;
+						token_list = token_list->right;
+					}
+					else
+					{
+						fprintf(stderr, "Error: Append redirection without a filename\n");
+					}
+					root = new_node;
+				}
+				else
+				{
+					fprintf(stderr, "Error: Append redirection needs a command\n");
+					// Handle error
+				}
+				continue; // Skip the default current update
+			}
+			// Inside ft_create_ast, when processing a new_node
             else if (new_node->precedence == 1 && current && current->precedence == 1)
             {
                 // Join arguments (e.g., "echo hello world")
@@ -285,9 +626,9 @@ t_token *ft_create_ast(t_token *token_list)
         }
         current = new_node;
     }
-
     return root; // Return the constructed AST
 }
+*/
 
 /* 3) work well. Before doing heredoc
 t_token *ft_create_ast(t_token *token_list)
@@ -343,8 +684,10 @@ t_token *ft_parse(char *str)
 {
 	t_token *token_list = ft_tokenize(str); // Step 1: Tokenize input
     if (!token_list)
+    {
+        printf("error\n");
         return NULL;
-
+    }
     t_token *ast = ft_create_ast(token_list); // Step 2: Build AST from tokens
     return ast;
 } 
