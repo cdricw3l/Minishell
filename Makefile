@@ -65,7 +65,7 @@ clean:
 	rm -f test_unit/test_unit
 
 fclean: clean
-	rm -f bin/$(NAME) bin/test
+	rm -f $(NAME) bin/test
 	rm -f valg_test 
 
 mclean:
