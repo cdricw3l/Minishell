@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/12 23:31:09 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/16 10:40:17 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,19 @@
 /*
     Transform variable format Z to Z=''
 */
+
+void ft_print_env(char **env)
+{
+    char **dup_env;
+
+    if(!env)
+        return;
+    dup_env = ft_duplicate_env(env);
+    env_quick_s(dup_env,ft_get_split_len(dup_env),ft_str_env_cmp);
+    ft_split_print(dup_env);
+    ft_split_clean(&dup_env);
+}
+
 char *transform_variable(char *str)
 {
     char *changed_variable;
@@ -181,8 +194,8 @@ int ft_export(char ***env, char *args)
     {
         /*  if no args shell display the list of variable env */
         ft_split_clean(&var);
-        env_quick_s(*env,ft_get_split_len(*env),ft_str_env_cmp);
-        ft_split_print(*env);
+        ft_print_env(*env);
+        
         return(1);
     }
     else
@@ -200,7 +213,6 @@ int ft_export(char ***env, char *args)
             }
             free(*env);
             free(var);
-            env_quick_s(new_env,ft_get_split_len(new_env),ft_str_env_cmp);
             *env = new_env;
         }
         else
