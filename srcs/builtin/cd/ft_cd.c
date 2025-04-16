@@ -17,6 +17,7 @@ static char	*ft_trim_path(char *path)
 	int	i;
 	int	len;
 
+	printf("voici path %s\n",path);
 	len = ft_strlen(path);
 	i = 0;
 	while (path[i] == 32)
@@ -68,7 +69,6 @@ static int	ft_check_path(char *str)
 
 static int	ft_return_to_home(char *path)
 {
-	TEST_START;
 	char	*home_path;
 	int		chdir_return;
 
@@ -94,7 +94,7 @@ int	ft_cd(char *path)
 	if (!path || !ft_check_path(path))
 		return (-1);
 	if (ft_strncmp(path, "cd", ft_strlen(path)) == 0)
-		return (ft_return_to_home(path));
+		return(ft_return_to_home(path));
 	else
 	{
 		path = ft_trim_path(path);
