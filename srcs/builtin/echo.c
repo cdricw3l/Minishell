@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 12:29:53 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/12 21:14:59 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/16 10:15:28 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ void	ft_echo(char *str, int fd, char **envp)
 	i = 1;
 	arg = 0;
     if(!str || !*envp)
+    {
+
         return ;
+    }
 	split_args = ft_split(str,32);
     if(!split_args)
         return ;
