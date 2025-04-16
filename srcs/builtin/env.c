@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 12:29:53 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/16 11:44:27 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/16 11:52:18 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int ft_check_env_format(char **split_ars, char **envp)
 int ft_env(char *args, char ***envp)
 {
     char **var;
+    char **tmp_env;
     
     if(!args)
         return (-1);
@@ -67,7 +68,20 @@ int ft_env(char *args, char ***envp)
     }
     else
     {
-        int i = ft_check_env_format(&var[1],*envp);
+        if(!ft_check_env_format(&var[1],*envp))
+        {
+            ft_split_clean(&var);
+            return(1);
+        }
+        tmp_env = ft_add_variable(*envp, &var[1]);
+        if(!tmp_env)
+        {
+            ft_split_clean(&var);
+            return(1);
+        }
+        else
+            ft_split_print(tmp_env);
+        ft_split_clean(&tmp_env);
     }
     return(1);
 }
