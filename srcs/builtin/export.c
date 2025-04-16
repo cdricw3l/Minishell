@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/16 10:40:17 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/16 10:43:41 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
     Transform variable format Z to Z=''
 */
 
+
+/*
+    befor printig env, we need duplicate the env and sort him.
+*/
 void ft_print_env(char **env)
 {
     char **dup_env;

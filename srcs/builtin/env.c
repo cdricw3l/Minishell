@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 12:29:53 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/13 00:19:36 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/16 11:44:27 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,40 @@
 
 // env 11$1= Z=1 cas particulier $1 remplacer 
 
-// valide format:  env $1(add nothing) Z=1
-// int ft_check_env_format(char **split_ars)
-// {
-//     int i;
+//valide format:  env $1(add nothing) Z=1
 
-//     i = 0;
-//     while (split_ars[i])
-//     {
-//         if(ft_index_of_char(split_ars[i],'=') == -1)
-//             if(split_ars[i][0] != '$')
-        
-//     }
-    
-// }
+int ft_check_env_format(char **split_ars, char **envp)
+{
+    int i;
+    char *var;
+
+    i = 0;
+    while (split_ars[i])
+    {
+        if(ft_index_of_char(split_ars[i],'=') == -1)
+        {
+            if(split_ars[i][0] != '$')
+            {
+                printf("env: '%s': No such file or directory\n", split_ars[i]);
+                return(0);
+            }
+            else
+            {
+                var = ft_get_env_variable(envp, split_ars[i]);
+                if(var)
+                {
+                    if(ft_index_of_char(&var[ft_index_of_char(var,'=') + 1],'=') == -1)
+                    {
+                        printf("env: '%s': No such file or diresctory\n", &var[ft_index_of_char(var,'=') + 1]);
+                        return(0);
+                    }
+                } 
+            }
+        }
+        i++;
+    }  
+    return(1);
+}
 
 int ft_env(char *args, char ***envp)
 {
@@ -44,6 +64,10 @@ int ft_env(char *args, char ***envp)
         ft_split_clean(&var);
         ft_split_print(*envp);
         return(1);
+    }
+    else
+    {
+        int i = ft_check_env_format(&var[1],*envp);
     }
     return(1);
 }

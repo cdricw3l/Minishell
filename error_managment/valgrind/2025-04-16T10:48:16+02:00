@@ -1,0 +1,81 @@
+==3960946== Memcheck, a memory error detector
+==3960946== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==3960946== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==3960946== Command: ./minishell
+==3960946== Parent PID: 3960875
+==3960946== 
+==3960946== 
+==3960946== Process terminating with default action of signal 2 (SIGINT)
+==3960946==    at 0x490875B: kill (syscall-template.S:120)
+==3960946==    by 0x48A5F39: _rl_signal_handler (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==3960946==    by 0x48A6BEC: rl_getc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==3960946==    by 0x48A6460: rl_read_key (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==3960946==    by 0x488AC86: readline_internal_char (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==3960946==    by 0x4893D14: readline (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==3960946==    by 0x10C18B: ft_read_line (parser.c:47)
+==3960946==    by 0x10C268: ft_start_minishell (parser.c:73)
+==3960946==    by 0x109593: main (main.c:26)
+==3960946== 
+==3960946== HEAP SUMMARY:
+==3960946==     in use at exit: 218,302 bytes in 351 blocks
+==3960946==   total heap usage: 719 allocs, 368 frees, 235,175 bytes allocated
+==3960946== 
+==3960946== 5 bytes in 1 blocks are definitely lost in loss record 1 of 94
+==3960946==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3960946==    by 0x10D986: ft_strjoin (in /home/cbouhadr/Documents/mini_commun/minishell)
+==3960946==    by 0x10AAC8: ft_join_cmd_and_arg (tokenize.c:35)
+==3960946==    by 0x10B460: ft_tokenize (tokenize.c:300)
+==3960946==    by 0x10B8EE: ft_parse (tokenize.c:685)
+==3960946==    by 0x10C1E7: ft_read_line (parser.c:54)
+==3960946==    by 0x10C268: ft_start_minishell (parser.c:73)
+==3960946==    by 0x109593: main (main.c:26)
+==3960946== 
+==3960946== 6 bytes in 1 blocks are definitely lost in loss record 4 of 94
+==3960946==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3960946==    by 0x10D986: ft_strjoin (in /home/cbouhadr/Documents/mini_commun/minishell)
+==3960946==    by 0x10AAF2: ft_join_cmd_and_arg (tokenize.c:36)
+==3960946==    by 0x10B460: ft_tokenize (tokenize.c:300)
+==3960946==    by 0x10B8EE: ft_parse (tokenize.c:685)
+==3960946==    by 0x10C1E7: ft_read_line (parser.c:54)
+==3960946==    by 0x10C268: ft_start_minishell (parser.c:73)
+==3960946==    by 0x109593: main (main.c:26)
+==3960946== 
+==3960946== 17 bytes in 4 blocks are definitely lost in loss record 19 of 94
+==3960946==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3960946==    by 0x10D8EC: ft_strdup (in /home/cbouhadr/Documents/mini_commun/minishell)
+==3960946==    by 0x10AAA5: ft_join_cmd_and_arg (tokenize.c:31)
+==3960946==    by 0x10B460: ft_tokenize (tokenize.c:300)
+==3960946==    by 0x10B8EE: ft_parse (tokenize.c:685)
+==3960946==    by 0x10C1E7: ft_read_line (parser.c:54)
+==3960946==    by 0x10C268: ft_start_minishell (parser.c:73)
+==3960946==    by 0x109593: main (main.c:26)
+==3960946== 
+==3960946== 30 (24 direct, 6 indirect) bytes in 1 blocks are definitely lost in loss record 27 of 94
+==3960946==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3960946==    by 0x10DE60: ft_split (in /home/cbouhadr/Documents/mini_commun/minishell)
+==3960946==    by 0x109D5B: ft_env (env.c:38)
+==3960946==    by 0x10D38B: ft_execute_builtin (exec.c:385)
+==3960946==    by 0x10D606: execute_ast (exec.c:467)
+==3960946==    by 0x10C22E: ft_read_line (parser.c:64)
+==3960946==    by 0x10C268: ft_start_minishell (parser.c:73)
+==3960946==    by 0x109593: main (main.c:26)
+==3960946== 
+==3960946== 157 (144 direct, 13 indirect) bytes in 3 blocks are definitely lost in loss record 42 of 94
+==3960946==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3960946==    by 0x10ADB4: ft_new_token_node (tokenize.c:114)
+==3960946==    by 0x10B475: ft_tokenize (tokenize.c:302)
+==3960946==    by 0x10B8EE: ft_parse (tokenize.c:685)
+==3960946==    by 0x10C1E7: ft_read_line (parser.c:54)
+==3960946==    by 0x10C268: ft_start_minishell (parser.c:73)
+==3960946==    by 0x109593: main (main.c:26)
+==3960946== 
+==3960946== LEAK SUMMARY:
+==3960946==    definitely lost: 196 bytes in 10 blocks
+==3960946==    indirectly lost: 19 bytes in 5 blocks
+==3960946==      possibly lost: 0 bytes in 0 blocks
+==3960946==    still reachable: 218,087 bytes in 336 blocks
+==3960946==         suppressed: 0 bytes in 0 blocks
+==3960946== Reachable blocks (those to which a pointer was found) are not shown.
+==3960946== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==3960946== 
+==3960946== ERROR SUMMARY: 5 errors from 5 contexts (suppressed: 0 from 0)
