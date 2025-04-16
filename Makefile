@@ -19,7 +19,7 @@ SRCS_MAIN= srcs/main.c
 SRCS_PARSER= $(wildcard srcs/parser/lexer/*.c) $(wildcard srcs/parser/tokenizer/*.c) $(wildcard srcs/parser/*.c)
 SRCS_EXEC= $(wildcard srcs/exec/*.c)
 SRCS_EXEC_BIS= $(wildcard srcs/execution/*.c)
-SRCS_BUILTIN= $(wildcard srcs/builtin/*.c)
+SRCS_BUILTIN= $(wildcard srcs/builtin/*/*.c)
 SRCS_TEST= $(wildcard test_unit/*.c)
 
 LIBFT= libft

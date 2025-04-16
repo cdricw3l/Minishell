@@ -6,16 +6,16 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 12:30:49 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/11 12:56:58 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:38:26 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtin.h"
+#include "../builtin.h"
 
 
 //  VERIFIER LE MESSAGE D'erreur pour les acces non auautorise.
 
-char *ft_trim_path(char *path)
+static char *ft_trim_path(char *path)
 {
 	int i;
 	int len;
@@ -32,7 +32,7 @@ char *ft_trim_path(char *path)
 	return(path);
 }
 
-char	*ft_get_home_path(char *path, int cd)
+static char	*ft_get_home_path(char *path, int cd)
 {
 	char	*env;
 	char	*total_path;
@@ -49,7 +49,7 @@ char	*ft_get_home_path(char *path, int cd)
 	return (total_path);
 }
 
-int ft_check_path(char *str)
+static int ft_check_path(char *str)
 {
 	char **split;
 
@@ -64,7 +64,7 @@ int ft_check_path(char *str)
 	return(0);
 }
 
-int ft_return_to_home(char *path)
+static int ft_return_to_home(char *path)
 {
 	char	*home_path;
 	int		chdir_return;

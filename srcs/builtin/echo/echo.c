@@ -6,11 +6,11 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 12:29:53 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/16 10:15:28 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:37:14 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtin.h"
+#include "../builtin.h"
 
 void ft_process_echo(char **split_args, char **envp, int n, int fd)
 {

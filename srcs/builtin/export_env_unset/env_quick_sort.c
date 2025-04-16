@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env_quick_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:07:08 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/12 23:30:18 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/16 14:49:00 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 
-char *ft_extract_var(char *env_var)
+static char *ft_extract_var(char *env_var)
 {
     char *var;
     int equal_idx;
@@ -26,7 +26,7 @@ char *ft_extract_var(char *env_var)
     return(var);
 }
 
-int	str_env_cmp_process(char *s1, char *s2, size_t n)
+static  int	str_env_cmp_process(char *s1, char *s2, size_t n)
 {
 	size_t	i;
 	char	*trimed_s1;
@@ -66,7 +66,7 @@ int	ft_str_env_cmp(char *s1, char *s2, size_t n)
 	return (0);
 }
 
-int	ft_split_part(char **s, int end, int (*cmp)(char *, char *, size_t len))
+static int	ft_split_part(char **s, int end, int (*cmp)(char *, char *, size_t len))
 {
 	int		i;
 	int		j;

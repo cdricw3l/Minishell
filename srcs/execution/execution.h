@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 12:30:49 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/04 13:43:44 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:47:21 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ char    **ft_duplicate_env(char *envp[]);
 int     ft_get_env_len(char *envp[]);
 void    *ft_destroy_env(char **envp[], int idx);
 void    ft_display_env(char **env);
-void	env_quick_s(char **s, int end, int (*cmp)(char *, char *, size_t len)); //quick sort fonction for env.
 int	    ft_str_env_cmp(char *s1, char *s2, size_t n);
 int     ft_is_env_sort(char **split);
 
