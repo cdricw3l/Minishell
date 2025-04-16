@@ -87,4 +87,7 @@ void free_redir_list(t_redir *list);
 
 void    ft_binary_tree_traversal(t_token *node);
 
+//clean token tree;
+void    ft_binary_tree_destroy(t_token **lst);
+
 #endif

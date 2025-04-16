@@ -1,0 +1,85 @@
+==787587== Memcheck, a memory error detector
+==787587== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==787587== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==787587== Command: ./minishell
+==787587== Parent PID: 787573
+==787587== 
+==787587== 
+==787587== Process terminating with default action of signal 2 (SIGINT)
+==787587==    at 0x490253B: kill (syscall-template.S:120)
+==787587==    by 0x489E818: _rl_signal_handler (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==787587==    by 0x489F5B3: rl_getc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==787587==    by 0x489ED6C: rl_read_key (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==787587==    by 0x4882443: readline_internal_char (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==787587==    by 0x488B8D4: readline (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.2)
+==787587==    by 0x10CBF5: ft_read_line (parser.c:47)
+==787587==    by 0x10CCD6: ft_start_minishell (parser.c:73)
+==787587==    by 0x109593: main (main.c:26)
+==787587== 
+==787587== HEAP SUMMARY:
+==787587==     in use at exit: 249,234 bytes in 434 blocks
+==787587==   total heap usage: 1,385 allocs, 951 frees, 379,876 bytes allocated
+==787587== 
+==787587== 10 bytes in 1 blocks are definitely lost in loss record 9 of 115
+==787587==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==787587==    by 0x10E014: ft_strdup (in /home/ast/Documents/Minishell/minishell)
+==787587==    by 0x1096B7: ft_get_home_path (ft_cd.c:44)
+==787587==    by 0x109819: ft_return_to_home (ft_cd.c:76)
+==787587==    by 0x1098E6: ft_cd (ft_cd.c:97)
+==787587==    by 0x10D91F: ft_execute_builtin (exec.c:377)
+==787587==    by 0x10DCC1: execute_ast (exec.c:467)
+==787587==    by 0x10CC9C: ft_read_line (parser.c:64)
+==787587==    by 0x10CCD6: ft_start_minishell (parser.c:73)
+==787587==    by 0x109593: main (main.c:26)
+==787587== 
+==787587== 15 bytes in 5 blocks are definitely lost in loss record 20 of 115
+==787587==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==787587==    by 0x10E014: ft_strdup (in /home/ast/Documents/Minishell/minishell)
+==787587==    by 0x10B453: ft_join_cmd_and_arg (tokenize.c:46)
+==787587==    by 0x10BE35: ft_tokenize (tokenize.c:315)
+==787587==    by 0x10C2C5: ft_parse (tokenize.c:700)
+==787587==    by 0x10CC51: ft_read_line (parser.c:54)
+==787587==    by 0x10CCD6: ft_start_minishell (parser.c:73)
+==787587==    by 0x109593: main (main.c:26)
+==787587== 
+==787587== 50 bytes in 3 blocks are definitely lost in loss record 33 of 115
+==787587==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==787587==    by 0x10E0AE: ft_strjoin (in /home/ast/Documents/Minishell/minishell)
+==787587==    by 0x1096A5: ft_get_home_path (ft_cd.c:42)
+==787587==    by 0x109914: ft_cd (ft_cd.c:102)
+==787587==    by 0x10D91F: ft_execute_builtin (exec.c:377)
+==787587==    by 0x10DCC1: execute_ast (exec.c:467)
+==787587==    by 0x10CC9C: ft_read_line (parser.c:64)
+==787587==    by 0x10CCD6: ft_start_minishell (parser.c:73)
+==787587==    by 0x109593: main (main.c:26)
+==787587== 
+==787587== 63 bytes in 5 blocks are definitely lost in loss record 34 of 115
+==787587==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==787587==    by 0x10E0AE: ft_strjoin (in /home/ast/Documents/Minishell/minishell)
+==787587==    by 0x10B401: ft_clean_join (tokenize.c:35)
+==787587==    by 0x10B4A0: ft_join_cmd_and_arg (tokenize.c:51)
+==787587==    by 0x10BE35: ft_tokenize (tokenize.c:315)
+==787587==    by 0x10C2C5: ft_parse (tokenize.c:700)
+==787587==    by 0x10CC51: ft_read_line (parser.c:54)
+==787587==    by 0x10CCD6: ft_start_minishell (parser.c:73)
+==787587==    by 0x109593: main (main.c:26)
+==787587== 
+==787587== 507 (432 direct, 75 indirect) bytes in 9 blocks are definitely lost in loss record 58 of 115
+==787587==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==787587==    by 0x10B776: ft_new_token_node (tokenize.c:129)
+==787587==    by 0x10BE4A: ft_tokenize (tokenize.c:317)
+==787587==    by 0x10C2C5: ft_parse (tokenize.c:700)
+==787587==    by 0x10CC51: ft_read_line (parser.c:54)
+==787587==    by 0x10CCD6: ft_start_minishell (parser.c:73)
+==787587==    by 0x109593: main (main.c:26)
+==787587== 
+==787587== LEAK SUMMARY:
+==787587==    definitely lost: 570 bytes in 23 blocks
+==787587==    indirectly lost: 75 bytes in 9 blocks
+==787587==      possibly lost: 0 bytes in 0 blocks
+==787587==    still reachable: 248,589 bytes in 402 blocks
+==787587==         suppressed: 0 bytes in 0 blocks
+==787587== Reachable blocks (those to which a pointer was found) are not shown.
+==787587== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==787587== 
+==787587== ERROR SUMMARY: 5 errors from 5 contexts (suppressed: 0 from 0)

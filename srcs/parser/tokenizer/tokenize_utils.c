@@ -12,6 +12,24 @@
 
 #include "tokenize.h"
 
+void    ft_binary_tree_destroy(t_token **lst)
+{
+
+    if(!*lst)
+        return;
+    ft_binary_tree_traversal((*lst)->left);
+    if((*lst)->string)
+	{
+		free((*lst)->string);
+		(*lst)->string = NULL;
+	}
+    if(*lst)
+	    free(*lst);
+    ft_binary_tree_traversal((*lst)->right);
+    
+}
+
+
 void ft_binary_tree_traversal(t_token *node)
 {
     if(!node)

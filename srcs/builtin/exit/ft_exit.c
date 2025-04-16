@@ -12,8 +12,12 @@
 
 #include "../builtin.h"
 
-int	ft_exit(int ret)
+
+
+int	ft_exit(t_token **first_node,int ret,char ***envp)
 {
+	ft_split_clean(envp);
+	ft_binary_tree_destroy(first_node);
 	exit(ret);
 	return (ret);
 }

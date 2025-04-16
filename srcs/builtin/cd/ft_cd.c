@@ -31,6 +31,7 @@ static char	*ft_trim_path(char *path)
 
 static char	*ft_get_home_path(char *path, int cd)
 {
+	TEST_START;
 	char	*env;
 	char	*total_path;
 
@@ -40,9 +41,10 @@ static char	*ft_get_home_path(char *path, int cd)
 	if (cd == 0)
 		total_path = ft_strjoin(env, &path[1]);
 	else
-		total_path = env;
+		total_path = ft_strdup(env);
 	if (!total_path)
 		return (NULL);
+	TEST_SUCCES;
 	return (total_path);
 }
 
@@ -52,7 +54,10 @@ static int	ft_check_path(char *str)
 
 	split = ft_split(str, 32);
 	if (ft_get_split_len(split) <= 2 && ft_get_split_len(split) > 0)
+	{
+		ft_split_clean(&split);
 		return (1);
+	}
 	if (ft_get_split_len(split) == 3)
 		printf("cd: string not in pwd: %s\n", split[1]);
 	if (ft_get_split_len(split) > 3)
@@ -63,6 +68,7 @@ static int	ft_check_path(char *str)
 
 static int	ft_return_to_home(char *path)
 {
+	TEST_START;
 	char	*home_path;
 	int		chdir_return;
 
@@ -73,8 +79,11 @@ static int	ft_return_to_home(char *path)
 	if (chdir_return == -1)
 	{
 		printf("cd: no such file or directory: %s\n", path);
+		//free(home_path);
 		return (-1);
 	}
+	//free(home_path);
+	TEST_SUCCES;
 	return (1);
 }
 
@@ -82,7 +91,7 @@ int	ft_cd(char *path)
 {
 	int	chdir_return;
 
-	if (!ft_check_path(path))
+	if (!path || !ft_check_path(path))
 		return (-1);
 	if (ft_strncmp(path, "cd", ft_strlen(path)) == 0)
 		return (ft_return_to_home(path));

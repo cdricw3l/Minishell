@@ -31,4 +31,6 @@ int tst_quick(int argc, char **argv, char *envp[]);
 int tst_variable(char *envp[]);
 int tst_echo(char *envp[]);
 
+int tst_builtin(int argc, char *envp[]);
+
 #endif

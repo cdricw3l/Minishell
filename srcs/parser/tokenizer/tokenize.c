@@ -23,6 +23,21 @@ int ft_count_number_of_arg(char **split)
     return(i - 1);
 }
 
+char    *ft_clean_join(char **str, char *add)
+{
+    char *tmp;
+    char *new;
+
+    tmp = ft_strdup(*str);
+    if(!tmp)
+        return(NULL);
+    free(*str);
+    new = ft_strjoin(tmp, add);
+    free(tmp);
+    if(!new)
+        return(NULL);
+    return(new);
+}
 char *ft_join_cmd_and_arg(char **split)
 {
     char *new_str;
@@ -32,8 +47,8 @@ char *ft_join_cmd_and_arg(char **split)
     i = 1;
     while (split[i] && (ft_get_token(split[i])  == WORD || ft_get_token(split[i])  == VAR))
     {
-        new_str = ft_strjoin(new_str, " ");
-        new_str = ft_strjoin(new_str, split[i]);
+        new_str = ft_clean_join(&new_str, " ");
+        new_str = ft_clean_join(&new_str, split[i]);
         i++;
     }
     return(new_str);

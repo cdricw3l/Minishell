@@ -40,18 +40,25 @@ static int	str_env_cmp_process(char *s1, char *s2, size_t n)
 		if ((unsigned char)trimed_s1[i] != (unsigned char)trimed_s2[i])
 		{
 			if ((unsigned char)trimed_s1[i] > (unsigned char)trimed_s2[i])
+			{
+				free(trimed_s1);
+				free(trimed_s2);
 				return (1);
+			}
 			if ((unsigned char)trimed_s1[i] < (unsigned char)trimed_s2[i])
+			{
+				free(trimed_s1);
+				free(trimed_s2);
 				return (-1);
+			}
 		}
 		i++;
 	}
-	if (trimed_s1)
-		free(trimed_s1);
-	if (trimed_s2)
-		free(trimed_s2);
+	free(trimed_s1);
+	free(trimed_s2);
 	return (0);
 }
+
 
 int	ft_str_env_cmp(char *s1, char *s2, size_t n)
 {

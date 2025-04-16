@@ -15,11 +15,11 @@
 
 int main(int argc, char **argv, char *envp[])
 {
-    TEST_START;
     (void)argv;
     (void)argc;
     (void)envp;
 
+    tst_builtin(argc,envp);
     //ft_sort_env(envp);
     //ft_split_quick_sort(envp, ft_get_split_len(envp),ft_strncmp);
     // ft_split_print(envp);
@@ -30,11 +30,12 @@ int main(int argc, char **argv, char *envp[])
     // assert(tst_tokenizer() == 1);
     //assert(tst_export(envp) == 1);
     //assert(tst_variable(envp) == 1);
-    assert(tst_echo(envp) == 1);
+    //assert(tst_echo(envp) == 1);
 
     //printf("%d\n",tst_builtin(argc,envp));
     //assert(tst_exe() == 1);
+
+
     
-    TEST_SUCCES;
     return(0);
 }

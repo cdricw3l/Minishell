@@ -61,7 +61,7 @@ int ft_read_line(char *prompt, char **envp)
 
 		print_ast_start(ast_root);
         //ft_binary_tree_traversal(ast_root);
-		execute_ast(ast_root, &envp); // Execute AST!
+		execute_ast(ast_root,ast_root, &envp); // Execute AST!
         free(line);  // Free input line after processing
     }
     return 0;

@@ -68,7 +68,7 @@ static void execute_with_redirection(t_token *node, int flags)
 }
 */
 // 입력 리다이렉션 처리 (<)
-void redirect_input_and_execute(t_token *node, char ***envp)
+void redirect_input_and_execute(t_token *first_node, t_token *node, char ***envp)
 {
     if (!node->left || !node->right)
     {
@@ -93,7 +93,7 @@ void redirect_input_and_execute(t_token *node, char ***envp)
             exit(EXIT_FAILURE);
         }
         close(fd);
-        execute_ast(node->left, envp); // 입력 리다이렉션 후 왼쪽 명령 실행
+        execute_ast(first_node, node->left, envp); // 입력 리다이렉션 후 왼쪽 명령 실행
         exit(EXIT_SUCCESS);
     }
     else if (pid > 0)
@@ -105,13 +105,13 @@ void redirect_input_and_execute(t_token *node, char ***envp)
         perror("fork (input redirection)");
 }
 
-static void execute_pipe(t_token *node, char ***envp)
+static void execute_pipe(t_token *first_node ,t_token *node, char ***envp)
 {
     // 추가된 부분: 왼쪽 자식이 출력 리다이렉션인지 확인
     if (node->left && (node->left->token == 6 /* > */ || node->left->token == 7 /* >> */))
     {
         // 1. 왼쪽 리다이렉션 실행 (이 안에서 fork/exec/wait 발생)
-        execute_ast(node->left, envp);
+        execute_ast(first_node, node->left, envp);
 
         // 2. 오른쪽 명령어 실행 (stdin은 닫힌 상태로)
         pid_t right_pid = fork();
@@ -135,7 +135,7 @@ static void execute_pipe(t_token *node, char ***envp)
             }
 
             // 오른쪽 노드 실행
-            execute_ast(node->right, envp);
+            execute_ast(first_node, node->right, envp);
             exit(EXIT_SUCCESS); // 자식 프로세스 종료
         }
 
@@ -169,7 +169,7 @@ static void execute_pipe(t_token *node, char ***envp)
              exit(EXIT_FAILURE);
         }
         close(pipefd[1]); // 복제 후 원본 fd 닫기
-        execute_ast(node->left, envp); // 왼쪽 노드 실행
+        execute_ast(first_node, node->left, envp); // 왼쪽 노드 실행
         exit(EXIT_SUCCESS);
     }
 
@@ -192,7 +192,7 @@ static void execute_pipe(t_token *node, char ***envp)
              exit(EXIT_FAILURE);
          }
         close(pipefd[0]); // 복제 후 원본 fd 닫기
-        execute_ast(node->right, envp); // 오른쪽 노드 실행
+        execute_ast(first_node, node->right, envp); // 오른쪽 노드 실행
         exit(EXIT_SUCCESS);
     }
 
@@ -367,25 +367,25 @@ void heredoc_redirect(t_token *node)
     }
 }
 
-void ft_execute_builtin(t_token *node, char ***envp)
+void ft_execute_builtin(t_token *first_node, t_token *node, char ***envp)
 {
     if(ft_strncmp(node->string, "echo", ft_strlen("echo")) == 0)
         ft_echo(node->string, 0, *envp);
     if(ft_strncmp(node->string, "pwd", ft_strlen("pwd")) == 0)
-        ft_pwd(node);
+        ft_pwd(node->string);
     if(ft_strncmp(node->string, "cd", ft_strlen("cd")) == 0)
         ft_cd(node->string);
     if(ft_strncmp(node->string, "export", ft_strlen("export")) == 0)
         ft_export(envp, node->string);
     if(ft_strncmp(node->string, "exit", ft_strlen("exit")) == 0)
-        ft_exit(0);
+        ft_exit(&first_node, 0, envp);
     if(ft_strncmp(node->string, "unset", ft_strlen("unset")) == 0)
         ft_unset(node->string,envp);
     if(ft_strncmp(node->string, "env", ft_strlen("env")) == 0)
         ft_env(node->string,envp);
 } 
 
-void execute_ast(t_token *node, char ***envp) 
+void execute_ast(t_token *first_node,t_token *node, char ***envp) 
 {
     if (!node) {
         return;
@@ -422,7 +422,7 @@ void execute_ast(t_token *node, char ***envp)
                 free_redir_list(redir_list); // Free list in child before exiting
                 exit(EXIT_FAILURE); // Child exits on redirection error
             }
-             execute_ast(command_node, envp);
+             execute_ast(first_node,command_node, envp);
              exit(EXIT_SUCCESS);
 
         } 
@@ -442,7 +442,7 @@ void execute_ast(t_token *node, char ***envp)
 				break;
 
 			case 4: // PIPE
-				execute_pipe(node, envp);
+				execute_pipe(first_node,node, envp);
 				break;
 
 			case 10: // HEREDOC (<<) //added new codes for fixing unexpected crash after heredoc
@@ -454,7 +454,7 @@ void execute_ast(t_token *node, char ***envp)
 					return;
 				}
 				heredoc_redirect(node);
-				execute_ast(node->left, envp); // Execute the command with redirected input
+				execute_ast(first_node, node->left, envp); // Execute the command with redirected input
 				if (dup2(original_stdin, STDIN_FILENO) == -1) // Restore original stdin
 				{
 					perror("dup2 failed to restore stdin");
@@ -464,7 +464,7 @@ void execute_ast(t_token *node, char ***envp)
 			}
             case 12: // builtin part
             {
-                ft_execute_builtin(node, envp);
+                ft_execute_builtin(first_node,node, envp);
                 break;
             }
 			default:

@@ -12,14 +12,14 @@
 
 #include "../builtin.h"
 
-void	ft_pwd(t_token *node)
+void	ft_pwd(char *string)
 {
 	int		i;
 	char	path[1024];
 	int		len;
 
-	len = ft_strlen(node->string);
-	if (ft_strncmp(node->string, "pwd", len) != 0)
+	len = ft_strlen(string);
+	if (ft_strncmp(string, "pwd", len) != 0)
 	{
 		printf("pwd: too many arguments\n");
 		return ;

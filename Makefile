@@ -82,8 +82,8 @@ ifeq ($(OS), Darwin)
 	$(CC) $(GFLAGS) -fsanitize=address  $(OBJS_T) -L $(LIBFT) -lft  -lreadline -o bin/test
 	@bin/test
 else ifeq ($(OS), Linux)
-	@$(CC) $(GFLAGS) -g $(OBJS_T) -L$(LIBFT) -lft -lreadline -o bin/test
-	@valgrind --leak-check=full --log-file=valg_test  -s ./bin/test
+	@$(CC) $(GFLAGS) -g $(OBJS_T) -L$(LIBFT) -lft -lreadline -o test
+	@valgrind --leak-check=full --log-file=valg_test  -s ./test
 endif
 else ifeq ($(PROD), $(EMPTY))
 	@echo "\033[0;32m *** Start $(NAME) in prod env \033[0m"

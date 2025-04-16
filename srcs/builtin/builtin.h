@@ -23,10 +23,10 @@
 # include "../../libft/libft.h"
 # include "../parser/tokenizer/tokenize.h"
 
-void	ft_pwd(t_token *node);
+void	ft_pwd(char *string);
 void	ft_echo(char *str, int fd, char **envp);
 int		ft_cd(char *path);
-int		ft_exit(int ret);
+int		ft_exit(t_token **first_node, int ret, char ***envp);
 int		ft_env(char *args, char ***envp);
 int		ft_export(char ***env, char *str);
 void	ft_unset(char *variable, char ***envp);
