@@ -55,7 +55,7 @@ run: $(NAME)
 ifeq ($(OS), Darwin)
 	./$(NAME)
 else ifeq ($(OS), Linux)
-	valgrind --leak-check=full --log-file=$(MEMORY_CHECK_PATH)/$(DATE) -s ./$(NAME)
+	valgrind --leak-check=full --log-file=$(MEMORY_CHECK_PATH) -s ./$(NAME)
 endif
 
 # cleaning rules
