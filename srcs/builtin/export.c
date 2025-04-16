@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/16 10:43:41 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/16 12:41:13 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,11 @@ char *transform_variable(char *str)
     return(changed_variable);
 }
 
-int ft_check_variable(char *var)
+int ft_check_variable(char *var, char **envp)
 {
     int i;
-
+    char *tmp;
+    
     if(!var)
         return(0);
     i = 0;
@@ -74,9 +75,17 @@ int ft_check_variable(char *var)
         i++;
 
     //  if i = 0 the first char are not alpha so the variable is incorect. 
-    if(i == 0)
+    if(i == 0 && var[i] != '$')
         return(0);
-    
+
+    // $ variable treatment
+    else if(i == 0 && var[i] == '$')
+    {
+        tmp = ft_get_env_variable(envp,var);
+        if(!tmp)
+            return(1);
+        var = &tmp[ft_index_of_char(tmp,'=') + 1];
+    }
     // after that,only alnum are valide.
     while (var[i])
     {
@@ -145,7 +154,17 @@ char **ft_add_variable(char **old_env, char **new_var)
         */
 
         if(ft_idx_of(new_var[i],'=') == -1 || new_var[i][ft_idx_of(new_var[i],'=') + 1] == '\0')
-            new_var[i] = transform_variable(new_var[i]);
+        {
+            if(new_var[i][0] == '$')
+            {
+                new_var[i] = ft_get_env_variable(old_env, new_var[i]);
+                if(!new_var[i])
+                    continue;
+                new_var[i] = &new_var[i][ft_idx_of(new_var[i],'=') + 1];
+            }
+            else
+                new_var[i] = transform_variable(new_var[i]);
+        }
                 
         // check if the new variable is already in env.
         idx_variable = ft_is_on_env(new_env, new_var[i],j);
@@ -167,7 +186,7 @@ char **ft_add_variable(char **old_env, char **new_var)
 }
 
 
-int ft_count_valide_variable(char **var)
+int ft_count_valide_variable(char **var, char **envp)
 {
     int i;
 
@@ -176,7 +195,7 @@ int ft_count_valide_variable(char **var)
         return(0);
     while (*var)
     {
-        if(ft_check_variable(*var))
+        if(ft_check_variable(*var, envp))
             i++;
         var++;
     }
@@ -206,7 +225,7 @@ int ft_export(char ***env, char *args)
     {
         /* else add the variable to the variable list but before,
         we need to check and count the good variable format  for the new allocation*/
-        valide_variable_len = ft_count_valide_variable(&var[1]);
+        valide_variable_len = ft_count_valide_variable(&var[1], *env);
         if(valide_variable_len)
         {
             new_env = ft_add_variable(*env, &var[1]);

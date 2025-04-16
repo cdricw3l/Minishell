@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:02:58 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/12 23:36:16 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/16 12:31:55 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void    ft_unset(char *variable, char ***envp);
 
 // Export fonction
 
-int     ft_count_valide_variable(char **var);
+int     ft_count_valide_variable(char **var, char **envp);
 char    **ft_add_variable(char **old_env, char **new_var);
-int     ft_check_variable(char *var);
+int     ft_check_variable(char *var, char **envp);
 void    ft_display_variables_list(char *envp[]);
 int     ft_idx_of(char *str, char c);
 int     ft_is_on_env(char **env, char *var, int size);

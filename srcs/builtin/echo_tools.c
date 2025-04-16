@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo_var.c                                         :+:      :+:    :+:   */
+/*   echo_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 10:50:43 by cw3l              #+#    #+#             */
-/*   Updated: 2025/04/12 12:43:07 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/16 12:37:43 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,5 @@ char *ft_get_env_variable(char **envp, char *var)
     idx = ft_get_var_idx_in_env(envp, &var[1]);
     if(idx > -1)
         return(envp[idx]);
-    return(NULL);
+    return("");
 }

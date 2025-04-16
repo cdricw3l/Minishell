@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 12:29:53 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/16 11:52:18 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/16 12:40:38 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@ int ft_check_env_format(char **split_ars, char **envp)
                 var = ft_get_env_variable(envp, split_ars[i]);
                 if(var)
                 {
-                    if(ft_index_of_char(&var[ft_index_of_char(var,'=') + 1],'=') == -1)
+                    if(ft_index_of_char(&var[ft_index_of_char(var,'=') + 1],'=') == -1 && var[0] != '\0')
                     {
                         printf("env: '%s': No such file or diresctory\n", &var[ft_index_of_char(var,'=') + 1]);
                         return(0);
                     }
-                } 
+                }
+                else
+                    printf("here\n");
             }
         }
         i++;
