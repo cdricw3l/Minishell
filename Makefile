@@ -24,6 +24,7 @@ SRCS_TEST= $(wildcard test_unit/*.c)
 
 LIBFT= libft
 
+
 %.o:%.c
 	$(CC) $(GFLAGS)  -g -c $< -o $@
 
@@ -83,7 +84,7 @@ ifeq ($(OS), Darwin)
 	@bin/test
 else ifeq ($(OS), Linux)
 	@$(CC) $(GFLAGS) -g $(OBJS_T) -L$(LIBFT) -lft -lreadline -o test
-	@valgrind --leak-check=full --log-file=valg_test  -s ./test
+	@valgrind --leak-check=full --track-origins=yes --log-file=valg_test  -s ./test
 endif
 else ifeq ($(PROD), $(EMPTY))
 	@echo "\033[0;32m *** Start $(NAME) in prod env \033[0m"

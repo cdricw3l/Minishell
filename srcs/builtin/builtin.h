@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:02:58 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/16 16:44:37 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/17 13:32:33 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include "../../libft/libft.h"
 # include "../parser/tokenizer/tokenize.h"
 
-void	ft_pwd(char *string);
-void	ft_echo(char *str, int fd, char **envp);
+int	ft_pwd(char *string);
+int     ft_echo(char *str, int fd, char **envp);
 int		ft_cd(char *path);
 int		ft_exit(t_token **first_node, int ret, char ***envp);
 int		ft_env(char *args, char ***envp);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 12:29:53 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/16 15:55:05 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/17 12:27:36 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_process_echo(char **split_args, char **envp, int n, int fd)
 		write(fd, "\n", 1);
 }
 
-void	ft_echo(char *str, int fd, char **envp)
+int	ft_echo(char *str, int fd, char **envp)
 {
 	int		i;
 	int		arg;
@@ -49,11 +49,11 @@ void	ft_echo(char *str, int fd, char **envp)
 
 	i = 1;
 	arg = 0;
-	if (!str || !*envp)
-		return ;
+	if (!str || !envp)
+		return(-1);
 	split_args = ft_split(str, 32);
 	if (!split_args)
-		return ;
+		return (-1);
 	longuest = ft_strlen_longest(split_args[i], "-n");
 	if (!ft_strncmp(split_args[i], "-n", longuest))
 	{
@@ -62,4 +62,5 @@ void	ft_echo(char *str, int fd, char **envp)
 	}
 	ft_process_echo(&split_args[i], envp, arg, fd);
 	ft_split_clean(&split_args);
+	return(1);
 }

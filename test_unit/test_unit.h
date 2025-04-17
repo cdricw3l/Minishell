@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_unit.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:17:20 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/17 09:49:45 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/17 13:42:34 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int tst_shutting(void);
 int tst_tokenizer(void);
 int tst_builtin(int argc, char *envp[]);
 int tst_exe(void);
-int tst_export(char *envp[]);
+int tst_export(char **envp);
 int tst_quick(int argc, char **argv, char *envp[]);
 int tst_variable(char *envp[]);
 int tst_echo(char *envp[]);

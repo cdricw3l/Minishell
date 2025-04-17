@@ -10,16 +10,16 @@
 // /*                                                                            */
 // /* ************************************************************************** */
 
-// #include "test_unit.h"
+#include "test_unit.h"
 
-// /* 
-//     Error msg:  export 1hello = export: not an identifier: 1hello
-//                 export hello# = export: not valid in this context: hello#
-//                 export hello* = zsh: no matches found: hello*
-//                 export =d     = zsh: d not found
-//                 export a==1   = zsh: 1 not found
+/* 
+    Error msg:  export 1hello = export: not an identifier: 1hello
+                export hello# = export: not valid in this context: hello#
+                export hello* = zsh: no matches found: hello*
+                export =d     = zsh: d not found
+                export a==1   = zsh: 1 not found
 
-// */
+*/
 
 // int ft_tst_check_variable(void)
 // {
@@ -40,17 +40,17 @@
 //     char *invar_test_6 = "hello*";
     
 
-//     assert(ft_check_variable(var_test_1) == 1);
-//     assert(ft_check_variable(var_test_2) == 1);
-//     assert(ft_check_variable(var_test_3) == 1);
-//     assert(ft_check_variable(var_test_4) == 1);
+//     assert(ft_check_variable_export(var_test_1) == 1);
+//     assert(ft_check_variable_export(var_test_2) == 1);
+//     assert(ft_check_variable_export(var_test_3) == 1);
+//     assert(ft_check_variable_export(var_test_4) == 1);
 
-//     assert(ft_check_variable(invar_test_1) == 0);
-//     assert(ft_check_variable(invar_test_2) == 0);
-//     assert(ft_check_variable(invar_test_3) == 0);
-//     assert(ft_check_variable(invar_test_4) == 0);
-//     assert(ft_check_variable(invar_test_5) == 0);
-//     assert(ft_check_variable(invar_test_6) == 0);
+//     assert(ft_check_variable_export(invar_test_1) == 0);
+//     assert(ft_check_variable_export(invar_test_2) == 0);
+//     assert(ft_check_variable_export(invar_test_3) == 0);
+//     assert(ft_check_variable_export(invar_test_4) == 0);
+//     assert(ft_check_variable_export(invar_test_5) == 0);
+//     assert(ft_check_variable_export(invar_test_6) == 0);
 //     TEST_SUCCES;
 //     return(1);
 // }
@@ -97,74 +97,73 @@
 //     return(1);    
 // }
 
-// int tst_export(char *envp[])
-// {
-//     // REVOIR LA FONCTION DE TRIE DE L'ENV
-//     TEST_START;
-//     (void)envp;
+char **ft_get_empty_env(int n)
+{
+    char **env_simulation;
+    int i;
 
-//     // char *ss = ft_strdup("hello=world");
-    
-//     // char *s = ft_extract_var(ss);
-    
-//     // printf("voici %s\n",s);
+    i = 0;
+    env_simulation = malloc(sizeof(char *) * (n + 1));
+    if(!env_simulation)
+        return(NULL);
+    while (i < n)
+    {
+        env_simulation[i] = NULL;
+        i++;
+    }
+    env_simulation[i] = NULL;
+    return(env_simulation);
+}
 
-    
-//     assert(ft_tst_check_variable() == 1);
-//     assert(ft_tst_count_variable() == 1);
-//     assert(ft_tst_add_var() == 1);
-    
-//     char **d = ft_duplicate_env(envp);
-//     env_quick_s(d,ft_get_split_len(envp),ft_str_env_cmp);
-//     ft_display_env(d);
+int tst_export(char **envp)
+{
+    // REVOIR LA FONCTION DE TRIE DE L'ENV
+    TEST_START;
 
-//     // char **e = ft_duplicate_env(envp);
-//     // char *env = "Z1=0 Z2=1 Z3=22";
-//     // char **split = ft_split(env,32);
+    (void)envp;
+    char **split_valide;
+    char **split_invalide;
+    char **env_simulation;
 
-//     // assert(ft_is_split_sort(e));
-    
-//     //int actual_len = ft_get_split_len(e);
+    // valide arg:
+    char *invar_test_1 = "export 100H , export H=hello*, export 1hello, export hello#, export hello*";
+    char *var_test = "export H=0000 , export H00000, export H=hello, export HelloWorld";
 
-//     //ft_export(&e, &split);
-
-//     // int new_len = ft_get_split_len(e);
-
-//     // char *d = "Z22=101 Z2=101 ";
-//     // char **pli = ft_split(d,32);
+      // invalide arg:
+    env_simulation = ft_get_empty_env(10);
+    if(!env_simulation)
+        return(-1);
+    split_valide = ft_split(var_test, ',');
+    split_invalide = ft_split(invar_test_1, ',');
+    if(!split_valide)
+        return(-1);
+    if(!split_invalide)
+    {
+        ft_split_clean(&split_valide);
+        return(-1);
+    }
     
-//     // actual_len = ft_get_split_len(e);
-    
-//     // PRINT_INT(actual_len);
-//     // ft_export(&e, &pli);
-
-//     // new_len = ft_get_split_len(e);
-    
-//     // PRINT_INT(new_len);
-//     // assert(new_len == actual_len + 1);
-
-    
-//     // //test for dupplicate variable.
-//     // char *p = "Z=0 Z=1 Z=2";
-//     // char **plit = ft_split(p, 32);
-    
-//     // actual_len = ft_get_split_len(e);
-    
-//     // ft_export(&e, &plit);
-    
-//     // new_len = ft_get_split_len(e);
-    
-//     // assert(ft_is_env_sort(e));
-
-//     // printf("voici la  len %d and %d\n", new_len, actual_len);
-//     // assert(ft_is_env_sort(e) && new_len == actual_len + 1);
-
-
-//     // char *ps = "Z33=2333 Z78=0";
-//     // char **lit = ft_split(ps, 32);
-//     // ft_export(&e, &lit);
-    
-//     //ft_split_clean(&e);
-//     TEST_SUCCES;
-//     return(1);
-// }
+    assert(ft_export(&envp, NULL) == -1);
+    assert(ft_export(NULL, split_valide[0]) == -1);
+    //printf("voici %s\n", trimed);
+    //assert(ft_export(&env_simulation,trimed) == 1);
+    int i = 0;
+    while (split_valide[i])
+    {
+        char *trimed = ft_strtrim(split_valide[i], " ");
+        assert(ft_export(&env_simulation,trimed) == 1);
+        ft_split_print(env_simulation);
+        char *cmp = ft_strchr(trimed, 't') + 1;
+        char *trimed2 = ft_strtrim(cmp, " ");
+        printf( "voici %s et %s et %s\n", trimed2, trimed, env_simulation[i]);
+        //assert(ft_strncmp(trimed2,env_simulation[i], ft_strlen_longest(trimed2,env_simulation[i])) == 0);
+        free(trimed);
+        //free(trimed2);
+        i++;
+    }
+    ft_split_clean(&split_invalide);
+    ft_split_clean(&split_valide);
+    ft_split_clean(&env_simulation);
+    TEST_SUCCES;
+    return(1);
+}

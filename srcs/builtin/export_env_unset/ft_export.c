@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/17 09:25:30 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/17 14:56:45 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,10 @@ int	ft_export(char ***env, char *args)
 {
 	char	**split_args;
 
+	if(!env || !*env || !args)
+		return(-1);
 	split_args = ft_split(args, 32);
-	if (!(*env || !split_args))
+	if (!split_args)
 		return (-1);
 	if (!split_args[1] || ft_strncmp(split_args[1], "", 1) == 0)
 		return (display_export_env(env, &split_args));

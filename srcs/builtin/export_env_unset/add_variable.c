@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_variable.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 16:17:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/17 09:25:08 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/17 14:57:39 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static char	*process_new_variable(char **old_env, char *new_var)
 			var = transform_variable(new_var);
 		return (var);
 	}
-	return (NULL);
+	return (new_var);
 }
 
 static char	**process_old_variable(char **old_env, char **new_var)
@@ -56,6 +56,7 @@ char	**ft_add_variable_to_env(char **old_env, char **new_var)
 	size_t	j;
 	char	**new_env;
 
+
 	new_env = process_old_variable(old_env, new_var);
 	if (!new_env)
 		return (NULL);
@@ -64,8 +65,11 @@ char	**ft_add_variable_to_env(char **old_env, char **new_var)
 	while (i < ft_get_split_len(new_var))
 	{
 		if (process_new_variable(old_env, new_var[i]) == NULL)
+		{
+			i++;
 			continue ;
-		if (ft_is_variable_on_env(new_env, new_var[i], j) != -1)
+		}
+		else if (ft_is_variable_on_env(new_env, new_var[i], j) != -1)
 		{
 			free(new_env[ft_is_variable_on_env(new_env, new_var[i], j)]);
 			new_env[ft_is_variable_on_env(new_env, new_var[i], j)] = new_var[i];
