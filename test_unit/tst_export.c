@@ -126,7 +126,7 @@ int tst_export(char **envp)
     char **env_simulation;
 
     // valide arg:
-    char *invar_test_1 = "export 100H , export H=hello*, export 1hello, export hello#, export hello*";
+    char *invar_test_1 = "export 100H  H=hello*, export 1hello, export hello#, export hello*";
     char *var_test = "export H=0000 , export H00000, export H=hello, export HelloWorld";
 
       // invalide arg:
@@ -152,11 +152,12 @@ int tst_export(char **envp)
     {
         char *trimed = ft_strtrim(split_valide[i], " ");
         assert(ft_export(&env_simulation,trimed) == 1);
-        ft_split_print(env_simulation);
-        char *cmp = ft_strchr(trimed, 't') + 1;
-        char *trimed2 = ft_strtrim(cmp, " ");
-        printf( "voici %s et %s et %s\n", trimed2, trimed, env_simulation[i]);
-        //assert(ft_strncmp(trimed2,env_simulation[i], ft_strlen_longest(trimed2,env_simulation[i])) == 0);
+        //ft_split_print(env_simulation);
+        //printf("%s\n", env_simulation[i]);
+        //char *cmp = ft_strchr(trimed, 't') + 1;
+        // char *trimed2 = ft_strtrim(cmp, " ");
+        // printf( "voici %s et %s et %s\n", trimed2, trimed, env_simulation[i]);
+        // assert(ft_strncmp(trimed2,env_simulation[i], ft_strlen_longest(trimed2,env_simulation[i])) == 0);
         free(trimed);
         //free(trimed2);
         i++;

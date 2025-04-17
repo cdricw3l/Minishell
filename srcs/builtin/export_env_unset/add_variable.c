@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 16:17:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/17 14:57:39 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:41:15 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	**ft_add_variable_to_env(char **old_env, char **new_var)
 			i++;
 			continue ;
 		}
-		else if (ft_is_variable_on_env(new_env, new_var[i], j) != -1)
+		if (ft_is_variable_on_env(new_env, new_var[i], j) != -1)
 		{
 			free(new_env[ft_is_variable_on_env(new_env, new_var[i], j)]);
 			new_env[ft_is_variable_on_env(new_env, new_var[i], j)] = new_var[i];

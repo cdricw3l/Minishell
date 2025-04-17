@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/17 14:56:45 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:36:15 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int	ft_export(char ***env, char *args)
 	if (!split_args[1] || ft_strncmp(split_args[1], "", 1) == 0)
 		return (display_export_env(env, &split_args));
 	add_variable_ex(env, split_args);
+	ft_split_print(*env);
 	ft_split_clean(&split_args);
 	return (1);
 }
