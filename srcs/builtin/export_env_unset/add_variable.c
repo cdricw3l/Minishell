@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_variable.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 16:17:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/16 16:20:48 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/17 09:25:08 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static char	*process_new_variable(char **old_env, char *new_var)
 {
 	char	*var;
 
-	if (ft_index_of_char(new_var, '=') == -1
-		|| new_var[ft_index_of_char(new_var, '=') + 1] == '\0')
+	if (ft_index_of_char(new_var, '=') == -1 || new_var[ft_index_of_char(new_var, '=') + 1] == '\0')
 	{
 		if (new_var[0] == '$')
 		{
@@ -28,8 +27,9 @@ static char	*process_new_variable(char **old_env, char *new_var)
 		}
 		else
 			var = transform_variable(new_var);
+		return (var);
 	}
-	return (var);
+	return (NULL);
 }
 
 static char	**process_old_variable(char **old_env, char **new_var)

@@ -6,7 +6,7 @@
 /*   By: cw3l <cw3l@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:17:20 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/12 19:59:02 by cw3l             ###   ########.fr       */
+/*   Updated: 2025/04/17 09:49:45 by cw3l             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "../srcs/parser/lexer/precedence_climbing.h"
 #include "../include/main.h"
 #include <assert.h>
+#include <pthread.h>
 
 
 int tst_ast(void);
