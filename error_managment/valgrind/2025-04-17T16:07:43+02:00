@@ -1,0 +1,55 @@
+==1870223== Memcheck, a memory error detector
+==1870223== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==1870223== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==1870223== Command: ./minishell
+==1870223== Parent PID: 1870209
+==1870223== 
+==1870223== 
+==1870223== Process terminating with default action of signal 2 (SIGINT)
+==1870223==    at 0x490875B: kill (syscall-template.S:120)
+==1870223==    by 0x48A5F39: _rl_signal_handler (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1870223==    by 0x48A6BEC: rl_getc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1870223==    by 0x48A6460: rl_read_key (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1870223==    by 0x488AC86: readline_internal_char (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1870223==    by 0x4893D14: readline (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1870223==    by 0x10CC32: ft_read_line (parser.c:47)
+==1870223==    by 0x10CD07: ft_start_minishell (parser.c:73)
+==1870223==    by 0x109593: main (main.c:26)
+==1870223== 
+==1870223== HEAP SUMMARY:
+==1870223==     in use at exit: 218,561 bytes in 331 blocks
+==1870223==   total heap usage: 617 allocs, 286 frees, 234,299 bytes allocated
+==1870223== 
+==1870223== 11 bytes in 1 blocks are definitely lost in loss record 6 of 86
+==1870223==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1870223==    by 0x10E0E0: ft_strjoin (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1870223==    by 0x10B455: ft_clean_join (tokenize.c:35)
+==1870223==    by 0x10B4F4: ft_join_cmd_and_arg (tokenize.c:51)
+==1870223==    by 0x10BE76: ft_tokenize (tokenize.c:315)
+==1870223==    by 0x10C304: ft_parse (tokenize.c:700)
+==1870223==    by 0x10CC8E: ft_read_line (parser.c:54)
+==1870223==    by 0x10CD07: ft_start_minishell (parser.c:73)
+==1870223==    by 0x109593: main (main.c:26)
+==1870223== 
+==1870223== 624 bytes in 1 blocks are definitely lost in loss record 43 of 86
+==1870223==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1870223==    by 0x109CF1: process_old_variable (add_variable.c:43)
+==1870223==    by 0x109D96: ft_add_variable_to_env (add_variable.c:60)
+==1870223==    by 0x10AB4B: add_variable_ex (ft_export.c:76)
+==1870223==    by 0x10AC94: ft_export (ft_export.c:103)
+==1870223==    by 0x10D996: ft_execute_builtin (exec.c:379)
+==1870223==    by 0x10DCF3: execute_ast (exec.c:467)
+==1870223==    by 0x10CCCD: ft_read_line (parser.c:64)
+==1870223==    by 0x10CD07: ft_start_minishell (parser.c:73)
+==1870223==    by 0x109593: main (main.c:26)
+==1870223== 
+==1870223== LEAK SUMMARY:
+==1870223==    definitely lost: 635 bytes in 2 blocks
+==1870223==    indirectly lost: 0 bytes in 0 blocks
+==1870223==      possibly lost: 0 bytes in 0 blocks
+==1870223==    still reachable: 217,926 bytes in 329 blocks
+==1870223==         suppressed: 0 bytes in 0 blocks
+==1870223== Reachable blocks (those to which a pointer was found) are not shown.
+==1870223== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==1870223== 
+==1870223== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)

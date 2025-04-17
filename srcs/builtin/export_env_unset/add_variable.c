@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 16:17:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/17 15:51:59 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:58:40 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ char	**ft_add_variable_to_env(char **old_env, char **new_var)
 		return (NULL);
 	i = 0;
 	j = 0;
-	ft_split_print(new_env);
 	
 	while (i < ft_get_split_len(new_var))
 	{

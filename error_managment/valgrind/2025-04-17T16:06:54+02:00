@@ -1,0 +1,74 @@
+==1870100== Memcheck, a memory error detector
+==1870100== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==1870100== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==1870100== Command: ./minishell
+==1870100== Parent PID: 1870086
+==1870100== 
+==1870100== 
+==1870100== Process terminating with default action of signal 2 (SIGINT)
+==1870100==    at 0x490875B: kill (syscall-template.S:120)
+==1870100==    by 0x48A5F39: _rl_signal_handler (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1870100==    by 0x48A6BEC: rl_getc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1870100==    by 0x48A6460: rl_read_key (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1870100==    by 0x488AC86: readline_internal_char (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1870100==    by 0x4893D14: readline (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1870100==    by 0x10CC41: ft_read_line (parser.c:47)
+==1870100==    by 0x10CD16: ft_start_minishell (parser.c:73)
+==1870100==    by 0x109593: main (main.c:26)
+==1870100== 
+==1870100== HEAP SUMMARY:
+==1870100==     in use at exit: 218,666 bytes in 337 blocks
+==1870100==   total heap usage: 2,633 allocs, 2,296 frees, 265,211 bytes allocated
+==1870100== 
+==1870100== 7 bytes in 1 blocks are definitely lost in loss record 2 of 89
+==1870100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1870100==    by 0x10E055: ft_strdup (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1870100==    by 0x10B4B6: ft_join_cmd_and_arg (tokenize.c:46)
+==1870100==    by 0x10BE85: ft_tokenize (tokenize.c:315)
+==1870100==    by 0x10C313: ft_parse (tokenize.c:700)
+==1870100==    by 0x10CC9D: ft_read_line (parser.c:54)
+==1870100==    by 0x10CD16: ft_start_minishell (parser.c:73)
+==1870100==    by 0x109593: main (main.c:26)
+==1870100== 
+==1870100== 11 bytes in 1 blocks are definitely lost in loss record 7 of 89
+==1870100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1870100==    by 0x10E0EF: ft_strjoin (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1870100==    by 0x10B464: ft_clean_join (tokenize.c:35)
+==1870100==    by 0x10B503: ft_join_cmd_and_arg (tokenize.c:51)
+==1870100==    by 0x10BE85: ft_tokenize (tokenize.c:315)
+==1870100==    by 0x10C313: ft_parse (tokenize.c:700)
+==1870100==    by 0x10CC9D: ft_read_line (parser.c:54)
+==1870100==    by 0x10CD16: ft_start_minishell (parser.c:73)
+==1870100==    by 0x109593: main (main.c:26)
+==1870100== 
+==1870100== 55 (48 direct, 7 indirect) bytes in 1 blocks are definitely lost in loss record 31 of 89
+==1870100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1870100==    by 0x10B7D9: ft_new_token_node (tokenize.c:129)
+==1870100==    by 0x10BE9A: ft_tokenize (tokenize.c:317)
+==1870100==    by 0x10C313: ft_parse (tokenize.c:700)
+==1870100==    by 0x10CC9D: ft_read_line (parser.c:54)
+==1870100==    by 0x10CD16: ft_start_minishell (parser.c:73)
+==1870100==    by 0x109593: main (main.c:26)
+==1870100== 
+==1870100== 624 bytes in 1 blocks are definitely lost in loss record 46 of 89
+==1870100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1870100==    by 0x109CF1: process_old_variable (add_variable.c:43)
+==1870100==    by 0x109D96: ft_add_variable_to_env (add_variable.c:60)
+==1870100==    by 0x10AB4B: add_variable_ex (ft_export.c:76)
+==1870100==    by 0x10AC94: ft_export (ft_export.c:103)
+==1870100==    by 0x10D9A5: ft_execute_builtin (exec.c:379)
+==1870100==    by 0x10DD02: execute_ast (exec.c:467)
+==1870100==    by 0x10CCDC: ft_read_line (parser.c:64)
+==1870100==    by 0x10CD16: ft_start_minishell (parser.c:73)
+==1870100==    by 0x109593: main (main.c:26)
+==1870100== 
+==1870100== LEAK SUMMARY:
+==1870100==    definitely lost: 690 bytes in 4 blocks
+==1870100==    indirectly lost: 7 bytes in 1 blocks
+==1870100==      possibly lost: 0 bytes in 0 blocks
+==1870100==    still reachable: 217,969 bytes in 332 blocks
+==1870100==         suppressed: 0 bytes in 0 blocks
+==1870100== Reachable blocks (those to which a pointer was found) are not shown.
+==1870100== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==1870100== 
+==1870100== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
