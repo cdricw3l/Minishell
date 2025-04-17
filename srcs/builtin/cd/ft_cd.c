@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 12:30:49 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/16 15:51:35 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/17 11:42:25 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static char	*ft_trim_path(char *path)
 	int	i;
 	int	len;
 
-	printf("voici path %s\n",path);
 	len = ft_strlen(path);
 	i = 0;
 	while (path[i] == 32)
@@ -32,7 +31,6 @@ static char	*ft_trim_path(char *path)
 
 static char	*ft_get_home_path(char *path, int cd)
 {
-	TEST_START;
 	char	*env;
 	char	*total_path;
 
@@ -45,7 +43,6 @@ static char	*ft_get_home_path(char *path, int cd)
 		total_path = ft_strdup(env);
 	if (!total_path)
 		return (NULL);
-	TEST_SUCCES;
 	return (total_path);
 }
 
@@ -79,17 +76,18 @@ static int	ft_return_to_home(char *path)
 	if (chdir_return == -1)
 	{
 		printf("cd: no such file or directory: %s\n", path);
-		//free(home_path);
+		free(home_path);
 		return (-1);
 	}
-	//free(home_path);
-	TEST_SUCCES;
+	free(home_path);
 	return (1);
 }
 
 int	ft_cd(char *path)
 {
 	int	chdir_return;
+	char *tmp;
+
 
 	if (!path || !ft_check_path(path))
 		return (-1);
@@ -97,15 +95,20 @@ int	ft_cd(char *path)
 		return(ft_return_to_home(path));
 	else
 	{
-		path = ft_trim_path(path);
-		if (path[0] == '~' )
-			path = ft_get_home_path(path, 0);
+		tmp = ft_strdup(ft_trim_path(path));
+		if (tmp[0] == '~' )
+		{
+			free(tmp);
+			tmp = ft_get_home_path(path, 0);
+		}
 	}
-	chdir_return = chdir(path);
+	chdir_return = chdir(tmp);
 	if (chdir_return == -1)
 	{
-		printf("cd: no such file or directory: %s\n", path);
+		printf("cd: no such file or directory: %s\n", tmp);
+		free(tmp);
 		return (-1);
 	}
+	free(tmp);
 	return (1);
 }
