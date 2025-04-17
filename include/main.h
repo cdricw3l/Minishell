@@ -28,6 +28,7 @@
 #include <assert.h>
 #include <signal.h>
 #include <fcntl.h> // O_RDONLY, O_WRONLY, O_CREAT, O_TRUNC, O_APPEND
+#include <stdbool.h> // For bool type
 
 #include "../srcs/exec/exec.h"
 #include "../srcs/parser/parser.h"

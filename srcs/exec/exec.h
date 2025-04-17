@@ -13,5 +13,6 @@ typedef struct s_token t_token;
 #include "../parser/tokenizer/tokenize.h"
 
 void	execute_ast(t_token *node, char ***envp);
+int read_heredoc_to_pipe(const char *delimiter);
 
 #endif

@@ -39,24 +39,31 @@
 #define VAR 11
 #define BUILTIN 12
 
+typedef enum e_heredoc_state {
+    HD_NOT_PROCESSED,     // Initial state
+    HD_PROCESSING_FAILED, // An attempt was made but failed
+    HD_PROCESSED_OK       // Successfully read into heredoc_pipe_fd
+} t_heredoc_state;
+
 typedef struct s_token
 {
-    char            *string;
-    
+    char            *string;  
     int             token;
     int             precedence;
     int             asso;
     struct s_token  *parent;
     struct s_token  *right;
     struct s_token  *left;
-
+	int             heredoc_pipe_fd; // Stores read end of pipe for <<, -1 initially
+	t_heredoc_state heredoc_state; // Tracks the processing state
 } t_token;
 
 // Structure to hold a list of redirections
 typedef struct s_redir {
-    int type;           // Token type: 5 (<), 6 (>), 7 (>>)
-    char *filename;     // Filename for redirection
-    struct s_redir *next; // Pointer to the next redirection in the list
+    int type;           // Redirection type (REDIR_OPEN, REDIR_WRITE, etc.)
+    char *filename;     // Filename or delimiter (delimiter only for info if needed)
+    t_token *heredoc_node; // Pointer to the HEREDOC t_token node, NULL otherwise
+    struct s_redir *next;
 } t_redir;
 
 t_token *ft_tokenize(char *str);
@@ -81,7 +88,7 @@ int     ft_get_associativity(int token);
 char    *ft_get_str_token(int token);
 
 //redirection
-void add_redirection_to_list(t_redir **list_head, int type, char *filename);
+void add_redirection_to_list(t_redir **list, int type, const char *filename_or_delimiter, t_token *heredoc_node);
 int apply_redirections(t_redir *list);
 void free_redir_list(t_redir *list);
 

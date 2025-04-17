@@ -118,72 +118,121 @@ t_token *ft_new_token_node(char *str, int token)
     token_node->token = token;
     token_node->asso = ft_get_associativity(token);
     token_node->precedence = ft_get_precedence(token);
+	token_node->heredoc_pipe_fd = -1; // Initialize FD as invalid
+	token_node->heredoc_state = HD_NOT_PROCESSED; // Initialize state
     token_node->left = NULL;
     token_node->right = NULL;
+	token_node->parent = NULL;
     return(token_node);
 }
 
 // Adding to the beginning is important for correct override behavior later.
-void add_redirection_to_list(t_redir **list_head, int type, char *filename) {
-    t_redir *new_redir = (t_redir *)malloc(sizeof(t_redir));
+
+void add_redirection_to_list(t_redir **list, int type, const char *filename_or_delimiter, t_token *heredoc_node) {
+    t_redir *new_redir = malloc(sizeof(t_redir));
     if (!new_redir) {
         perror("malloc failed in add_redirection_to_list");
-        // Consider more robust error handling if needed
-        return;
+        return; // Or handle error
     }
     new_redir->type = type;
-    new_redir->filename = filename; // Assuming filename persists; strdup if necessary
-    new_redir->next = *list_head;
-    *list_head = new_redir;
+    new_redir->filename = filename_or_delimiter ? strdup(filename_or_delimiter) : NULL;
+    if (filename_or_delimiter && !new_redir->filename) {
+         perror("strdup failed in add_redirection_to_list");
+         free(new_redir);
+         return; // Or handle error
+    }
+    new_redir->heredoc_node = heredoc_node; // Store pointer to HEREDOC node
+    new_redir->next = *list;
+    *list = new_redir;
 }
 
 // --- Helper Function: Apply redirections from the list ---
 // Returns 0 on success, -1 on failure.
 int apply_redirections(t_redir *list) {
     t_redir *current = list;
+    int fd = -1; // Temporary fd for open()
+    int heredoc_fd_to_dup = -1;
 
-    while (current) {
-        int fd = -1;
-        int flags = 0;
-        int target_std_fd = -1; // STDIN_FILENO or STDOUT_FILENO
-
-        switch (current->type) {
-            case 5: // INPUT REDIRECTION (<)
-                flags = O_RDONLY;
-                target_std_fd = STDIN_FILENO;
-                break;
-            case 6: // OUTPUT REDIRECTION (>)
-                flags = O_WRONLY | O_CREAT | O_TRUNC;
-                target_std_fd = STDOUT_FILENO;
-                break;
-            case 7: // APPEND REDIRECTION (>>)
-                flags = O_WRONLY | O_CREAT | O_APPEND;
-                target_std_fd = STDOUT_FILENO;
-                break;
-            default:
-                fprintf(stderr, "minishell: Internal error - Unknown redirection type %d\n", current->type);
-                return -1; // Indicate failure
-        }
-
-        fd = open(current->filename, flags, 0644); // Use standard permissions
-        if (fd == -1) {
-            perror(current->filename); // Print error related to the specific file
-            return -1; // Indicate failure
-        }
-
-        // If dup2 fails, we should still report error, maybe close fd
-        if (dup2(fd, target_std_fd) == -1) {
-            perror("dup2 failed");
-            close(fd); // Close the file descriptor we opened
-            return -1; // Indicate failure
-        }
-
-        // We MUST close the original file descriptor after dup2
-        close(fd);
-
-        current = current->next; // Move to the next redirection in the list
+    // Reverse the list first to apply redirections in left-to-right order
+    t_redir *prev = NULL, *next = NULL;
+    while (current != NULL) {
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
     }
-    return 0; // Indicate success
+    list = prev; // New head of the reversed list
+
+    // Now apply redirections from the (now correctly ordered) list
+    current = list;
+    while (current) {
+        switch (current->type) {
+            case REDIR_OPEN: // <
+                fd = open(current->filename, O_RDONLY);
+                if (fd == -1) {
+                    perror(current->filename); return -1;
+                }
+                if (dup2(fd, STDIN_FILENO) == -1) {
+                    perror("dup2 stdin"); close(fd); return -1;
+                }
+                close(fd);
+                break;
+
+            case REDIR_WRITE: // >
+                fd = open(current->filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+                if (fd == -1) {
+                    perror(current->filename); return -1;
+                }
+                 if (dup2(fd, STDOUT_FILENO) == -1) {
+                    perror("dup2 stdout"); close(fd); return -1;
+                }
+                close(fd);
+                break;
+
+            case REDIR_WRITE_A: // >>
+                 fd = open(current->filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
+                 if (fd == -1) {
+                    perror(current->filename); return -1;
+                 }
+                if (dup2(fd, STDOUT_FILENO) == -1) {
+                    perror("dup2 stdout append"); close(fd); return -1;
+                }
+                close(fd);
+                break;
+
+            case HEREDOC: // <<
+			    fprintf(stderr, "[DEBUG apply_redir] Attempting HEREDOC.\n"); // DEBUG
+				if (current->heredoc_node) {
+					fprintf(stderr, "[DEBUG apply_redir] Node delimiter='%s', State=%d, FD=%d\n",
+						current->heredoc_node->right ? current->heredoc_node->right->string : "???",
+						current->heredoc_node->heredoc_state,
+						current->heredoc_node->heredoc_pipe_fd); // DEBUG
+				} else 
+				{
+					fprintf(stderr, "[DEBUG apply_redir] Error - heredoc_node is NULL!\n"); // DEBUG
+				}
+                // Check the state before using the FD
+                if (!current->heredoc_node ||
+                    current->heredoc_node->heredoc_state != HD_PROCESSED_OK ||
+                    current->heredoc_node->heredoc_pipe_fd < 0) // Also check fd validity
+                {
+                    fprintf(stderr, "minishell: internal error - invalid heredoc state or fd for apply\n");
+                    // Potentially close any FDs opened earlier in this function?
+                    return -1;
+                }
+                heredoc_fd_to_dup = current->heredoc_node->heredoc_pipe_fd;
+                if (dup2(heredoc_fd_to_dup, STDIN_FILENO) == -1) {
+                    perror("dup2 stdin heredoc");
+                    // Potentially close any FDs opened earlier in this function?
+                    return -1;
+                }
+                // IMPORTANT: Do NOT close heredoc_fd_to_dup here.
+                // It will be closed later by close_all_heredoc_fds_in_tree.
+                break;
+        }
+        current = current->next;
+    }
+    return 0; // Success
 }
 
 // --- Helper Function: Free the redirection list ---
