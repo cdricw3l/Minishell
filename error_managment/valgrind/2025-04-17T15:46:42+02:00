@@ -1,0 +1,295 @@
+==1865312== Memcheck, a memory error detector
+==1865312== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==1865312== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==1865312== Command: ./minishell
+==1865312== Parent PID: 1865295
+==1865312== 
+==1865312== Invalid read of size 8
+==1865312==    at 0x10E660: ft_split_clean (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1865312==    by 0x10AC8C: ft_export (ft_export.c:105)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312==  Address 0x4b90060 is 0 bytes inside a block of size 24 free'd
+==1865312==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10AB7F: add_variable_ex (ft_export.c:83)
+==1865312==    by 0x10AC71: ft_export (ft_export.c:103)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312==  Block was alloc'd at
+==1865312==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10E5A6: ft_split (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1865312==    by 0x10ABFF: ft_export (ft_export.c:98)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312== 
+==1865312== Invalid read of size 8
+==1865312==    at 0x10E641: ft_split_clean (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1865312==    by 0x10AC8C: ft_export (ft_export.c:105)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312==  Address 0x4b90060 is 0 bytes inside a block of size 24 free'd
+==1865312==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10AB7F: add_variable_ex (ft_export.c:83)
+==1865312==    by 0x10AC71: ft_export (ft_export.c:103)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312==  Block was alloc'd at
+==1865312==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10E5A6: ft_split (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1865312==    by 0x10ABFF: ft_export (ft_export.c:98)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312== 
+==1865312== Invalid write of size 8
+==1865312==    at 0x10E650: ft_split_clean (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1865312==    by 0x10AC8C: ft_export (ft_export.c:105)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312==  Address 0x4b90060 is 0 bytes inside a block of size 24 free'd
+==1865312==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10AB7F: add_variable_ex (ft_export.c:83)
+==1865312==    by 0x10AC71: ft_export (ft_export.c:103)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312==  Block was alloc'd at
+==1865312==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10E5A6: ft_split (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1865312==    by 0x10ABFF: ft_export (ft_export.c:98)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312== 
+==1865312== Invalid free() / delete / delete[] / realloc()
+==1865312==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10E676: ft_split_clean (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1865312==    by 0x10AC8C: ft_export (ft_export.c:105)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312==  Address 0x4b90060 is 0 bytes inside a block of size 24 free'd
+==1865312==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10AB7F: add_variable_ex (ft_export.c:83)
+==1865312==    by 0x10AC71: ft_export (ft_export.c:103)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312==  Block was alloc'd at
+==1865312==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10E5A6: ft_split (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1865312==    by 0x10ABFF: ft_export (ft_export.c:98)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312== 
+==1865312== 
+==1865312== Process terminating with default action of signal 2 (SIGINT)
+==1865312==    at 0x490875B: kill (syscall-template.S:120)
+==1865312==    by 0x48A5F39: _rl_signal_handler (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1865312==    by 0x48A6BEC: rl_getc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1865312==    by 0x48A6460: rl_read_key (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1865312==    by 0x488AC86: readline_internal_char (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1865312==    by 0x4893D14: readline (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==1865312==    by 0x10CC1E: ft_read_line (parser.c:47)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312== 
+==1865312== HEAP SUMMARY:
+==1865312==     in use at exit: 218,050 bytes in 336 blocks
+==1865312==   total heap usage: 2,613 allocs, 2,278 frees, 264,841 bytes allocated
+==1865312== 
+==1865312== 7 bytes in 1 blocks are definitely lost in loss record 2 of 89
+==1865312==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10E032: ft_strdup (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1865312==    by 0x10B493: ft_join_cmd_and_arg (tokenize.c:46)
+==1865312==    by 0x10BE62: ft_tokenize (tokenize.c:315)
+==1865312==    by 0x10C2F0: ft_parse (tokenize.c:700)
+==1865312==    by 0x10CC7A: ft_read_line (parser.c:54)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312== 
+==1865312== 11 bytes in 1 blocks are definitely lost in loss record 7 of 89
+==1865312==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10E0CC: ft_strjoin (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1865312==    by 0x10B441: ft_clean_join (tokenize.c:35)
+==1865312==    by 0x10B4E0: ft_join_cmd_and_arg (tokenize.c:51)
+==1865312==    by 0x10BE62: ft_tokenize (tokenize.c:315)
+==1865312==    by 0x10C2F0: ft_parse (tokenize.c:700)
+==1865312==    by 0x10CC7A: ft_read_line (parser.c:54)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312== 
+==1865312== 47 bytes in 2 blocks are definitely lost in loss record 28 of 89
+==1865312==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10E032: ft_strdup (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1865312==    by 0x10CED9: ft_duplicate_env (environnement.c:79)
+==1865312==    by 0x10956B: main (main.c:23)
+==1865312== 
+==1865312== 55 (48 direct, 7 indirect) bytes in 1 blocks are definitely lost in loss record 32 of 89
+==1865312==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10B7B6: ft_new_token_node (tokenize.c:129)
+==1865312==    by 0x10BE77: ft_tokenize (tokenize.c:317)
+==1865312==    by 0x10C2F0: ft_parse (tokenize.c:700)
+==1865312==    by 0x10CC7A: ft_read_line (parser.c:54)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312== 
+==1865312== LEAK SUMMARY:
+==1865312==    definitely lost: 113 bytes in 5 blocks
+==1865312==    indirectly lost: 7 bytes in 1 blocks
+==1865312==      possibly lost: 0 bytes in 0 blocks
+==1865312==    still reachable: 217,930 bytes in 330 blocks
+==1865312==         suppressed: 0 bytes in 0 blocks
+==1865312== Reachable blocks (those to which a pointer was found) are not shown.
+==1865312== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==1865312== 
+==1865312== ERROR SUMMARY: 12 errors from 8 contexts (suppressed: 0 from 0)
+==1865312== 
+==1865312== 1 errors in context 1 of 8:
+==1865312== Invalid free() / delete / delete[] / realloc()
+==1865312==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10E676: ft_split_clean (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1865312==    by 0x10AC8C: ft_export (ft_export.c:105)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312==  Address 0x4b90060 is 0 bytes inside a block of size 24 free'd
+==1865312==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10AB7F: add_variable_ex (ft_export.c:83)
+==1865312==    by 0x10AC71: ft_export (ft_export.c:103)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312==  Block was alloc'd at
+==1865312==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10E5A6: ft_split (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1865312==    by 0x10ABFF: ft_export (ft_export.c:98)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312== 
+==1865312== 
+==1865312== 2 errors in context 2 of 8:
+==1865312== Invalid write of size 8
+==1865312==    at 0x10E650: ft_split_clean (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1865312==    by 0x10AC8C: ft_export (ft_export.c:105)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312==  Address 0x4b90060 is 0 bytes inside a block of size 24 free'd
+==1865312==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10AB7F: add_variable_ex (ft_export.c:83)
+==1865312==    by 0x10AC71: ft_export (ft_export.c:103)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312==  Block was alloc'd at
+==1865312==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10E5A6: ft_split (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1865312==    by 0x10ABFF: ft_export (ft_export.c:98)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312== 
+==1865312== 
+==1865312== 2 errors in context 3 of 8:
+==1865312== Invalid read of size 8
+==1865312==    at 0x10E641: ft_split_clean (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1865312==    by 0x10AC8C: ft_export (ft_export.c:105)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312==  Address 0x4b90060 is 0 bytes inside a block of size 24 free'd
+==1865312==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10AB7F: add_variable_ex (ft_export.c:83)
+==1865312==    by 0x10AC71: ft_export (ft_export.c:103)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312==  Block was alloc'd at
+==1865312==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10E5A6: ft_split (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1865312==    by 0x10ABFF: ft_export (ft_export.c:98)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312== 
+==1865312== 
+==1865312== 3 errors in context 4 of 8:
+==1865312== Invalid read of size 8
+==1865312==    at 0x10E660: ft_split_clean (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1865312==    by 0x10AC8C: ft_export (ft_export.c:105)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312==  Address 0x4b90060 is 0 bytes inside a block of size 24 free'd
+==1865312==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10AB7F: add_variable_ex (ft_export.c:83)
+==1865312==    by 0x10AC71: ft_export (ft_export.c:103)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312==  Block was alloc'd at
+==1865312==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1865312==    by 0x10E5A6: ft_split (in /home/cbouhadr/Documents/mini_commun/minishell)
+==1865312==    by 0x10ABFF: ft_export (ft_export.c:98)
+==1865312==    by 0x10D982: ft_execute_builtin (exec.c:379)
+==1865312==    by 0x10DCDF: execute_ast (exec.c:467)
+==1865312==    by 0x10CCB9: ft_read_line (parser.c:64)
+==1865312==    by 0x10CCF3: ft_start_minishell (parser.c:73)
+==1865312==    by 0x109593: main (main.c:26)
+==1865312== 
+==1865312== ERROR SUMMARY: 12 errors from 8 contexts (suppressed: 0 from 0)

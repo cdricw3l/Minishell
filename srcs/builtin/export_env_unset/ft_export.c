@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:52:29 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/04/17 15:36:15 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:47:10 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int	add_variable_ex(char ***env, char **split_args)
 		free(*env);
 		free(split_args);
 		*env = new_env;
-	}
+	}	
 	else
 		return (0);
 	return (1);

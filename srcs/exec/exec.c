@@ -382,7 +382,7 @@ void ft_execute_builtin(t_token *first_node, t_token *node, char ***envp)
     if(ft_strncmp(node->string, "unset", ft_strlen("unset")) == 0)
         ft_unset(node->string,envp);
     if(ft_strncmp(node->string, "env", ft_strlen("env")) == 0)
-        ft_env(node->string,envp);
+        ft_env(node->string, envp);
 } 
 
 void execute_ast(t_token *first_node,t_token *node, char ***envp) 
